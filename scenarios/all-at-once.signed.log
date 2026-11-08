@@ -34153,6 +34153,7 @@
 604835100 peer119 dropped Replay ×2
 604835100 peer120 dropped Replay ×2
 604836000 host: every drone publishes its position to gcs
+604836000 peer104 refused publish Rate
 604836000 send 1 "gcs" 103B ttl 600
 604836000 send 2 "gcs" 103B ttl 600
 604836000 send 3 "gcs" 103B ttl 600
@@ -34256,7 +34257,6 @@
 604836000 send 101 "gcs" 103B ttl 600
 604836000 send 102 "gcs" 103B ttl 600
 604836000 send 103 "gcs" 103B ttl 600
-604836000 send 104 "gcs" 103B ttl 600
 604836000 send 105 "gcs" 103B ttl 600
 604836000 send 106 "gcs" 103B ttl 600
 604836000 send 107 "gcs" 103B ttl 600
@@ -34377,7 +34377,6 @@
 604836000 deliver 101 -> 0 "gcs" 103B
 604836000 deliver 102 -> 0 "gcs" 103B
 604836000 deliver 103 -> 0 "gcs" 103B
-604836000 deliver 104 -> 0 "gcs" 103B
 604836000 deliver 105 -> 0 "gcs" 103B
 604836000 deliver 106 -> 0 "gcs" 103B
 604836000 deliver 107 -> 0 "gcs" 103B
@@ -34497,7 +34496,6 @@
 604836100 peer0 event "gcs" "pos" from sender 102
 604836100 peer0 event "gcs" "pos" from sender 103
 604836100 peer0 event "gcs" "pos" from sender 104
-604836100 peer0 event "gcs" "pos" from sender 105
 604836100 peer0 event "gcs" "pos" from sender 106
 604836100 peer0 event "gcs" "pos" from sender 107
 604836100 peer0 event "gcs" "pos" from sender 108
@@ -34515,6 +34513,7 @@
 604836100 peer0 event "gcs" "pos" from sender 120
 604836100 peer0 rollback from sender 6
 604837000 host: every drone publishes its position to gcs
+604837000 peer104 refused publish Rate
 604837000 send 1 "gcs" 103B ttl 600
 604837000 send 2 "gcs" 103B ttl 600
 604837000 send 3 "gcs" 103B ttl 600
@@ -34618,7 +34617,6 @@
 604837000 send 101 "gcs" 103B ttl 600
 604837000 send 102 "gcs" 103B ttl 600
 604837000 send 103 "gcs" 103B ttl 600
-604837000 send 104 "gcs" 103B ttl 600
 604837000 send 105 "gcs" 103B ttl 600
 604837000 send 106 "gcs" 103B ttl 600
 604837000 send 107 "gcs" 103B ttl 600
@@ -34739,7 +34737,6 @@
 604837000 deliver 101 -> 0 "gcs" 103B
 604837000 deliver 102 -> 0 "gcs" 103B
 604837000 deliver 103 -> 0 "gcs" 103B
-604837000 deliver 104 -> 0 "gcs" 103B
 604837000 deliver 105 -> 0 "gcs" 103B
 604837000 deliver 106 -> 0 "gcs" 103B
 604837000 deliver 107 -> 0 "gcs" 103B
@@ -34859,7 +34856,6 @@
 604837100 peer0 event "gcs" "pos" from sender 102
 604837100 peer0 event "gcs" "pos" from sender 103
 604837100 peer0 event "gcs" "pos" from sender 104
-604837100 peer0 event "gcs" "pos" from sender 105
 604837100 peer0 event "gcs" "pos" from sender 106
 604837100 peer0 event "gcs" "pos" from sender 107
 604837100 peer0 event "gcs" "pos" from sender 108
@@ -34877,6 +34873,7 @@
 604837100 peer0 event "gcs" "pos" from sender 120
 604837100 peer0 rollback from sender 6
 604838000 host: every drone publishes its position to gcs
+604838000 peer104 refused publish Rate
 604838000 send 1 "gcs" 103B ttl 600
 604838000 send 2 "gcs" 103B ttl 600
 604838000 send 3 "gcs" 103B ttl 600
@@ -34980,7 +34977,6 @@
 604838000 send 101 "gcs" 103B ttl 600
 604838000 send 102 "gcs" 103B ttl 600
 604838000 send 103 "gcs" 103B ttl 600
-604838000 send 104 "gcs" 103B ttl 600
 604838000 send 105 "gcs" 103B ttl 600
 604838000 send 106 "gcs" 103B ttl 600
 604838000 send 107 "gcs" 103B ttl 600
@@ -35101,7 +35097,6 @@
 604838000 deliver 101 -> 0 "gcs" 103B
 604838000 deliver 102 -> 0 "gcs" 103B
 604838000 deliver 103 -> 0 "gcs" 103B
-604838000 deliver 104 -> 0 "gcs" 103B
 604838000 deliver 105 -> 0 "gcs" 103B
 604838000 deliver 106 -> 0 "gcs" 103B
 604838000 deliver 107 -> 0 "gcs" 103B
@@ -35221,7 +35216,6 @@
 604838100 peer0 event "gcs" "pos" from sender 102
 604838100 peer0 event "gcs" "pos" from sender 103
 604838100 peer0 event "gcs" "pos" from sender 104
-604838100 peer0 event "gcs" "pos" from sender 105
 604838100 peer0 event "gcs" "pos" from sender 106
 604838100 peer0 event "gcs" "pos" from sender 107
 604838100 peer0 event "gcs" "pos" from sender 108
@@ -35464,6 +35458,7 @@
 604845100 peer102 call "Ping" "5"
 604845100 peer103 call "Ping" "5"
 604845100 peer104 call "Ping" "5"
+604845100 peer104 refused reply Rate
 604845100 peer105 call "Ping" "5"
 604845100 peer106 call "Ping" "5"
 604845100 peer107 call "Ping" "5"
@@ -35583,7 +35578,6 @@
 604845200 send 101 "gcs" 116B ttl 20
 604845200 send 102 "gcs" 116B ttl 20
 604845200 send 103 "gcs" 116B ttl 20
-604845200 send 104 "gcs" 116B ttl 20
 604845200 send 105 "gcs" 116B ttl 20
 604845200 send 106 "gcs" 116B ttl 20
 604845200 send 107 "gcs" 116B ttl 20
@@ -35703,7 +35697,6 @@
 604845200 deliver 101 -> 0 "gcs" 116B
 604845200 deliver 102 -> 0 "gcs" 116B
 604845200 deliver 103 -> 0 "gcs" 116B
-604845200 deliver 104 -> 0 "gcs" 116B
 604845200 deliver 105 -> 0 "gcs" 116B
 604845200 deliver 106 -> 0 "gcs" 116B
 604845200 deliver 107 -> 0 "gcs" 116B
@@ -35721,7 +35714,7 @@
 604845200 deliver 119 -> 0 "gcs" 116B
 604845200 deliver 120 -> 0 "gcs" 116B
 604845300 peer0 reply seq=0 end=true status=0 "5"
-604845300 peer0 dropped NoPending ×119
+604845300 peer0 dropped NoPending ×118
 604860000 gcs calls Ping#6 ttl 20
 604860000 send 0 "nav" 113B ttl 20
 604860000 deliver 0 -> 1 "nav" 113B
@@ -35948,6 +35941,7 @@
 604860100 peer102 call "Ping" "6"
 604860100 peer103 call "Ping" "6"
 604860100 peer104 call "Ping" "6"
+604860100 peer104 refused reply Rate
 604860100 peer105 call "Ping" "6"
 604860100 peer106 call "Ping" "6"
 604860100 peer107 call "Ping" "6"
@@ -36067,7 +36061,6 @@
 604860200 send 101 "gcs" 116B ttl 20
 604860200 send 102 "gcs" 116B ttl 20
 604860200 send 103 "gcs" 116B ttl 20
-604860200 send 104 "gcs" 116B ttl 20
 604860200 send 105 "gcs" 116B ttl 20
 604860200 send 106 "gcs" 116B ttl 20
 604860200 send 107 "gcs" 116B ttl 20
@@ -36187,7 +36180,6 @@
 604860200 deliver 101 -> 0 "gcs" 116B
 604860200 deliver 102 -> 0 "gcs" 116B
 604860200 deliver 103 -> 0 "gcs" 116B
-604860200 deliver 104 -> 0 "gcs" 116B
 604860200 deliver 105 -> 0 "gcs" 116B
 604860200 deliver 106 -> 0 "gcs" 116B
 604860200 deliver 107 -> 0 "gcs" 116B
@@ -36205,7 +36197,7 @@
 604860200 deliver 119 -> 0 "gcs" 116B
 604860200 deliver 120 -> 0 "gcs" 116B
 604860300 peer0 reply seq=0 end=true status=0 "6"
-604860300 peer0 dropped NoPending ×119
+604860300 peer0 dropped NoPending ×118
 604865000 expire 0 "nav"
 604865200 expire 1 "gcs"
 604865200 expire 2 "gcs"
@@ -36310,7 +36302,6 @@
 604865200 expire 101 "gcs"
 604865200 expire 102 "gcs"
 604865200 expire 103 "gcs"
-604865200 expire 104 "gcs"
 604865200 expire 105 "gcs"
 604865200 expire 106 "gcs"
 604865200 expire 107 "gcs"
@@ -36553,6 +36544,7 @@
 604875100 peer102 call "Ping" "7"
 604875100 peer103 call "Ping" "7"
 604875100 peer104 call "Ping" "7"
+604875100 peer104 refused reply Rate
 604875100 peer105 call "Ping" "7"
 604875100 peer106 call "Ping" "7"
 604875100 peer107 call "Ping" "7"
@@ -36672,7 +36664,6 @@
 604875200 send 101 "gcs" 116B ttl 20
 604875200 send 102 "gcs" 116B ttl 20
 604875200 send 103 "gcs" 116B ttl 20
-604875200 send 104 "gcs" 116B ttl 20
 604875200 send 105 "gcs" 116B ttl 20
 604875200 send 106 "gcs" 116B ttl 20
 604875200 send 107 "gcs" 116B ttl 20
@@ -36792,7 +36783,6 @@
 604875200 deliver 101 -> 0 "gcs" 116B
 604875200 deliver 102 -> 0 "gcs" 116B
 604875200 deliver 103 -> 0 "gcs" 116B
-604875200 deliver 104 -> 0 "gcs" 116B
 604875200 deliver 105 -> 0 "gcs" 116B
 604875200 deliver 106 -> 0 "gcs" 116B
 604875200 deliver 107 -> 0 "gcs" 116B
@@ -36810,7 +36800,7 @@
 604875200 deliver 119 -> 0 "gcs" 116B
 604875200 deliver 120 -> 0 "gcs" 116B
 604875300 peer0 reply seq=0 end=true status=0 "7"
-604875300 peer0 dropped NoPending ×119
+604875300 peer0 dropped NoPending ×118
 604880000 expire 0 "nav"
 604880200 expire 1 "gcs"
 604880200 expire 2 "gcs"
@@ -36915,7 +36905,6 @@
 604880200 expire 101 "gcs"
 604880200 expire 102 "gcs"
 604880200 expire 103 "gcs"
-604880200 expire 104 "gcs"
 604880200 expire 105 "gcs"
 604880200 expire 106 "gcs"
 604880200 expire 107 "gcs"
