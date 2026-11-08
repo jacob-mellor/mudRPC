@@ -1,6 +1,6 @@
 [package]
 name = "mudrpc-c"
-version = "0.4.0"
+version = "3.0.0"
 edition = "2021"
 license = "MIT"
 description = "The mudRPC C ABI every language wrapper sits on, with the simulator and generator behind it."
@@ -15,11 +15,11 @@ path = "ffi.rs"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [dependencies]
-mudrpc-auth = { path = "../../auth", version = "0.3.0" }
-mudrpc-core = { path = "../../core", version = "0.3.0" }
-mudrpc-gcm = { path = "../../gcm", version = "0.3.0" }
-mudrpc-adapters = { path = "../../adapters", version = "0.3.0", optional = true }
-mudrpc-gen = { path = "../../gen", version = "0.3.0", optional = true }
+mudrpc-auth = { path = "../../auth", version = "3.0.0" }
+mudrpc-core = { path = "../../core", version = "3.0.0" }
+mudrpc-gcm = { path = "../../gcm", version = "3.0.0" }
+mudrpc-adapters = { path = "../../adapters", version = "3.0.0", optional = true }
+mudrpc-gen = { path = "../../gen", version = "3.0.0", optional = true }
 
 [features]
 default = ["std"]

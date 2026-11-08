@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Drones;
@@ -19,12 +18,11 @@ using var dronePeer = new Peer("drone", key, sender: 2, epoch: 1);
 using var gcs = new MudChannel(gcsPeer, gcsSocket);
 using var drone = new MudChannel(dronePeer, droneSocket);
 Drone.BindService(drone.Binder, new DroneService());
-await Task.Delay(200);   // the drone answers once its listen has reached its socket
 
 // From here, the code a gRPC product already has.
 var client = new Drone.DroneClient(gcs);
 try { await client.LandAsync(new LandRequest(), deadline: Deadline()); }
-catch (RpcException e) { Console.WriteLine($"land: {Regex.Replace(e.StatusCode.ToString(), "(?<=[a-z])(?=[A-Z])", "_").ToUpperInvariant()} {e.Status.Detail}"); }
+catch (RpcException e) { Console.WriteLine($"land: {Mud.StatusName((uint)e.StatusCode)} {e.Status.Detail}"); }
 var armed = await client.ArmAsync(new ArmRequest { Pilot = "gcs" }, deadline: Deadline());
 Console.WriteLine($"armed {armed.Drone} for gcs");
 var samples = new List<string>();

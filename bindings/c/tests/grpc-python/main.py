@@ -318,9 +318,21 @@ def main():
     gcs_u = mud_grpc.Channel(mud.Peer("gcsu", KEY, 11, 1), gu)
     drone_u = mud_grpc.Channel(mud.Peer("droneu", KEY, 12, 1), du)
     rpc.add_DroneServicer_to_server(DroneService(), drone_u)
-    time.sleep(0.2)  # a server answers once its listen has reached its socket
     over_udp = rpc.DroneStub(gcs_u)
     say(f"over UDP: armed {over_udp.Arm(pb.ArmRequest(id=1), timeout=5).armed}, telemetry {read(over_udp.Telemetry(pb.TelemetryRequest(count=5)))}")
+    armed_at_once = 0
+    for _ in range(20):  # a server called the moment it is added
+        g_n, d_n, _ = udp_pair()
+        server_n = mud_grpc.Channel(mud.Peer("servern", KEY, 12, 1), d_n)
+        rpc.add_DroneServicer_to_server(DroneService(), server_n)
+        client_n = mud_grpc.Channel(mud.Peer("clientn", KEY, 11, 1), g_n)
+        try:
+            armed_at_once += rpc.DroneStub(client_n).Arm(pb.ArmRequest(id=1), timeout=5).armed
+        except grpc.RpcError:
+            pass
+        for x in (client_n, server_n, g_n, d_n):
+            x.close()
+    say(f"twenty servers called at once: {armed_at_once} of 20 armed")
     lost_socket = mud.Udp("127.0.0.1:0", f"127.0.0.1:{pd}")
     lost = mud_grpc.Channel(mud.Peer("lost", KEY, 13, 1), lost_socket)
     lost_socket.close()
@@ -380,7 +392,6 @@ def main():
             third_ports = [free(), free(), free()]
     gcs_t, drone_t, idle_t = mud_grpc.Channel(mud.Peer("gcst", KEY, 21, 1), g), mud_grpc.Channel(mud.Peer("dronet", KEY, 22, 1), d), mud_grpc.Channel(mud.Peer("idlet", KEY, 23, 1), i)
     rpc.add_DroneServicer_to_server(DroneService(), drone_t)
-    time.sleep(0.2)  # a server answers once its listen has reached its socket
     three = rpc.DroneStub(gcs_t)
     say(f"three on UDP, one serving nothing: {sum(three.Arm(pb.ArmRequest(id=1), timeout=5).armed for _ in range(10))} of 10 armed")
     for c in (gcs_t, drone_t, idle_t):

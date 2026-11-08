@@ -520,11 +520,24 @@ func main() {
 	gcsU := mud.NewChannel(must(mud.New("gcsu", key, 11, 1)), pair[0])
 	droneU := mud.NewChannel(must(mud.New("droneu", key, 12, 1)), pair[1])
 	pb.RegisterDroneServer(droneU, DroneService{})
-	time.Sleep(200 * time.Millisecond) // a server answers once its listen has reached its socket
 	overUDP := pb.NewDroneClient(gcsU)
 	r, err = overUDP.Arm(within(5*time.Second), &pb.ArmRequest{Id: 1})
 	items, _ = read(overUDP.Telemetry(within(5*time.Second), &pb.TelemetryRequest{Count: 5}))
 	say("over UDP: armed %v, %v, telemetry %s", r.GetArmed(), err, items)
+	atOnce := 0
+	for range 20 { // a server's listen is on its socket before RegisterService returns, a client's before NewChannel does
+		pairN := udpSet(2)
+		gcsP, droneP := must(mud.New("gcsn", key, 17, 1)), must(mud.New("dronen", key, 18, 1))
+		gcsN, droneN := mud.NewChannel(gcsP, pairN[0]), mud.NewChannel(droneP, pairN[1])
+		pb.RegisterDroneServer(droneN, DroneService{})
+		if r, err := pb.NewDroneClient(gcsN).Arm(within(5*time.Second), &pb.ArmRequest{Id: 1}); err == nil && r.Armed {
+			atOnce++
+		}
+		for _, c := range []interface{ Close() }{gcsN, droneN, gcsP, droneP, pairN[0], pairN[1]} {
+			c.Close()
+		}
+	}
+	say("twenty servers called at once: %d of 20 armed", atOnce)
 	port, _ := pair[1].Port()
 	lostSocket, _ := mud.NewUdp("127.0.0.1:0", fmt.Sprintf("127.0.0.1:%d", port))
 	lost := mud.NewChannel(must(mud.New("lost", key, 13, 1)), lostSocket)
@@ -574,7 +587,6 @@ func main() {
 	three := udpSet(3)
 	gcsT, droneT, idleT := mud.NewChannel(must(mud.New("gcst", key, 21, 1)), three[0]), mud.NewChannel(must(mud.New("dronet", key, 22, 1)), three[1]), mud.NewChannel(must(mud.New("idlet", key, 23, 1)), three[2])
 	pb.RegisterDroneServer(droneT, DroneService{})
-	time.Sleep(200 * time.Millisecond)
 	armed := 0
 	for range 10 {
 		if r, err := pb.NewDroneClient(gcsT).Arm(within(5*time.Second), &pb.ArmRequest{Id: 1}); err == nil && r.Armed {

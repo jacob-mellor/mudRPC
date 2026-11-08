@@ -38,6 +38,12 @@ namespace MudRpc
     /// <summary>A scenario event from the simulator; clone, spam, stage, rotate, retire, warp, hostile, stale_reboot, torn_save, revoke and telemetry are the host's to perform.</summary>
     public sealed record SimEvent(ulong AtMs, string Kind, ulong A, ulong B, string Text);
 
+    public static class Mud
+    {
+        /// <summary>gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16.</summary>
+        public static string StatusName(uint status) => Marshal.PtrToStringUTF8(Native.mud_status_name(status))!;
+    }
+
     internal static class Native
     {
         const string Lib = "mudrpc";
@@ -85,6 +91,7 @@ namespace MudRpc
         [DllImport(Lib)] internal static extern int mud_tick(IntPtr mem, nuint len, uint now, out In incoming);
         [DllImport(Lib)] internal static extern int mud_outgoing(IntPtr mem, nuint len, uint now, Buf scratch, out Out outgoing);
         [DllImport(Lib)] internal static extern int mud_sent(IntPtr mem, nuint len);
+        [DllImport(Lib)] internal static extern IntPtr mud_status_name(uint status);
         [DllImport(Lib)] internal static extern uint mud_pressure(IntPtr mem, nuint len);
         [DllImport(Lib)] internal static extern uint mud_count(IntPtr mem, nuint len, int which);
         [DllImport(Lib)] internal static extern uint mud_pending(IntPtr mem, nuint len);

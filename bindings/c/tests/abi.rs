@@ -455,6 +455,7 @@ a slow reader past its deadline: DeadlineExceeded Deadline Exceeded
 the slow reader's deadline in time: True
 closed with items unread: Unavailable the channel is closed
 over UDP: armed True, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket disposed: Unavailable the channel is closed
 a public bind: MudException, a public peer: MudException, this library public: False
 three on UDP, one serving nothing: 10 of 10 armed
@@ -526,6 +527,7 @@ the slow reader's deadline in time: True
 a transport refusing a listen: armed True, faults heard yes
 closed from its own send: returns
 over UDP: armed True, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: UNAVAILABLE the channel is closed
 a public bind: MudError, a public peer: MudError, this library public: False
 a server that never answers: DEADLINE_EXCEEDED Deadline Exceeded
@@ -609,6 +611,7 @@ the slow reader's deadline in time: true
 a transport refusing a listen: armed true, faults heard yes
 closed from its own send: no error
 over UDP: armed true, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: Unavailable the transport is closed
 a public bind: MudError, a public peer: MudError, this binding public: false
 a server that never answers: DeadlineExceeded the operation timed out
@@ -705,6 +708,7 @@ a transport dropped unclosed is freed: true
 runConnections after close: returned
 closed from its own send: no error
 over UDP: armed true, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: unavailable the transport is closed
 a public bind: MudError -1, a public peer: MudError -1, this library public: false
 an octal address: MudError -1, no peer: MudError -1
@@ -730,6 +734,7 @@ every server returned from serve
 /// pkg-config, protoc and libprotoc.
 #[test]
 #[ignore = "end to end: cargo test -- --include-ignored"]
+#[allow(clippy::too_many_lines)]   // the expected log is the length
 fn the_cpp_drop_in_runs_what_protoc_gen_mud_generates() {
     let dir = env!("CARGO_MANIFEST_DIR");
     let root = format!("{dir}/../..");
@@ -811,6 +816,7 @@ a channel dropped unclosed is freed: true
 a channel dropped mid-round is freed: true
 closed from its own send: no error
 over UDP: armed true, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: UNAVAILABLE the transport is closed
 a public bind: Error -1, a public peer: Error -1, this library public: false
 an octal address: Error -1, no peer: Error -1
@@ -851,7 +857,7 @@ fn the_go_drop_in_runs_the_code_protoc_gen_go_grpc_generates() {
     for (f, from) in [("mud.go", "../go/mud.go"), ("mudrpc.h", "mudrpc.h")] { copy(from, &format!("mud/{f}")); copy(from, &format!("example/mud/{f}")); }
     copy("../go/mud_grpc.go", "mud/mud_grpc.go");   // the example has no gRPC, and leaves it out as the skill says
     let run = |cwd: &std::path::Path, cmd: &str, args: &[&str]| {
-        let o = std::process::Command::new(cmd).args(args).current_dir(cwd).env("GOTOOLCHAIN", "local").env("CGO_LDFLAGS", format!("-L{root}/target/debug -Wl,-rpath,{root}/target/debug")).output().unwrap();
+        let o = std::process::Command::new(cmd).args(args).current_dir(cwd).env("GOTOOLCHAIN", "local").env("CGO_LDFLAGS", format!("-L{root}/target/debug")).output().unwrap();
         assert!(o.status.success(), "{cmd} {args:?}\n{}{}", String::from_utf8_lossy(&o.stdout), String::from_utf8_lossy(&o.stderr));
         String::from_utf8(o.stdout).unwrap()
     };
@@ -860,10 +866,11 @@ fn the_go_drop_in_runs_the_code_protoc_gen_go_grpc_generates() {
     let (skill, example) = (std::fs::read_to_string(format!("{dir}/../go/SKILL.md")).unwrap(), at.join("example"));
     std::fs::write(example.join("main.go"), skill.split("```go\n").nth(1).unwrap().split("```").next().unwrap()).unwrap();
     std::fs::write(example.join("go.mod"), "module example\n\ngo 1.27\n").unwrap();
-    assert_eq!(run(&example, "go", &["run", "."]), "drone: Arm\ngcs: status 0 armed\n");
+    let rpath = format!("-ldflags=-extldflags=-Wl,-rpath,{root}/target/debug");   // once, to the final link: in CGO_LDFLAGS it reaches every cgo package and the linker warns of the duplicate
+    assert_eq!(run(&example, "go", &["run", &rpath, "."]), "drone: Arm\ngcs: status 0 armed\n");
     run(&at, "go", &["vet", "./..."]);
-    run(&at, "go", &["build", "-o", "app", "."]);
-    run(&at, "go", &["build", "-race", "-o", "race", "."]);
+    run(&at, "go", &["build", &rpath, "-o", "app", "."]);
+    run(&at, "go", &["build", "-race", &rpath, "-o", "race", "."]);
     let mut running = Vec::new();   // both started before either is waited on
     for name in ["app", "race"] { running.push(std::process::Command::new(at.join(name)).stdout(std::process::Stdio::piped()).stderr(std::process::Stdio::piped()).spawn().unwrap()); }
     for (child, name) in running.into_iter().zip(["app", "race"]) {
@@ -912,6 +919,7 @@ after sixteen calls timed out: armed true
 a radio refusing a listen: armed true, <nil>, faults heard true
 closed from its own send: returns
 over UDP: armed true, <nil>, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: Unavailable the channel is closed
 a public bind: mudRPC: invalid argument, a public peer: mudRPC: invalid argument, this library public: false
 an octal address: mudRPC: invalid argument, no peer: mudRPC: invalid argument
@@ -1058,6 +1066,13 @@ fn the_android_binding_runs_the_java_harness_over_jni() {
     assert!(run(prebuilt.join("bin/llvm-nm").to_str().unwrap(), &["-D", so.to_str().unwrap()], &[]).contains(" T JNI_OnLoad"), "libmudrpc.so for arm64-v8a exports JNI_OnLoad");
 }
 
+/// gRPC's status names from the one table in core, as C strings a binding reads up to the NUL.
+#[test]
+fn a_status_number_has_grpcs_name_as_a_c_string() {
+    let name = |s| unsafe { std::ffi::CStr::from_ptr(mud_status_name(s)) }.to_str().unwrap().to_string();
+    assert_eq!([name(0), name(9), name(16), name(17), name(u32::MAX)], ["OK", "FAILED_PRECONDITION", "UNAUTHENTICATED", "", ""]);
+}
+
 /// Maven Central artefacts the Java and Kotlin drop-in tests build with, each pinned by its SHA-256: (folder, path).
 const MAVEN: [(&str, &str, &str); 18] = [
     ("", "io/grpc/grpc-api/1.85.1/grpc-api-1.85.1.jar", "159371ce7ecb1de72f910571436f7866baa595c820271fcb930961212b7c6363"),
@@ -1174,6 +1189,7 @@ five thousand junk wires: then armed true
 a transport refusing a listen: armed true, faults heard yes
 closed from its own send: returns
 over UDP: armed true, telemetry 0 1 2 3 4
+twenty servers called at once: 20 of 20 armed
 its socket closed: UNAVAILABLE the channel is closed
 a public bind: MudException, a public peer: MudException, this library public: false
 a reply past the wire: RESOURCE_EXHAUSTED the reply is larger than a mudRPC wire

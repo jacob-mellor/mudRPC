@@ -65,6 +65,9 @@ const arg = (b, n = b?.length) => { if (!(b instanceof Uint8Array) || b.length !
 const bytesAt = (a) => { const d = mem(), p = d.getUint32(a, true), n = d.getUint32(a + 4, true); return u8().slice(p, p + n); };
 const strAt = (a) => DEC.decode(bytesAt(a));
 
+/** gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16. @param {number} status @returns {string} */
+export function statusName(status) { const p = ex.mud_status_name(status), b = u8(); return DEC.decode(b.subarray(p, b.indexOf(0, p))); }
+
 // Out-parameters live in one block for the life of the module; every call copies its result out before it returns.
 const REG = alloc(180);
 const R = { in: REG, out: REG + 80, id: REG + 104, event: REG + 120, topic: REG + 160, wire: REG + 168, line: REG + 176 };

@@ -71,6 +71,9 @@ func (e *Error) Error() string {
 	return fmt.Sprintf("mudRPC: %d", e.Code)
 }
 
+// StatusName is gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16.
+func StatusName(status uint32) string { return C.GoString(C.mud_status_name(C.uint32_t(status))) }
+
 // Incoming is a verdict; fields a kind does not use are zero or empty.
 type Incoming struct {
 	Kind                           Kind

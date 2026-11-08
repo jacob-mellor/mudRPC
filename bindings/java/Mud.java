@@ -72,7 +72,7 @@ public final class Mud {
         mud_tick = fn("mud_tick", JAVA_INT, ADDRESS, JAVA_LONG, JAVA_INT, ADDRESS),
         mud_outgoing = fn("mud_outgoing", JAVA_INT, ADDRESS, JAVA_LONG, JAVA_INT, BUF, ADDRESS),
         mud_sent = fn("mud_sent", JAVA_INT, ADDRESS, JAVA_LONG), mud_pressure = fn("mud_pressure", JAVA_INT, ADDRESS, JAVA_LONG), mud_pending = fn("mud_pending", JAVA_INT, ADDRESS, JAVA_LONG), mud_queued = fn("mud_queued", JAVA_INT, ADDRESS, JAVA_LONG), mud_count = fn("mud_count", JAVA_INT, ADDRESS, JAVA_LONG, JAVA_INT),
-        mud_internet = fn("mud_internet", JAVA_INT), mud_udp_new = fn("mud_udp_new", ADDRESS, BUF, BUF, ADDRESS), mud_udp_free = fn("mud_udp_free", null, ADDRESS),
+        mud_status_name = fn("mud_status_name", ADDRESS, JAVA_INT), mud_internet = fn("mud_internet", JAVA_INT), mud_udp_new = fn("mud_udp_new", ADDRESS, BUF, BUF, ADDRESS), mud_udp_free = fn("mud_udp_free", null, ADDRESS),
         mud_udp_port = fn("mud_udp_port", JAVA_INT, ADDRESS), mud_udp_send = fn("mud_udp_send", JAVA_INT, ADDRESS, BUF, BUF), mud_udp_listen = fn("mud_udp_listen", JAVA_INT, ADDRESS, BUF), mud_udp_poll = fn("mud_udp_poll", JAVA_INT, ADDRESS, BUF, ADDRESS, ADDRESS),
         mud_sim_new = fn("mud_sim_new", ADDRESS, BUF, ADDRESS), mud_sim_free = fn("mud_sim_free", null, ADDRESS),
         mud_sim_peers = fn("mud_sim_peers", JAVA_INT, ADDRESS), mud_sim_last_event_ms = fn("mud_sim_last_event_ms", JAVA_LONG, ADDRESS), mud_sim_now_ms = fn("mud_sim_now_ms", JAVA_LONG, ADDRESS),
@@ -128,6 +128,9 @@ public final class Mud {
     /** The bytes a mud_buf at `off` in `s` points to, copied out. */
     static byte[] bytes(MemorySegment s, long off) { long n = s.get(JAVA_LONG, off + 8); return n == 0 ? new byte[0] : s.get(ADDRESS, off).reinterpret(n).toArray(JAVA_BYTE); }
     static String str(MemorySegment s, long off) { return new String(bytes(s, off), UTF_8); }
+
+    /** gRPC's name for a status number, {@code "FAILED_PRECONDITION"} for 9, {@code ""} past 16. */
+    public static String statusName(int status) { return ((MemorySegment) invoke(mud_status_name, status)).reinterpret(Long.MAX_VALUE).getString(0); }
 
     static Incoming wrap(MemorySegment r) {
         return new Incoming(Kind.values()[r.get(JAVA_INT, at(IN, "kind"))], r.asSlice(at(IN, "id"), 12).toArray(JAVA_BYTE), str(r, at(IN, "topic")), str(r, at(IN, "method")), str(r, at(IN, "reply_to")), str(r, at(IN, "detail")), bytes(r, at(IN, "bytes")),

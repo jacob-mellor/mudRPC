@@ -10,7 +10,7 @@ import threading
 from dataclasses import dataclass
 from typing import Optional
 
-__all__ = ["CIPHER_CHACHA20_POLY1305", "CIPHER_AES_256_GCM", "CIPHER_DEFAULT", "Peer", "Sim", "Incoming", "Outgoing", "MudError", "Full", "TooLarge", "Corrupt", "ProtoError", "load", "load_proto"]
+__all__ = ["CIPHER_CHACHA20_POLY1305", "CIPHER_AES_256_GCM", "CIPHER_DEFAULT", "Peer", "Sim", "Incoming", "Outgoing", "MudError", "Full", "TooLarge", "Corrupt", "ProtoError", "load", "load_proto", "status_name"]
 
 MAX_TOPIC, MSG = 64, 512
 CIPHER_CHACHA20_POLY1305, CIPHER_AES_256_GCM = 0, 1   # as mudrpc.h names them; ChaCha20-Poly1305 smaller and faster without an AES instruction
@@ -104,7 +104,7 @@ def load(path: Optional[str] = None):
         "mud_publish": ([V, C.c_size_t, C.c_uint32, B, B, C.c_uint32], C.c_int32), "mud_listen": ([V, C.c_size_t, B], C.c_int32),
         "mud_reply": ([V, C.c_size_t, C.c_uint32, M(_Incoming), C.c_uint32, C.c_uint32, B, B, C.c_int32], C.c_int32),
         "mud_deliver": ([V, C.c_size_t, C.c_uint32, B, B, _Buf, M(_Incoming)], C.c_int32), "mud_tick": ([V, C.c_size_t, C.c_uint32, M(_Incoming)], C.c_int32),
-        "mud_outgoing": ([V, C.c_size_t, C.c_uint32, _Buf, M(_Out)], C.c_int32), "mud_sent": ([V, C.c_size_t], C.c_int32), "mud_pressure": ([V, C.c_size_t], C.c_uint32), "mud_pending": ([V, C.c_size_t], C.c_uint32), "mud_queued": ([V, C.c_size_t], C.c_uint32), "mud_count": ([V, C.c_size_t, C.c_int32], C.c_uint32),
+        "mud_outgoing": ([V, C.c_size_t, C.c_uint32, _Buf, M(_Out)], C.c_int32), "mud_status_name": ([C.c_uint32], C.c_char_p), "mud_sent": ([V, C.c_size_t], C.c_int32), "mud_pressure": ([V, C.c_size_t], C.c_uint32), "mud_pending": ([V, C.c_size_t], C.c_uint32), "mud_queued": ([V, C.c_size_t], C.c_uint32), "mud_count": ([V, C.c_size_t, C.c_int32], C.c_uint32),
         "mud_sim_new": ([B, M(C.c_int32)], V), "mud_sim_free": ([V], None), "mud_sim_peers": ([V], C.c_int32), "mud_sim_last_event_ms": ([V], C.c_uint64),
         "mud_sim_now_ms": ([V], C.c_uint64), "mud_sim_step": ([V, C.c_uint64], None), "mud_sim_note": ([V, B], None),
         "mud_sim_send": ([V, C.c_int32, B, B, C.c_uint32], C.c_int32), "mud_sim_listen": ([V, C.c_int32, B], C.c_int32),
@@ -118,6 +118,11 @@ def load(path: Optional[str] = None):
         f.argtypes, f.restype = args, ret
     _LIB = lib
     return lib
+
+
+def status_name(code: int) -> str:
+    """gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16."""
+    return load().mud_status_name(code).decode()
 
 
 @dataclass(frozen=True)

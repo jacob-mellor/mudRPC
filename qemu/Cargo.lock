@@ -4,18 +4,18 @@ version = 4
 
 [[package]]
 name = "mudrpc-auth"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-core",
 ]
 
 [[package]]
 name = "mudrpc-core"
-version = "0.3.0"
+version = "3.0.0"
 
 [[package]]
 name = "mudrpc-gcm"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-core",
 ]

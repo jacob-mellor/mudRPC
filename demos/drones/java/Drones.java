@@ -26,7 +26,6 @@ public final class Drones {
         Mud.Peer gcsPeer = new Mud.Peer("gcs", KEY, 1, 1), dronePeer = new Mud.Peer("drone", KEY, 2, 1);
         MudChannel gcs = new MudChannel(gcsPeer, gcsUdp), drone = new MudChannel(dronePeer, droneUdp);
         drone.addService(new MockDrone());
-        Thread.sleep(200); // the drone answers once its listen has reached its socket
 
         // From here, the code a grpc-java product already has.
         DroneGrpc.DroneBlockingStub station = DroneGrpc.newBlockingStub(gcs).withDeadlineAfter(10, TimeUnit.SECONDS);

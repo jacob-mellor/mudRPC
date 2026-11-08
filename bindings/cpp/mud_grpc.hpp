@@ -427,8 +427,9 @@ class Channel : public std::enable_shared_from_this<Channel> {
     return false;
   }
 
-  // One round of the pump; false once the channel is closed. The radio is called with no lock held, so it may hop to a
-  // thread that is calling into this channel; the item stays the peer's until sent().
+  // One round of the pump; false once the channel is closed. A function radio is called with no lock held, so it may hop
+  // to a thread that is calling into this channel; a Udp is sent through under it, so hear's listens keep their order; the
+  // item stays the peer's until sent().
   bool round() {
     bool live = turn();
     std::vector<std::exception_ptr> told;
@@ -485,13 +486,12 @@ class Channel : public std::enable_shared_from_this<Channel> {
     }
     for (;;) {
       std::optional<Outgoing> o;
-      {
-        std::lock_guard<std::mutex> l(m_);
-        if (closed_ || !step([&] { o = peer_.outgoing(now()); }) || !o) break;
-      }
+      std::unique_lock<std::mutex> l(m_);
+      if (closed_ || !step([&] { o = peer_.outgoing(now()); }) || !o) break;
+      if (!udp_) l.unlock();
       std::exception_ptr err;
       try { radio_(*o); } catch (...) { err = std::current_exception(); }
-      std::lock_guard<std::mutex> l(m_);
+      if (!l.owns_lock()) l.lock();
       if (closed_) break;
       if (err) {
         if (udp_ && code(err) == MUD_EINVAL) {
@@ -653,6 +653,22 @@ class Channel : public std::enable_shared_from_this<Channel> {
     landed_.notify_all();
   }
 
+  // Under the lock: topic to the peer and, over a Udp, every listen queued to the socket, so it hears before the caller's
+  // next line; a full peer leaves the topic to the pump, which also hands a function radio its listens.
+  void hear(const std::string& topic = {}) {
+    if (!topic.empty()) {
+      try { peer_.listen(topic); } catch (const Error& e) {
+        if (e.code == MUD_EFULL) return to_listen_.push_back(topic);
+        return faults_.push_back(std::current_exception());
+      }
+    }
+    if (udp_) step([&] {
+      for (std::optional<Outgoing> o; (o = peer_.outgoing(now())) && o->listen; peer_.sent()) {
+        try { udp_->send(*o); } catch (const Error&) { return shut("the socket is closed"); }   // a listen is refused by a closed socket alone
+      }
+    });
+  }
+
   // The server's side.
 
   std::string serve(const std::vector<Service*>& services, uint64_t* served) {
@@ -665,8 +681,9 @@ class Channel : public std::enable_shared_from_this<Channel> {
     services_.clear();
     for (auto* s : services) {
       services_[s->name_] = s;
-      if (heard_.insert(s->name_).second) to_listen_.push_back(s->name_);
+      if (heard_.insert(s->name_).second) hear(s->name_);
     }
+    if (closed_) return "the transport is closed";   // hear found the socket closed
     serving_ = true;
     stopping_ = false;
     *served = ++served_;
@@ -727,10 +744,14 @@ class Channel : public std::enable_shared_from_this<Channel> {
   std::optional<internal::Clock::time_point> refused_since_;
 };
 
-// The channel over a Udp, as grpc::CreateChannel over a target; the stub and the server both take it.
+// The channel over a Udp, as grpc::CreateChannel over a target; the stub and the server both take it. It listens on its
+// own name before returning, and on its services before BuildAndStart returns, so a call made at once is heard.
 inline std::shared_ptr<Channel> CreateChannel(Peer peer, std::shared_ptr<Udp> udp, uint32_t ttl_secs = 60, Channel::Fault fault = {}) {
   auto u = udp;
-  return Channel::make(std::move(peer), std::move(udp), [u](const Outgoing& o) { u->send(o); }, ttl_secs, std::move(fault));
+  auto t = Channel::make(std::move(peer), std::move(udp), [u](const Outgoing& o) { u->send(o); }, ttl_secs, std::move(fault));
+  std::lock_guard<std::mutex> l(t->m_);
+  t->hear();
+  return t;
 }
 
 // The channel over another radio: radio takes each outgoing item, and what it receives goes to deliver.

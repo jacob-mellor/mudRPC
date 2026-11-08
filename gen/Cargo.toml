@@ -1,6 +1,6 @@
 [package]
 name = "mudrpc-gen"
-version = "0.3.0"
+version = "3.0.0"
 edition = "2021"
 license = "MIT"
 description = "mud gen: .proto to thin mudRPC stubs in Rust, Python and C."
@@ -16,7 +16,7 @@ name = "mud"
 path = "main.rs"
 
 [dependencies]
-mudrpc-auth = { path = "../auth", version = "0.3.0" }   # mud provision's public keys
+mudrpc-auth = { path = "../auth", version = "3.0.0" }   # mud provision's public keys
 
 [dev-dependencies]
-mudrpc-core = { path = "../core", version = "0.3.0" }
+mudrpc-core = { path = "../core", version = "3.0.0" }

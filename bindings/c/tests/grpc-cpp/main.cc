@@ -24,11 +24,7 @@ std::string yes(bool b) { return b ? "true" : "false"; }
 ArmRequest arm(uint32_t id, size_t note = 0) { ArmRequest r; r.set_id(id); r.set_note(std::string(note, '\0')); return r; }
 TelemetryRequest telemetry(uint32_t count, uint32_t fail_after = 0) { TelemetryRequest r; r.set_count(count); r.set_fail_after(fail_after); return r; }
 
-std::string told(const mud::Status& s) {
-  static const char* names[] = {"OK", "CANCELLED", "UNKNOWN", "INVALID_ARGUMENT", "DEADLINE_EXCEEDED", "NOT_FOUND", "ALREADY_EXISTS", "PERMISSION_DENIED", "RESOURCE_EXHAUSTED",
-                                "FAILED_PRECONDITION", "ABORTED", "OUT_OF_RANGE", "UNIMPLEMENTED", "INTERNAL", "UNAVAILABLE", "DATA_LOSS", "UNAUTHENTICATED"};
-  return std::string(names[s.error_code()]) + " " + s.error_message();
-}
+std::string told(const mud::Status& s) { return std::string(mud::status_name(s.error_code())) + " " + s.error_message(); }
 
 template <class F> std::string thrown(F f) {
   try { f(); return "no error"; } catch (const mud::Error& e) { return "Error " + std::to_string(e.code); }
@@ -502,9 +498,22 @@ int main() {
   auto gcsU = mud::CreateChannel(mud::Peer("gcsu", key, 11, 1), pair[0]);
   auto droneU = mud::CreateChannel(mud::Peer("droneu", key, 12, 1), pair[1]);
   serve(droneU, &service);
-  nap(200);   // a server answers once its listen has reached its socket
   auto overUdp = Drone::NewStub(gcsU);
   say("over UDP: armed " + yes(armed(*overUdp, seconds(5))) + ", telemetry " + read(*overUdp, telemetry(5)));
+  int atOnce = 0;
+  for (int i = 0; i < 20; i++) {   // a server is called the line after it starts: its listens reached the socket in BuildAndStart, the caller's in CreateChannel
+    auto two = udp_set(2);
+    auto caller = mud::CreateChannel(mud::Peer("caller", key, 15, 1), two[0]);
+    auto host = mud::CreateChannel(mud::Peer("host", key, 16, 1), two[1]);
+    mud::ServerBuilder builder;
+    builder.AddListeningPort(host).RegisterService(&service);
+    std::unique_ptr<mud::Server> server(builder.BuildAndStart());
+    atOnce += armed(*Drone::NewStub(caller), seconds(5));
+    server->Shutdown();
+    host->close();
+    caller->close();
+  }
+  say("twenty servers called at once: " + std::to_string(atOnce) + " of 20 armed");
   auto lostSocket = std::make_shared<mud::Udp>("127.0.0.1:0", "127.0.0.1:" + std::to_string(pair[1]->port()));
   auto lost = mud::CreateChannel(mud::Peer("lost", key, 13, 1), lostSocket);
   lostSocket->close();
@@ -527,7 +536,6 @@ int main() {
   std::vector<std::shared_ptr<mud::Channel>> nodes;
   for (int i = 0; i < 3; i++) nodes.push_back(mud::CreateChannel(mud::Peer("node" + std::to_string(i), key, 21 + i, 1), three[i]));
   serve(nodes[1], &service);
-  nap(200);   // a server answers once its listen has reached its socket
   int armedOf10 = 0;
   for (int i = 0; i < 10; i++) armedOf10 += armed(*Drone::NewStub(nodes[0]), seconds(5));
   say("three on UDP, one serving nothing: " + std::to_string(armedOf10) + " of 10 armed");

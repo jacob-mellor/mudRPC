@@ -175,9 +175,21 @@ using var du = du0;
 using var gcsU = new MudChannel(new Peer("gcsu", key, 11, 1), gu);
 using var droneU = new MudChannel(new Peer("droneu", key, 12, 1), du);
 Drone.BindService(droneU.Binder, new DroneService());
-await Task.Delay(200); // a server answers once its listen has reached its socket
 var overUdp = new Drone.DroneClient(gcsU);
 Console.WriteLine($"over UDP: armed {(await overUdp.ArmAsync(new ArmRequest { Id = 1 }, deadline: DateTime.UtcNow.AddSeconds(5))).Armed}, telemetry {await Read(overUdp.Telemetry(new TelemetryRequest { Count = 5 }))}");
+int armedAtOnce = 0;
+for (int i = 0; i < 20; i++)   // a server called the moment it is bound: its listen reached its socket before BindService returned
+{
+    var (gN, dN, _) = UdpPair();
+    using (var serverN = new MudChannel(new Peer("servern", key, 12, 1), dN))
+    using (var clientN = new MudChannel(new Peer("clientn", key, 11, 1), gN))
+    {
+        Drone.BindService(serverN.Binder, new DroneService());
+        try { if ((await new Drone.DroneClient(clientN).ArmAsync(new ArmRequest { Id = 1 }, deadline: DateTime.UtcNow.AddSeconds(5))).Armed) armedAtOnce++; } catch (RpcException) { }
+    }
+    gN.Dispose(); dN.Dispose();
+}
+Console.WriteLine($"twenty servers called at once: {armedAtOnce} of 20 armed");
 var lostSocket = new Udp("127.0.0.1:0", $"127.0.0.1:{pd}");
 using (var lost = new MudChannel(new Peer("lost", key, 13, 1), lostSocket))
 {
@@ -199,7 +211,6 @@ Console.WriteLine($"a public bind: {Throws(() => new Udp("0.0.0.0:0", "127.0.0.1
     using var dT = new MudChannel(new Peer("dronet", key, 22, 1), three[1]);
     using var iT = new MudChannel(new Peer("idlet", key, 23, 1), three[2]);
     Drone.BindService(dT.Binder, new DroneService());
-    await Task.Delay(200); // a server answers once its listen has reached its socket
     var threeClient = new Drone.DroneClient(gT);
     int armedT = 0;
     for (int i = 0; i < 10; i++) if ((await threeClient.ArmAsync(new ArmRequest { Id = 1 }, deadline: DateTime.UtcNow.AddSeconds(5))).Armed) armedT++;

@@ -19,7 +19,7 @@ Put `libmudrpc.so` in your app at `src/main/jniLibs/arm64-v8a/`, and copy `bindi
 
 **2. Make one call.** The program in `bindings/java/SKILL.md`'s step 2 is this binding's too, line for line; the test runs it over JNI.
 
-**3. The loop, UDP, your `.proto`, a signed fleet.** Steps 3 to 6 of `bindings/java/SKILL.md` apply unchanged: the API is the same class.
+**3. The loop, UDP, your `.proto`, a signed fleet.** Steps 3 to 6 of `bindings/java/SKILL.md` apply unchanged: the API is the same class, `Mud.statusName` included.
 
 **4. The gRPC drop-in.** Copy `bindings/java/MudChannel.java` beside `Mud.java`; grpc-java's generated stubs and `BindableService` run over it as that skill says, with `grpc-api` from Maven as the one dependency. grpc-kotlin's coroutine stubs the same.
 

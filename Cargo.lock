@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "mudrpc-adapters"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-auth",
  "mudrpc-core",
@@ -13,7 +13,7 @@ dependencies = [
 
 [[package]]
 name = "mudrpc-auth"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-core",
  "mudrpc-gcm",
@@ -21,7 +21,7 @@ dependencies = [
 
 [[package]]
 name = "mudrpc-c"
-version = "0.4.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-adapters",
  "mudrpc-auth",
@@ -32,18 +32,18 @@ dependencies = [
 
 [[package]]
 name = "mudrpc-core"
-version = "0.3.0"
+version = "3.0.0"
 
 [[package]]
 name = "mudrpc-gcm"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-core",
 ]
 
 [[package]]
 name = "mudrpc-gen"
-version = "0.3.0"
+version = "3.0.0"
 dependencies = [
  "mudrpc-auth",
  "mudrpc-core",

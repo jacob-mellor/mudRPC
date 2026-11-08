@@ -52,6 +52,7 @@ uint32_t mud_pressure(void* mem, size_t len);
 uint32_t mud_count(void* mem, size_t len, int32_t which);
 uint32_t mud_pending(void* mem, size_t len);
 uint32_t mud_queued(void* mem, size_t len);
+const char* mud_status_name(uint32_t status);
 int32_t mud_internet(void);
 mud_udp* mud_udp_new(mud_buf bind, mud_buf peers, int32_t* code);
 void mud_udp_free(mud_udp*);
@@ -130,6 +131,12 @@ final class Lib
     {
         return $buf->len ? FFI::string($buf->ptr, $buf->len) : '';
     }
+}
+
+/** gRPC's name for a status number, FAILED_PRECONDITION for 9, '' past 16. */
+function statusName(int $status): string
+{
+    return Lib::get()->mud_status_name($status);
 }
 
 /** A verdict from deliver() or tick(): kind call, reply, event, expired, dropped, flood or rollback; id is 12 bytes. */

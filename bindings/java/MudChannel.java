@@ -78,6 +78,7 @@ public final class MudChannel extends Channel implements AutoCloseable {
     private final Set<Call<?, ?>> open = new HashSet<>();
     private final Map<String, ServerMethodDefinition<?, ?>> methods = new HashMap<>();
     private final Set<String> services = new HashSet<>();
+    private final ArrayDeque<String> toListen = new ArrayDeque<>();   // names the peer's full outbox refused, listened on a later round
     private final LinkedHashMap<Integer, ArrayDeque<Answer>> answers = new LinkedHashMap<>(); // by caller, each once, the next to send first
     private final ConcurrentLinkedQueue<Runnable> later = new ConcurrentLinkedQueue<>(); // found under the gate, started after it with no lock held
     private final ExecutorService executor = Executors.newCachedThreadPool(r -> { Thread t = new Thread(r, "mudrpc-call"); t.setDaemon(true); return t; });
@@ -89,7 +90,7 @@ public final class MudChannel extends Channel implements AutoCloseable {
     private long paceSec = -1, refusedSince;
     private int paced;
 
-    /** Over a {@link Mud.Udp}, which the pump sends through and reads in its own round; the socket stays the caller's to close, after the channel. */
+    /** Over a {@link Mud.Udp}, which the pump sends through and reads in its own round, and which listens on the peer's name before this returns, and on a service before {@link #addService} does; the socket stays the caller's to close, after the channel. */
     public MudChannel(Mud.Peer peer, Mud.Udp udp) { this(peer, udp, 60, e -> { }); }
     public MudChannel(Mud.Peer peer, Mud.Udp udp, int ttlSecs, Consumer<Throwable> fault) { this(peer, udp::send, udp, ttlSecs, fault); }
 
@@ -109,7 +110,14 @@ public final class MudChannel extends Channel implements AutoCloseable {
         handlers.allowCoreThreadTimeOut(true);
         pump = new Thread(this::run, "mudrpc");
         pump.setDaemon(true);
+        listenNow();
         pump.start();
+    }
+
+    /** Under the gate, over the library's socket: the listens at the head of the outbox reach it before the caller goes on; a wire, or a refusal, is the pump's. */
+    private void listenNow() {
+        if (udp == null) return;
+        try { for (Mud.Outgoing o; (o = peer.outgoing(now())) != null && o.listen(); peer.sent()) udp.send(o); } catch (RuntimeException ignored) { }
     }
 
     /** A wire from the transport, from any thread. Past 1024 waiting for the pump, a wire is dropped, as core would drop a flood. */
@@ -130,7 +138,7 @@ public final class MudChannel extends Channel implements AutoCloseable {
         String name = service.getServiceDescriptor().getName();
         synchronized (gate) {
             for (ServerMethodDefinition<?, ?> m : service.getMethods()) methods.put(name + "/" + m.getMethodDescriptor().getBareMethodName(), m);
-            if (services.add(name)) peer.listen(name);
+            if (services.add(name)) { try { peer.listen(name); listenNow(); } catch (Mud.MudException x) { if (x.code != -2) throw x; toListen.add(name); } }
         }
         wake.release();
         return this;
@@ -178,6 +186,7 @@ public final class MudChannel extends Channel implements AutoCloseable {
             if (closed) return true;
             int now = now();
             try {
+                while (!toListen.isEmpty()) { peer.listen(toListen.peek()); toListen.poll(); }
                 for (Mud.Udp.Datagram w; (w = inbox.poll()) != null;) {
                     waiting.decrementAndGet();
                     Mud.Incoming e;

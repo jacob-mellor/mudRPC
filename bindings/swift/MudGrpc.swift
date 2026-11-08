@@ -78,6 +78,7 @@ public final class MudTransport: @unchecked Sendable {   // every field below is
     self.radio = radio
     self.fault = fault
     ttl = max(1, min(ttlSecs, week))
+    hear()
     Thread { [weak self] in
       while let (w, idle) = { () -> (DispatchSemaphore, Bool)? in   // the transport is held for a round, never across the wait, so one dropped unclosed goes
         guard let t = self, t.round() else { return nil }
@@ -159,6 +160,15 @@ public final class MudTransport: @unchecked Sendable {   // every field below is
     if !was { tell(RPCError(code: .unavailable, message: why)) }
   }
 
+  /// The listens now: the peer's, then over `Udp` each at the head of the outbox into the socket, heard before the init or
+  /// `configure` that asked returns. The pump hears before it takes an item, so it never holds a listen another thread's
+  /// `hear` could take from under its `sent()`; a full outbox or a refused send leaves it to the next round.
+  func hear() {
+    while let s = toListen.first, (try? peer.listen(s)) != nil { toListen.removeFirst() }
+    guard let udp else { return }
+    while let o = try? peer.outgoing(now: now()), o.listen, (try? udp.send(o)) != nil, (try? peer.sent()) != nil {}
+  }
+
   /// One round of the pump; false once the transport is closed. The radio is called with no lock held, so it may hop
   /// to a thread that is calling into this transport; the item stays the peer's until `sent()`.
   func round() -> Bool {
@@ -166,7 +176,6 @@ public final class MudTransport: @unchecked Sendable {   // every field below is
     guard locked({ () -> Bool in
       if closed { return false }
       let now = self.now()
-      while let s = toListen.first, (try? peer.listen(s)) != nil { toListen.removeFirst() }   // a full outbox: the next round listens
       _ = step {
         for w in mail.withLock({ defer { inbox.removeAll() }; return inbox }) {
           if let e = try? peer.deliver(now: now, topic: w.0, wire: w.1) { land(e, w.2) }   // a wire the transport mangled: no verdict to act on
@@ -187,7 +196,7 @@ public final class MudTransport: @unchecked Sendable {   // every field below is
       }
       return !closed
     }) else { return false }
-    while let o = locked({ closed ? nil : step { try peer.outgoing(now: now()) } ?? nil }) {
+    while let o = locked({ () -> Outgoing? in hear(); return closed ? nil : step { try peer.outgoing(now: now()) } ?? nil }) {
       var taken = true
       do { try radio(o) } catch {
         taken = false
@@ -393,6 +402,7 @@ public final class MudTransport: @unchecked Sendable {   // every field below is
         services.append(name)
         toListen.append(name)
       }
+      hear()
       wake.signal()
     }
   }

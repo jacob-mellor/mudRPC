@@ -59,7 +59,7 @@ public final class Mud {
         static native int reply(long mem, long len, int now, byte[] id, byte[] topic, byte[] method, byte[] replyTo, byte[] bytes, int ttl, int seqIn, int endIn, int seq, int status, byte[] detail, byte[] payload, int end);
         static native byte[] deliver(long mem, long len, int now, byte[] topic, byte[] wire); static native byte[] tick(long mem, long len, int now); static native byte[] outgoing(long mem, long len, int now); static native int sent(long mem, long len);
         static native int pressure(long mem, long len); static native int pending(long mem, long len); static native int queued(long mem, long len); static native int count(long mem, long len, int which);
-        static native int internet(); static native long udpNew(byte[] bind, byte[] peers, int[] code); static native void udpFree(long udp); static native int udpPort(long udp); static native int udpSend(long udp, byte[] topic, byte[] wire); static native int udpListen(long udp, byte[] topic); static native byte[] udpPoll(long udp);
+        static native String statusName(int status); static native int internet(); static native long udpNew(byte[] bind, byte[] peers, int[] code); static native void udpFree(long udp); static native int udpPort(long udp); static native int udpSend(long udp, byte[] topic, byte[] wire); static native int udpListen(long udp, byte[] topic); static native byte[] udpPoll(long udp);
         static native long simNew(byte[] text, int[] line); static native void simFree(long sim); static native int simPeers(long sim); static native long simLastEventMs(long sim); static native long simNowMs(long sim); static native void simStep(long sim, long dt); static native void simNote(long sim, byte[] text); static native void simSilent(long sim, int radio, int on);
         static native int simSend(long sim, int radio, byte[] topic, byte[] wire, int ttl); static native int simListen(long sim, int radio, byte[] topic); static native byte[] simPoll(long sim, int radio); static native byte[] simLog(long sim); static native int simEvents(long sim); static native byte[] simEvent(long sim, int i);
     }
@@ -71,6 +71,9 @@ public final class Mud {
     static byte[] take(ByteBuffer b, int n) { byte[] out = new byte[n]; b.get(out); return out; }
     static byte[] bytes(ByteBuffer b) { return take(b, b.getInt()); }
     static String str(ByteBuffer b) { return new String(bytes(b), UTF_8); }
+
+    /** gRPC's name for a status number, {@code "FAILED_PRECONDITION"} for 9, {@code ""} past 16. */
+    public static String statusName(int status) { return Native.statusName(status); }
 
     static Incoming incoming(ByteBuffer b) {
         Kind kind = Kind.values()[b.getInt()];

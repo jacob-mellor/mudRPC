@@ -39,6 +39,7 @@ namespace MudRpc
         readonly HashSet<Exchange> open = new();   // filed and not yet let go: pending, or a stream whose end has landed with items unread
         readonly Dictionary<(string, string), Func<Incoming, DateTime, Task>> methods = new();   // a call and the moment its ttl ends, counted from its arrival
         readonly HashSet<string> services = new();
+        readonly List<string> toListen = new();   // names the peer had no room for: the pump listens next round
         readonly Dictionary<uint, List<Owed>> answers = new();   // the replies owed, by sender
         readonly List<uint> order = new();   // the senders owed a reply, each once, the next to send first
         readonly AutoResetEvent wake = new(false);
@@ -59,7 +60,7 @@ namespace MudRpc
         }
 
         /// <summary>Over a <see cref="Udp"/>, which the pump sends through and reads in its own round, so the product writes no loop; the socket stays the caller's to dispose, after the channel.</summary>
-        public MudChannel(Peer peer, Udp udp, uint ttlSecs = 60, Action<Exception>? fault = null) : this(peer, udp.Send, ttlSecs, fault) { radio = udp; wake.Set(); }
+        public MudChannel(Peer peer, Udp udp, uint ttlSecs = 60, Action<Exception>? fault = null) : this(peer, udp.Send, ttlSecs, fault) { radio = udp; lock (gate) Listened(); wake.Set(); }
 
         /// <summary>For the generated <c>BindService(ServiceBinderBase, ...Base)</c>: the service answers calls through this channel.</summary>
         public ServiceBinderBase Binder { get; }
@@ -135,6 +136,7 @@ namespace MudRpc
                             refusals = 0;
                             peer.Sent();
                         }
+                        for (; toListen.Count > 0; toListen.RemoveAt(0)) peer.Listen(toListen[0]);
                     }
                     catch (MudException e) when (e.Code is -1 or -4 or -5) { Close(new Status(StatusCode.Unavailable, "the peer is closed: " + e.Message)); return; }
                     catch (MudException) { }   // busy, held by a caller outside Use: the next round
@@ -448,8 +450,19 @@ namespace MudRpc
 
         void Register(string service, string name, Func<Incoming, DateTime, Task> run)
         {
-            lock (gate) { methods[(service, name)] = run; if (services.Add(service)) peer.Listen(service); }
+            lock (gate) { methods[(service, name)] = run; if (services.Add(service)) Listen(service); }
             wake.Set();
+        }
+
+        /// <summary>Under <see cref="gate"/>: the peer listens now, or the pump does once its outbox has room.</summary>
+        void Listen(string name) { try { peer.Listen(name); Listened(); } catch (MudException e) when (e.IsFull) { toListen.Add(name); } }
+
+        /// <summary>Under <see cref="gate"/>, over <see cref="Udp"/>: the peer's queued listens reach the socket now, so a call made at once finds them there; a wire waits for the pump.</summary>
+        void Listened()
+        {
+            if (radio is not Udp u) return;
+            try { for (Outgoing? o; (o = peer.Outgoing(Now)) is { Listen: true }; peer.Sent()) u.Send(o); }
+            catch (Exception) { }   // the item stays for the pump, which tells fault
         }
 
         sealed class Bind : ServiceBinderBase

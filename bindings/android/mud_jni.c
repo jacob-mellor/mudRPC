@@ -149,6 +149,7 @@ static jint pending(JNIEnv* e, jclass c, jlong mem, jlong len) { return (jint) m
 static jint queued(JNIEnv* e, jclass c, jlong mem, jlong len) { return (jint) mud_queued(MEM, (size_t) len); }
 static jint count(JNIEnv* e, jclass c, jlong mem, jlong len, jint which) { return (jint) mud_count(MEM, (size_t) len, which); }
 
+static jstring statusName(JNIEnv* e, jclass c, jint s) { return (*e)->NewStringUTF(e, mud_status_name((uint32_t) s)); }
 static jint internet(JNIEnv* e, jclass c) { return mud_internet(); }
 static jlong udpNew(JNIEnv* e, jclass c, jbyteArray bind, jbyteArray peers, jintArray code) { args a = { .env = e }; int32_t r = 0; mud_udp* u = mud_udp_new(take(&a, bind), take(&a, peers), &r); release(&a); set_code(e, code, r); return (jlong) (intptr_t) u; }
 static void udpFree(JNIEnv* e, jclass c, jlong udp) { mud_udp_free(UDP); }
@@ -197,7 +198,7 @@ static const JNINativeMethod METHODS[] = {
     { "call", "(JJI[B[B[BI)[B", (void*) call }, { "publish", "(JJI[B[BI)I", (void*) publish }, { "listen", "(JJ[B)I", (void*) listen }, { "reply", "(JJI[B[B[B[B[BIIIII[B[BI)I", (void*) reply },
     { "deliver", "(JJI[B[B)[B", (void*) deliver }, { "tick", "(JJI)[B", (void*) tick }, { "outgoing", "(JJI)[B", (void*) outgoing }, { "sent", "(JJ)I", (void*) sent },
     { "pressure", "(JJ)I", (void*) pressure }, { "pending", "(JJ)I", (void*) pending }, { "queued", "(JJ)I", (void*) queued }, { "count", "(JJI)I", (void*) count },
-    { "internet", "()I", (void*) internet }, { "udpNew", "([B[B[I)J", (void*) udpNew }, { "udpFree", "(J)V", (void*) udpFree }, { "udpPort", "(J)I", (void*) udpPort }, { "udpSend", "(J[B[B)I", (void*) udpSend }, { "udpListen", "(J[B)I", (void*) udpListen }, { "udpPoll", "(J)[B", (void*) udpPoll },
+    { "statusName", "(I)Ljava/lang/String;", (void*) statusName }, { "internet", "()I", (void*) internet }, { "udpNew", "([B[B[I)J", (void*) udpNew }, { "udpFree", "(J)V", (void*) udpFree }, { "udpPort", "(J)I", (void*) udpPort }, { "udpSend", "(J[B[B)I", (void*) udpSend }, { "udpListen", "(J[B)I", (void*) udpListen }, { "udpPoll", "(J)[B", (void*) udpPoll },
     { "simNew", "([B[I)J", (void*) simNew }, { "simFree", "(J)V", (void*) simFree }, { "simPeers", "(J)I", (void*) simPeers }, { "simLastEventMs", "(J)J", (void*) simLastEventMs }, { "simNowMs", "(J)J", (void*) simNowMs }, { "simStep", "(JJ)V", (void*) simStep }, { "simNote", "(J[B)V", (void*) simNote }, { "simSilent", "(JII)V", (void*) simSilent },
     { "simSend", "(JI[B[BI)I", (void*) simSend }, { "simListen", "(JI[B)I", (void*) simListen }, { "simPoll", "(JI)[B", (void*) simPoll }, { "simLog", "(J)[B", (void*) simLog }, { "simEvents", "(J)I", (void*) simEvents }, { "simEvent", "(JI)[B", (void*) simEvent },
 };

@@ -64,6 +64,7 @@ export class MudTransport {
     this.#ttl = Math.max(1, Math.min(Math.floor(ttlSecs), WEEK));
     this.#timer = setInterval(() => this.#round(), this.#udp ? 10 : 50);
     this.#timer.unref?.();
+    if (this.#udp) this.#flush(); // the peer's own-name listen, so the socket hears replies before the first call
   }
 
   /** A wire from the transport. Past 1024 waiting for the pump, a wire is dropped, as core would drop a flood. */
@@ -85,10 +86,21 @@ export class MudTransport {
     const name = desc.typeName;
     if (!name || !name.isWellFormed() || ENC.encode(name).length > 64) throw new ConnectError(`mudRPC carries a service's full name of 1 to 64 bytes of UTF-8: ${name}`, Code.InvalidArgument);
     for (const m of desc.methods) this.#methods.set(`${name}/${m.name}`, { m, impl, fn: impl[m.localName] });
-    if (!this.#services.has(name)) { this.#services.add(name); this.#toListen.push(name); }
+    if (!this.#services.has(name)) { this.#services.add(name); this.#listen(name); }
     this.#hold();
     this.#kick();
     return this;
+  }
+
+  /** Over Udp the listen reaches the socket before this returns, so a call made at once is heard; a function radio, or a full peer, takes it on the pump's next round. */
+  #listen(name) {
+    if (this.#udp) try { this.#peer.listen(name); this.#flush(); return; } catch { /* the outbox is full: the next round listens */ }
+    this.#toListen.push(name);
+  }
+
+  /** The queued listen items into the socket now, the first wire staying for the pump, which also reports a closed socket or peer. */
+  #flush() {
+    try { for (let o; (o = this.#peer.outgoing(this.#now()))?.listen; this.#peer.sent()) this.#udp.send(o); } catch { /* the pump's round says what closed */ }
   }
 
   /** Stops the pump and ends every call in flight with Unavailable. */

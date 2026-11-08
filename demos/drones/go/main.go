@@ -6,9 +6,7 @@ import (
 	"context"
 	"fmt"
 	"net"
-	"strings"
 	"time"
-	"unicode"
 
 	mud "github.com/jacob-mellor/mudRPC/bindings/go/v3"
 	"google.golang.org/grpc"
@@ -61,18 +59,6 @@ func free() string {
 	return l.LocalAddr().String()
 }
 
-// name is gRPC's upper-case name for a code, which codes.Code.String() does not give.
-func name(c codes.Code) string {
-	var b strings.Builder
-	for i, r := range c.String() {
-		if i > 0 && unicode.IsUpper(r) {
-			b.WriteByte('_')
-		}
-		b.WriteRune(unicode.ToUpper(r))
-	}
-	return b.String()
-}
-
 // within is a 10 s deadline on one call.
 func within() context.Context {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -86,11 +72,10 @@ func main() {
 	gcsPeer, dronePeer := must(mud.New("gcs", key, 1, 1)), must(mud.New("drone", key, 2, 1))
 	gcs, drone := mud.NewChannel(gcsPeer, gcsRadio), mud.NewChannel(dronePeer, droneRadio)
 	pb.RegisterDroneServer(drone, &droneService{})
-	time.Sleep(200 * time.Millisecond) // a server answers once its listen has reached its socket
 
 	client := pb.NewDroneClient(gcs)
 	_, err := client.Land(within(), &pb.LandRequest{})
-	fmt.Printf("land: %s %s\n", name(status.Code(err)), status.Convert(err).Message())
+	fmt.Printf("land: %s %s\n", mud.StatusName(uint32(status.Code(err))), status.Convert(err).Message())
 	fmt.Printf("armed %s for gcs\n", must(client.Arm(within(), &pb.ArmRequest{Pilot: "gcs"})).Drone)
 	fmt.Print("telemetry")
 	stream := must(client.Telemetry(within(), &pb.TelemetryRequest{Samples: 3}))

@@ -108,7 +108,7 @@ type Channel struct {
 	refused  time.Time
 }
 
-// NewChannel starts the pump over peer and radio.
+// NewChannel starts the pump over peer and radio; over the library's Udp it listens on the peer's name before it returns.
 func NewChannel(peer *Peer, radio Radio, opts ...Option) *Channel {
 	c := &Channel{peer: peer, send: radio.Send, fault: func(err error) { fmt.Fprintln(os.Stderr, "mudrpc:", err) }, ttl: 60, start: time.Now(), sem: make(chan struct{}, workers), wake: make(chan struct{}, 1), done: make(chan struct{}), stopped: make(chan struct{}), pending: map[[12]byte]*call{}, services: map[string]service{}, lines: map[uint32][]answer{}, serving: map[*serverCall]struct{}{}}
 	c.udp, _ = radio.(*Udp)
@@ -116,8 +116,26 @@ func NewChannel(peer *Peer, radio Radio, opts ...Option) *Channel {
 		o(c)
 	}
 	c.ttl = max(1, min(c.ttl, week))
+	c.listen()
 	go c.run()
 	return c
+}
+
+// listen, under the gate or before the pump, puts the peer's listens on the library's Udp before the caller goes on, since
+// it drops wires on a topic not yet listened to: the first wire, and any error, waits for the pump.
+func (c *Channel) listen() {
+	if c.udp == nil {
+		return
+	}
+	for len(c.toListen) > 0 && c.peer.Listen(c.toListen[0]) == nil {
+		c.toListen = c.toListen[1:]
+	}
+	for {
+		o, err := c.peer.Outgoing(c.now())
+		if err != nil || o == nil || !o.Listen || c.udp.Send(o) != nil || c.peer.Sent() != nil {
+			return
+		}
+	}
 }
 
 // Deliver hands the channel a wire the radio received, from any goroutine. Past 1024 waiting for the pump, a wire is dropped, as core would drop a flood.
@@ -267,9 +285,13 @@ func (c *Channel) round() bool {
 		if o == nil {
 			break
 		}
-		c.gate.Unlock()
+		if c.udp == nil { // a radio's Send runs with no lock held; the library's socket never calls back in, and under the gate no listen drained by RegisterService can pop the item shown here
+			c.gate.Unlock()
+		}
 		err = c.try(func() error { return c.send(o) })
-		c.gate.Lock()
+		if c.udp == nil {
+			c.gate.Lock()
+		}
 		if c.closing.Load() {
 			c.shut(codes.Unavailable, "the channel is closed")
 			return true
@@ -479,6 +501,7 @@ func (a addr) String() string  { return fmt.Sprintf("mudrpc:%d", uint32(a)) }
 
 // RegisterService is grpc.ServiceRegistrar's, what the generated Register<Service>Server calls; the channel listens on
 // the service's full name, which mudRPC carries at 1 to 64 bytes of UTF-8, and panics, as grpc does, for one it cannot.
+// Over the library's Udp the listen is on the socket before it returns.
 func (c *Channel) RegisterService(desc *grpc.ServiceDesc, impl any) {
 	if desc.HandlerType != nil {
 		if ht, st := reflect.TypeOf(desc.HandlerType).Elem(), reflect.TypeOf(impl); !st.Implements(ht) {
@@ -495,6 +518,7 @@ func (c *Channel) RegisterService(desc *grpc.ServiceDesc, impl any) {
 		c.toListen = append(c.toListen, desc.ServiceName)
 	}
 	c.services[desc.ServiceName] = service{desc, impl}
+	c.listen()
 }
 
 // Stop is grpc.Server's Stop and GracefulStop in one: no new calls from now; past grace, at once for 0, those running or

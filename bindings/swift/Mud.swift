@@ -32,6 +32,9 @@ public struct Incoming: Sendable {
   public var sender: UInt32 = 0
 }
 
+/// gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16.
+public func statusName(_ status: UInt32) -> String { String(cString: mud_status_name(status)) }
+
 /// An item for the transport: a wire to send on `topic`, kept for `ttlSecs`, or a topic to listen to.
 public struct Outgoing: Sendable {
   public var listen: Bool

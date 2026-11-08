@@ -321,11 +321,24 @@ let gcsU = MudTransport(peer: try Peer(name: "gcsu", key: key, sender: 11, epoch
 let droneU = MudTransport(peer: try Peer(name: "droneu", key: key, sender: 12, epoch: 1), udp: pair[1])
 let serverU = GRPCServer(transport: droneU.server, services: [DroneService()])
 let servingU = Task { try await serverU.serve() }
-await nap(200)   // a server answers once its listen has reached its socket
 try await withGRPCClient(transport: gcsU.client) { grpc in
   let overUdp = Test_Drone.Client(wrapping: grpc)
   say("over UDP: armed \(try await overUdp.arm(arm(1), options: options(.seconds(5))).armed), telemetry \(try await read(overUdp, telemetry(5)))")
 }
+var atOnce = 0
+for i in 0..<20 {
+  let p = try udpSet(2)
+  let c = MudTransport(peer: try Peer(name: "c\(i)", key: key, sender: 15, epoch: 1), udp: p[0])
+  let s = MudTransport(peer: try Peer(name: "s\(i)", key: key, sender: 16, epoch: 1), udp: p[1])
+  let server = GRPCServer(transport: s.server, services: [DroneService()])
+  let serving = Task { try await server.serve() }
+  if (try? await withGRPCClient(transport: c.client) { try await Test_Drone.Client(wrapping: $0).arm(arm(1), options: options(.seconds(5))).armed }) == true { atOnce += 1 }
+  server.beginGracefulShutdown()
+  _ = await serving.result
+  for t in [c, s] { t.close() }
+  p.forEach { $0.close() }
+}
+say("twenty servers called at once: \(atOnce) of 20 armed")
 let lostSocket = try Udp(bind: "127.0.0.1:0", peers: ["127.0.0.1:\(try pair[1].port)"])
 let lost = MudTransport(peer: try Peer(name: "lost", key: key, sender: 13, epoch: 1), udp: lostSocket)
 lostSocket.close()
@@ -341,7 +354,6 @@ let three = try udpSet(3)
 let nodes = try three.enumerated().map { MudTransport(peer: try Peer(name: "node\($0.offset)", key: key, sender: 21 + UInt32($0.offset), epoch: 1), udp: $0.element) }
 let serverT = GRPCServer(transport: nodes[1].server, services: [DroneService()])
 let servingT = Task { try await serverT.serve() }
-await nap(200)   // a server answers once its listen has reached its socket
 try await withGRPCClient(transport: nodes[0].client) { grpc in
   var armed = 0
   for _ in 0..<10 where try await Test_Drone.Client(wrapping: grpc).arm(arm(1), options: options(.seconds(5))).armed { armed += 1 }

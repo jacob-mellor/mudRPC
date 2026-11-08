@@ -1,6 +1,6 @@
 [package]
 name = "mudrpc-auth"
-version = "0.3.0"
+version = "3.0.0"
 edition = "2021"
 license = "MIT"
 description = "Per-sender authentication for mudRPC: SHA-512, Ed25519 and the signed sealer, no_std."
@@ -12,7 +12,7 @@ categories = ["network-programming", "embedded", "no-std"]
 path = "lib.rs"
 
 [dependencies]
-mudrpc-core = { path = "../core", version = "0.3.0" }
+mudrpc-core = { path = "../core", version = "3.0.0" }
 
 [dev-dependencies]
-mudrpc-gcm = { path = "../gcm", version = "0.3.0" }
+mudrpc-gcm = { path = "../gcm", version = "3.0.0" }

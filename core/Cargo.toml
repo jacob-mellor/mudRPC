@@ -1,6 +1,6 @@
 [package]
 name = "mudrpc-core"
-version = "0.3.0"
+version = "3.0.0"
 edition = "2021"
 license = "MIT"
 description = "The mudRPC peer, wire and cipher: no_std, no allocation, no crates."

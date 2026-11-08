@@ -95,6 +95,7 @@ class Channel(grpc.Channel):
         self._closed = False
         self._pace_sec, self._paced, self._refused_since = -1, 0, 0.0
         self._pump = threading.Thread(target=self._run, name="mudrpc", daemon=True)
+        self._listens()
         self._pump.start()
 
     # The transport and the peer.
@@ -364,9 +365,26 @@ class Channel(grpc.Channel):
     def _listen(self, service: str) -> None:
         if not _named(service):
             raise ValueError(f"mudRPC carries a service's full name of 1 to 64 bytes of UTF-8: {service!r}")
-        if service not in self._services:
-            self._services.add(service)
-            self._to_listen.append(service)
+        if service in self._services:
+            return
+        self._services.add(service)
+        try:
+            if self._udp:
+                self._peer.listen(service)
+                return self._listens()
+        except mud.Full:
+            pass  # the outbox is full: the pump listens on a later round
+        self._to_listen.append(service)
+
+    def _listens(self) -> None:
+        """Over Udp the queued listens reach the socket now, so a call that follows finds them there; a send waits for the pump."""
+        with self._gate:
+            try:
+                while self._udp and (o := self._peer.outgoing(self._now())) is not None and o.kind == "listen":
+                    self._udp.send(o)
+                    self._peer.sent()
+            except RuntimeError:
+                pass  # the socket is closed: the pump's next round shuts the channel
 
     def _handler(self, path: str):
         h = self._registered.get(path)

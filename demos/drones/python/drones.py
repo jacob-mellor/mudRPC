@@ -1,7 +1,6 @@
 """gRPC drone telemetry in Python: a ground station and a mock drone, two peers over UDP in this process, the stub and
 servicer grpcio-tools generated from drone.proto run over mudRPC's drop-in channel."""
 import socket
-import time
 
 import grpc
 
@@ -46,7 +45,6 @@ def main():
     links = [mud.Udp(f"127.0.0.1:{a}", f"127.0.0.1:{b}"), mud.Udp(f"127.0.0.1:{b}", f"127.0.0.1:{a}")]
     gcs, drone = (mud_grpc.Channel(p, u) for p, u in zip(peers, links))
     rpc.add_DroneServicer_to_server(MockDrone(), drone)
-    time.sleep(0.2)  # the drone answers once its listen has reached its socket
 
     station = rpc.DroneStub(gcs)
     try:

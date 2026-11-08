@@ -49,6 +49,9 @@ class Error : public std::runtime_error {
 
 enum class Kind : int32_t { none, call, reply, event, expired, dropped, flood, rollback };
 
+// gRPC's name for a status number, "FAILED_PRECONDITION" for 9, "" past 16.
+inline const char* status_name(uint32_t status) { return mud_status_name(status); }
+
 // A verdict. dropped names why a wire was refused: 1 version, 2 open, 3 decode, 4 duplicate, 5 no pending call, 6 topic,
 // 7 seq, 8 id, 9 replay, 10 rate, with status its detail.
 struct Incoming {

@@ -168,9 +168,19 @@ public final class Main {
         int pd = du.port();
         MudChannel gcsU = new MudChannel(new Mud.Peer("gcsu", KEY, 11, 1), gu), droneU = new MudChannel(new Mud.Peer("droneu", KEY, 12, 1), du);
         droneU.addService(ServerInterceptors.intercept(new DroneService(), new Caller()));
-        Thread.sleep(200); // a server answers once its listen has reached its socket
         DroneGrpc.DroneBlockingStub overUdp = DroneGrpc.newBlockingStub(gcsU).withDeadlineAfter(5, TimeUnit.SECONDS);
         say("over UDP: armed " + overUdp.arm(ArmRequest.newBuilder().setId(1).build()).getArmed() + ", telemetry " + read(DroneGrpc.newBlockingStub(gcsU).telemetry(TelemetryRequest.newBuilder().setCount(5).build())));
+        int atOnce = 0;
+        for (int i = 0; i < 20; i++) { // a server called the moment its service is added: its socket already listens
+            Mud.Udp[] fresh = udpPair();
+            Mud.Peer cp = new Mud.Peer("gcsf", KEY, 24, 1), sp = new Mud.Peer("dronef", KEY, 25, 1);
+            try (MudChannel c = new MudChannel(cp, fresh[0]); MudChannel s = new MudChannel(sp, fresh[1])) {
+                s.addService(ServerInterceptors.intercept(new DroneService(), new Caller()));
+                if (DroneGrpc.newBlockingStub(c).withDeadlineAfter(5, TimeUnit.SECONDS).arm(ArmRequest.newBuilder().setId(1).build()).getArmed()) atOnce++;
+            } catch (StatusRuntimeException e) { }
+            cp.close(); sp.close(); fresh[0].close(); fresh[1].close();
+        }
+        say("twenty servers called at once: " + atOnce + " of 20 armed");
         Mud.Udp lostSocket = new Mud.Udp("127.0.0.1:0", "127.0.0.1:" + pd);
         try (MudChannel lost = new MudChannel(new Mud.Peer("lost", KEY, 13, 1), lostSocket)) {
             lostSocket.close();
@@ -260,7 +270,6 @@ public final class Main {
         }
         MudChannel gT = new MudChannel(new Mud.Peer("gcst", KEY, 21, 1), three[0]), dT = new MudChannel(new Mud.Peer("dronet", KEY, 22, 1), three[1]), iT = new MudChannel(new Mud.Peer("idlet", KEY, 23, 1), three[2]);
         dT.addService(ServerInterceptors.intercept(new DroneService(), new Caller()));
-        Thread.sleep(200); // a server answers once its listen has reached its socket
         int armedT = 0;
         for (int i = 0; i < 10; i++) if (DroneGrpc.newBlockingStub(gT).withDeadlineAfter(5, TimeUnit.SECONDS).arm(ArmRequest.newBuilder().setId(1).build()).getArmed()) armedT++;
         say("three on UDP, one serving nothing: " + armedT + " of 10 armed");

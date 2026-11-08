@@ -22,7 +22,6 @@ use Mud\Peer;
 use Mud\Radio;
 
 define('KEY', implode(array_map('chr', range(1, 32))));   // the fleet key: a product provisions 32 random bytes to every peer
-const STATUS = ['OK', 'CANCELLED', 'UNKNOWN', 'INVALID_ARGUMENT', 'DEADLINE_EXCEEDED', 'NOT_FOUND', 'ALREADY_EXISTS', 'PERMISSION_DENIED', 'RESOURCE_EXHAUSTED', 'FAILED_PRECONDITION', 'ABORTED', 'OUT_OF_RANGE', 'UNIMPLEMENTED', 'INTERNAL', 'UNAVAILABLE', 'DATA_LOSS', 'UNAUTHENTICATED'];
 
 /** The mock drone: a peer with no gRPC on its side, answering demo.drones.Drone; its wires for the station wait in $wires. */
 final class Drone
@@ -101,7 +100,7 @@ $client = new DroneClient('drone', ['credentials' => null, 'grpc_call_invoker' =
 $within = ['timeout' => 10_000_000];
 
 [, $status] = $client->Land(new LandRequest(), [], $within)->wait();
-echo 'land: ', STATUS[$status->code], " $status->details\n";
+echo 'land: ', Mud\statusName($status->code), " $status->details\n";
 [$reply] = $client->Arm((new ArmRequest())->setPilot('gcs'), [], $within)->wait();
 echo "armed {$reply->getDrone()} for gcs\n";
 $line = 'telemetry';

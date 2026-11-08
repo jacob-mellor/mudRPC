@@ -1,7 +1,6 @@
 // gRPC drone telemetry in C++: a ground station and a mock drone, two peers over UDP on one machine, written as gRPC
 // C++ code is, with mud:: for grpc::. Building the channels is the only mudRPC code.
 #include <iostream>
-#include <thread>
 
 #include "drone.mud.pb.h"
 
@@ -44,11 +43,7 @@ struct Context : mud::ClientContext {
   Context() { set_deadline(system_clock::now() + seconds(10)); }
 };
 
-std::string told(const mud::Status& s) {
-  static const char* names[] = {"OK", "CANCELLED", "UNKNOWN", "INVALID_ARGUMENT", "DEADLINE_EXCEEDED", "NOT_FOUND", "ALREADY_EXISTS", "PERMISSION_DENIED", "RESOURCE_EXHAUSTED",
-                                "FAILED_PRECONDITION", "ABORTED", "OUT_OF_RANGE", "UNIMPLEMENTED", "INTERNAL", "UNAVAILABLE", "DATA_LOSS", "UNAUTHENTICATED"};
-  return std::string(names[s.error_code()]) + " " + s.error_message();
-}
+std::string told(const mud::Status& s) { return std::string(mud::status_name(s.error_code())) + " " + s.error_message(); }
 
 std::string at(int32_t port) { return "127.0.0.1:" + std::to_string(port); }
 
@@ -66,7 +61,6 @@ int main() {
   builder.AddListeningPort(drone);
   builder.RegisterService(&service);
   std::unique_ptr<mud::Server> server(builder.BuildAndStart());
-  std::this_thread::sleep_for(milliseconds(200));   // a server answers once its listen has reached its socket
 
   // From here, the code a gRPC C++ product already has.
   auto stub = Drone::NewStub(gcs);

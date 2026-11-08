@@ -3,7 +3,7 @@
 import { Code, ConnectError, createClient } from '@connectrpc/connect';
 import { createSocket } from 'node:dgram';
 import { Drone } from './gen/drone_pb.js';
-import { Peer, Udp } from './vendor/mud.js';
+import { Peer, Udp, statusName } from './vendor/mud.js';
 import { MudTransport } from './vendor/mud-connect.js';
 
 const KEY = Uint8Array.from({ length: 32 }, (_, i) => i + 1); // a product provisions 32 random bytes to every peer
@@ -28,7 +28,7 @@ drone.service(Drone, {
 
 // From here, the code a Connect product already has.
 const client = createClient(Drone, gcs), opts = { timeoutMs: 10000 };
-try { await client.land({}, opts); } catch (e) { console.log(`land: ${Code[e.code].replace(/(?<=[a-z])(?=[A-Z])/g, '_').toUpperCase()} ${e.rawMessage}`); }
+try { await client.land({}, opts); } catch (e) { console.log(`land: ${statusName(e.code)} ${e.rawMessage}`); }
 const pilot = 'gcs', arm = await client.arm({ pilot }, opts);
 console.log(`armed ${arm.drone} for ${pilot}`);
 const samples = [];

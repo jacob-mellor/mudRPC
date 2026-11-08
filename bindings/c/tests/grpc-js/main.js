@@ -194,9 +194,16 @@ const [gu, du] = await udpSet(2);
 const gcsU = new MudTransport(new Peer('gcsu', KEY, 11, 1), gu);
 const droneU = new MudTransport(new Peer('droneu', KEY, 12, 1), du);
 droneU.service(Drone, droneService);
-await sleep(200); // a server answers once its listen has reached its socket
 const overUdp = createClient(Drone, gcsU);
 say(`over UDP: armed ${(await overUdp.arm({ id: 1 }, { timeoutMs: 5000 })).armed}, telemetry ${await read(overUdp.telemetry({ count: 5 }))}`);
+let atOnce = 0;
+for (let i = 0; i < 20; i++) { // a server registered and called at once: its listen is on the socket before the call
+  const [cu, su] = await udpSet(2), cp = new Peer('caller', KEY, 19, 1), sp = new Peer('server', KEY, 20, 1);
+  const server = new MudTransport(sp, su).service(Drone, droneService), caller = new MudTransport(cp, cu);
+  if ((await createClient(Drone, caller).arm({ id: 1 }, { timeoutMs: 5000 })).armed) atOnce++;
+  for (const x of [server, caller, sp, cp, su, cu]) x.close();
+}
+say(`twenty servers called at once: ${atOnce} of 20 armed`);
 const lostSocket = await Udp.open('127.0.0.1:0', `127.0.0.1:${du.port}`);
 const lost = new MudTransport(new Peer('lost', KEY, 13, 1), lostSocket);
 lostSocket.close();
@@ -213,7 +220,6 @@ say(`a service name with a lone surrogate: ${await thrown(() => drone.service({ 
 const three = await udpSet(3);
 const [gT, dT, iT] = three.map((u, i) => new MudTransport(new Peer(`node${i}`, KEY, 21 + i, 1), u));
 dT.service(Drone, droneService);
-await sleep(200); // a server answers once its listen has reached its socket
 let armed = 0;
 for (let i = 0; i < 10; i++) if ((await createClient(Drone, gT).arm({ id: 1 }, { timeoutMs: 5000 })).armed) armed++;
 say(`three on UDP, one serving nothing: ${armed} of 10 armed`);

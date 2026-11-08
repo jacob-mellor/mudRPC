@@ -1,6 +1,6 @@
 [package]
 name = "mudrpc-gcm"
-version = "0.3.0"
+version = "3.0.0"
 edition = "2021"
 license = "MIT"
 description = "AES-256-GCM for mudRPC from FIPS 197 and SP 800-38D: bitsliced, no tables, no_std."
@@ -12,4 +12,4 @@ categories = ["network-programming", "embedded", "no-std"]
 path = "lib.rs"
 
 [dependencies]
-mudrpc-core = { path = "../core", version = "0.3.0" }
+mudrpc-core = { path = "../core", version = "3.0.0" }

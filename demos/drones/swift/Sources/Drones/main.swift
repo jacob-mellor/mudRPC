@@ -8,7 +8,6 @@ let key = (1...32).map { UInt8($0) }   // the fleet key; a product provisions 32
 let epoch: UInt32 = 1
 let pilot = "gcs"
 let options = { var o = CallOptions.defaults; o.timeout = .seconds(10); return o }()
-let grpcNames = ["OK", "CANCELLED", "UNKNOWN", "INVALID_ARGUMENT", "DEADLINE_EXCEEDED", "NOT_FOUND", "ALREADY_EXISTS", "PERMISSION_DENIED", "RESOURCE_EXHAUSTED", "FAILED_PRECONDITION", "ABORTED", "OUT_OF_RANGE", "UNIMPLEMENTED", "INTERNAL", "UNAVAILABLE", "DATA_LOSS", "UNAUTHENTICATED"]
 
 /// Sockets on free loopback ports, each listing the others: the ports found by binding, then bound again listed.
 func sockets(_ n: Int) throws -> [Udp] {
@@ -39,12 +38,11 @@ let gcs = MudTransport(peer: try Peer(name: "gcs", key: key, sender: 1, epoch: e
 let drone = MudTransport(peer: try Peer(name: "drone", key: key, sender: 2, epoch: epoch), udp: droneSocket)
 let server = GRPCServer(transport: drone.server, services: [DroneService()])
 let serving = Task { try await server.serve() }
-try await Task.sleep(for: .milliseconds(200))   // a server answers once its listen has reached its socket
 
 // From here, the code a grpc-swift product already has.
 try await withGRPCClient(transport: gcs.client) { grpc in
   let client = Demo_Drones_Drone.Client(wrapping: grpc)
-  do { _ = try await client.land(.init(), options: options) } catch let e as RPCError { print("land: \(grpcNames[e.code.rawValue]) \(e.message)") }
+  do { _ = try await client.land(.init(), options: options) } catch let e as RPCError { print("land: \(statusName(UInt32(e.code.rawValue))) \(e.message)") }
   print("armed \(try await client.arm(.with { $0.pilot = pilot }, options: options).drone) for \(pilot)")
   let samples = try await client.telemetry(.with { $0.samples = 3 }, options: options) { try await $0.messages.reduce(into: [String]()) { $0.append("\($1.seq):\($1.altitudeM)m \($1.batteryPct)%") } }
   print("telemetry \(samples.joined(separator: " "))")

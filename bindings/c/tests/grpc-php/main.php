@@ -21,7 +21,6 @@ use Test\Sample;
 use Test\TelemetryRequest;
 
 define('KEY', implode(array_map('chr', range(1, 32))));
-const NAMES = ['OK', 'CANCELLED', 'UNKNOWN', 'INVALID_ARGUMENT', 'DEADLINE_EXCEEDED', 'NOT_FOUND', 'ALREADY_EXISTS', 'PERMISSION_DENIED', 'RESOURCE_EXHAUSTED', 'FAILED_PRECONDITION', 'ABORTED', 'OUT_OF_RANGE', 'UNIMPLEMENTED', 'INTERNAL', 'UNAVAILABLE', 'DATA_LOSS', 'UNAUTHENTICATED'];
 
 function say(string $s): void
 {
@@ -30,7 +29,7 @@ function say(string $s): void
 
 function status(object $s): string
 {
-    return NAMES[$s->code] . ($s->details === '' ? ($s->code ? ' ""' : '') : " $s->details");
+    return Mud\statusName($s->code) . ($s->details === '' ? ($s->code ? ' ""' : '') : " $s->details");
 }
 
 function thrown(callable $f): string
