@@ -104,7 +104,7 @@ cargo test --release -p mudrpc-core -p mudrpc-auth -p mudrpc-gcm --test scrub   
 
 A failing test, or a scenario and its log, is the report: a trap, a log showing what SPEC.md says never happens, or one that differs between two runs or two harnesses. Send it as [SECURITY.md](SECURITY.md) says.
 
-Accepted by design, each with its reason in SPEC.md: anything a fleet-key holder does unsigned (layer 1, "Threats, stated"); traffic analysis of sizes and timing (Decisions, "Sizes and timing stay the product's"); the transport beneath, the payload above (layer 1, "Three layers of encryption"); a host clock stepping back (layer 2, "Time is an argument"); the campaign's stated residual costs (BACKLOG.md, Done, "The multi-node campaign, closed").
+Accepted by design, each with its reason in SPEC.md: anything a fleet-key holder does unsigned (layer 1, "Threats, stated"); traffic analysis of sizes and timing (Decisions, "Sizes and timing stay the product's"); the transport beneath, the payload above (layer 1, "Three layers of encryption"); a host clock stepping back (layer 2, "Time is an argument").
 
 ## Where things are
 
