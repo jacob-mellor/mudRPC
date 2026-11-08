@@ -1,0 +1,44 @@
+# Five peers. Radios 3 and 4 also carry an outsider's transmitter: from 2 s each floods the ground station's name, where
+# the drones report, with 2 000 junk wires a second, from 17 s with 20 000 (6.4 Mbit/s, an IP mesh radio's rate), until
+# 32 s; drone-3 and drone-4 on those radios are honest. Junk wears the version byte its radio last heard, so every wire
+# costs gcs a tag check, and nothing else. Every drone reports once a second; gcs counts, each second, the reports that
+# landed: four, under every sealer, since the simulator charges no CPU time. Signed, gcs is the hub.
+seed 53
+peers 5
+profile reticulum
+2000   flood 3 gcs 2000
+2000   flood 4 gcs 2000
+17000  flood 3 gcs 20000
+17000  flood 4 gcs 20000
+32000  flood 3 gcs 0
+32000  flood 4 gcs 0
+2000   telemetry
+3000   telemetry
+4000   telemetry
+5000   telemetry
+6000   telemetry
+7000   telemetry
+8000   telemetry
+9000   telemetry
+10000  telemetry
+11000  telemetry
+12000  telemetry
+13000  telemetry
+14000  telemetry
+15000  telemetry
+16000  telemetry
+17000  telemetry
+18000  telemetry
+19000  telemetry
+20000  telemetry
+21000  telemetry
+22000  telemetry
+23000  telemetry
+24000  telemetry
+25000  telemetry
+26000  telemetry
+27000  telemetry
+28000  telemetry
+29000  telemetry
+30000  telemetry
+31000  telemetry

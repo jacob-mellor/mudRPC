@@ -1,0 +1,10 @@
+{
+  "name": "mudrpc-demo-sensors",
+  "private": true,
+  "type": "module",
+  "description": "Sensor telemetry over UDP in JavaScript: protobuf messages from protoc-gen-es over mudRPC's own API, three peers in one loop.",
+  "dependencies": {
+    "@bufbuild/protobuf": "2.16.0",
+    "@bufbuild/protoc-gen-es": "2.16.0"
+  }
+}

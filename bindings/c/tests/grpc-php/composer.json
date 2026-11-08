@@ -1,0 +1,15 @@
+{
+    "name": "mudrpc/grpc-php-test",
+    "description": "The gRPC drop-in under test: grpc/grpc's BaseStub and the client grpc_php_plugin generates, over Mud\\Channel.",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=8.2",
+        "grpc/grpc": "1.85.0",
+        "google/protobuf": "5.36.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "gen/"
+        }
+    }
+}

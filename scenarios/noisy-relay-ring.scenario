@@ -1,0 +1,15 @@
+# Three holding relays in a ring, each with a noisy receiver, holding 100 ms for the first 600 ms: a relay keeps and resends
+# the wire as it was on the air, its noise on its peer's copy alone, so each relay sends each of gcs's two calls once and the
+# ring stays bounded; most copies a peer gets are damaged and die at the version byte or the tag.
+seed 3
+peers 4
+profile dtn
+0 hold 1 100
+0 hold 2 100
+0 hold 3 100
+0 noise 1 50
+0 noise 2 50
+0 noise 3 50
+600 hold 1 0
+600 hold 2 0
+600 hold 3 0

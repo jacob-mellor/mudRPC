@@ -1,0 +1,27 @@
+<!-- The NuGet package: Mud.cs and MudGrpc.cs compiled with their XML documentation, the library under runtimes/<rid>/native,
+     SKILL.md and README.md at the root. packages/build.sh packs it: dotnet pack -p:Version= -p:Sources= -p:Dist= -p:Rid= -p:Lib= -p:Readme= -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>mudrpc</AssemblyName>
+    <RootNamespace>MudRpc</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+    <PackageId>mudrpc</PackageId>
+    <Title>Mud RPC — gRPC for unstable networks</Title>
+    <Description>Mud RPC: gRPC for unstable networks. gRPC's service model over mesh, radio and UDP as sealed packets, without HTTP/2, ASP.NET Core or Kestrel, and a CallInvoker and ServiceBinderBase so the clients and services Grpc.Tools generates run unchanged.</Description>
+    <PackageTags>grpc;rpc;protobuf;mesh;udp;delay-tolerant;iot;drone;lora;no-http2</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jacob-mellor/mudRPC</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jacob-mellor/mudRPC</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.Core.Api" Version="2.84.0" />
+    <Compile Include="$(Sources)/dotnet/Mud.cs;$(Sources)/dotnet/MudGrpc.cs" />
+    <None Include="$(Dist)/$(Lib)" Pack="true" PackagePath="runtimes/$(Rid)/native/" />
+    <None Include="$(Sources)/dotnet/SKILL.md;$(Readme)" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

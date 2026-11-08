@@ -1,0 +1,16 @@
+# grpcio, its code generator and protobuf for the Python drop-in's test, pinned by hash: a wheel for CPython 3.13 on
+# macOS and 3.12 on Linux x86-64. pip install --require-hashes --only-binary=:all: -r requirements.txt
+grpcio==1.76.0 \
+    --hash=sha256:45e0111e73f43f735d70786557dc38141185072d7ff8dc1829d6a77ac1471468 \
+    --hash=sha256:980a846182ce88c4f2f7e2c22c56aefd515daeb36149d1c897f83cf57999e0b6
+grpcio-tools==1.76.0 \
+    --hash=sha256:aa2f030fd0ef17926026ee8e2b700e388d3439155d145c568fa6b32693277613 \
+    --hash=sha256:30f1d2dda6ece285b3d9084e94f66fa721ebdba14ae76b2bc4c581c8a166535c
+protobuf==6.33.0 \
+    --hash=sha256:905b07a65f1a4b72412314082c7dbfae91a9e8b68a0cc1577515f8df58ecf455 \
+    --hash=sha256:35be49fd3f4fefa4e6e2aacc35e8b837d6703c37a2168a55ac21e9b1bc7559ef \
+    --hash=sha256:25c9e1963c6734448ea2d308cfa610e692b801304ba0908d7bfa564ac5132995
+setuptools==80.9.0 \
+    --hash=sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922
+typing-extensions==4.15.0 \
+    --hash=sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548

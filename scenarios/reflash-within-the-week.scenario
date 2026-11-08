@@ -1,0 +1,9 @@
+# Three peers at epoch 2. At 5 s drone-1 goes dark and radio 2 comes up as its clone from an old image at epoch 1, as
+# rollback does, but without the week's warp first. gcs first heard sender 2's epoch 2 at 0 s, so an honest wire of
+# epoch 1 was sent before then and answers a call made by then: each of the clone's answers, to calls made at 15, 30
+# and 45 s, is named Rollback inside its ttl, and gcs's calls expire.
+seed 19
+peers 3
+profile dtn
+5000   peer_down 1
+5000   clone     1 2

@@ -1,0 +1,14 @@
+{
+    "name": "mudrpc/demo-sensors-php",
+    "description": "Sensor telemetry over UDP in PHP: the binding's own API with the messages protoc generates from sensor.proto.",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=8.2",
+        "google/protobuf": "5.36.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "gen/"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+# Two peers. drone-1 reboots twice from its boot image, each time resuming at boot epoch + 1: the first reboot is what
+# an honest host does; the second is a host whose epoch write never reached storage, so it hands the same epoch out
+# again and the drone's first replies after it carry nonces it already used. gcs sees them as duplicates of wires it
+# accepted before, the calls expire, and traffic recovers once the counter passes where the first life ended. That
+# silent loss, and the keystream reuse beneath it, is why the epoch is written before a peer may speak.
+seed 41
+peers 2
+profile dtn
+20000  stale_reboot 1
+50000  stale_reboot 1

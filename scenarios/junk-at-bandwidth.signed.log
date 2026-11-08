@@ -1,0 +1,1543 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 113B ttl 60
+        0 send 0 "nav" 113B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 listen 3 "drone-3"
+        0 listen 3 "nav"
+        0 listen 4 "drone-4"
+        0 listen 4 "nav"
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+        0 radio 3 on-mesh
+        0 radio 4 on-mesh
+     1000 deliver 0 -> 1 "nav" 113B
+     1000 deliver 0 -> 2 "nav" 113B
+     1000 deliver 0 -> 3 "nav" 113B
+     1000 deliver 0 -> 4 "nav" 113B
+     1000 deliver 0 -> 1 "nav" 113B
+     1000 deliver 0 -> 2 "nav" 113B
+     1000 deliver 0 -> 3 "nav" 113B
+     1000 deliver 0 -> 4 "nav" 113B
+     1100 peer1 call "Ping" "1"
+     1100 peer1 call "Ping" "2"
+     1100 peer2 call "Ping" "1"
+     1100 peer2 call "Ping" "2"
+     1100 peer3 call "Ping" "1"
+     1100 peer3 call "Ping" "2"
+     1100 peer4 call "Ping" "1"
+     1100 peer4 call "Ping" "2"
+     1200 send 1 "gcs" 116B ttl 60
+     1200 send 1 "gcs" 116B ttl 10
+     1200 send 2 "gcs" 116B ttl 60
+     1200 send 2 "gcs" 116B ttl 10
+     1200 send 3 "gcs" 116B ttl 60
+     1200 send 3 "gcs" 116B ttl 10
+     1200 send 4 "gcs" 116B ttl 60
+     1200 send 4 "gcs" 116B ttl 10
+     1200 deliver 1 -> 0 "gcs" 116B
+     1200 deliver 1 -> 0 "gcs" 116B
+     1200 deliver 2 -> 0 "gcs" 116B
+     1200 deliver 2 -> 0 "gcs" 116B
+     1200 deliver 3 -> 0 "gcs" 116B
+     1200 deliver 3 -> 0 "gcs" 116B
+     1200 deliver 4 -> 0 "gcs" 116B
+     1200 deliver 4 -> 0 "gcs" 116B
+     1300 peer0 reply seq=0 end=true status=0 "1"
+     1300 peer0 reply seq=0 end=true status=0 "2"
+     1300 peer0 dropped NoPending ×6
+     2000 host: every drone publishes its position to gcs
+     2000 send 1 "gcs" 103B ttl 600
+     2000 send 2 "gcs" 103B ttl 600
+     2000 send 3 "gcs" 103B ttl 600
+     2000 send 4 "gcs" 103B ttl 600
+     2000 event Flood(3, "gcs", 2000)
+     2000 event Flood(4, "gcs", 2000)
+     2000 event Telemetry
+     2000 deliver 3 -> 0 "gcs" 40B ×200
+     2000 deliver 4 -> 0 "gcs" 40B ×200
+     2000 deliver 1 -> 0 "gcs" 103B
+     2000 deliver 2 -> 0 "gcs" 103B
+     2000 deliver 3 -> 0 "gcs" 103B
+     2000 deliver 4 -> 0 "gcs" 103B
+     2100 peer0 dropped Open(Tag) ×400
+     2100 peer0 event "gcs" "pos" from sender 2
+     2100 peer0 event "gcs" "pos" from sender 3
+     2100 peer0 event "gcs" "pos" from sender 4
+     2100 peer0 event "gcs" "pos" from sender 5
+     2100 deliver 3 -> 0 "gcs" 40B ×200
+     2100 deliver 4 -> 0 "gcs" 40B ×200
+     2200 peer0 dropped Open(Tag) ×400
+     2200 deliver 3 -> 0 "gcs" 40B ×200
+     2200 deliver 4 -> 0 "gcs" 40B ×200
+     2300 peer0 dropped Open(Tag) ×400
+     2300 deliver 3 -> 0 "gcs" 40B ×200
+     2300 deliver 4 -> 0 "gcs" 40B ×200
+     2400 peer0 dropped Open(Tag) ×400
+     2400 deliver 3 -> 0 "gcs" 40B ×200
+     2400 deliver 4 -> 0 "gcs" 40B ×200
+     2500 peer0 dropped Open(Tag) ×400
+     2500 deliver 3 -> 0 "gcs" 40B ×200
+     2500 deliver 4 -> 0 "gcs" 40B ×200
+     2600 peer0 dropped Open(Tag) ×400
+     2600 deliver 3 -> 0 "gcs" 40B ×200
+     2600 deliver 4 -> 0 "gcs" 40B ×200
+     2700 peer0 dropped Open(Tag) ×400
+     2700 deliver 3 -> 0 "gcs" 40B ×200
+     2700 deliver 4 -> 0 "gcs" 40B ×200
+     2800 peer0 dropped Open(Tag) ×400
+     2800 deliver 3 -> 0 "gcs" 40B ×200
+     2800 deliver 4 -> 0 "gcs" 40B ×200
+     2900 peer0 dropped Open(Tag) ×400
+     2900 deliver 3 -> 0 "gcs" 40B ×200
+     2900 deliver 4 -> 0 "gcs" 40B ×200
+     3000 peer0 honest events landed this second: 4
+     3000 host: every drone publishes its position to gcs
+     3000 peer0 dropped Open(Tag) ×400
+     3000 send 1 "gcs" 103B ttl 600
+     3000 send 2 "gcs" 103B ttl 600
+     3000 send 3 "gcs" 103B ttl 600
+     3000 send 4 "gcs" 103B ttl 600
+     3000 event Telemetry
+     3000 deliver 3 -> 0 "gcs" 40B ×200
+     3000 deliver 4 -> 0 "gcs" 40B ×200
+     3000 deliver 1 -> 0 "gcs" 103B
+     3000 deliver 2 -> 0 "gcs" 103B
+     3000 deliver 3 -> 0 "gcs" 103B
+     3000 deliver 4 -> 0 "gcs" 103B
+     3100 peer0 dropped Open(Tag) ×400
+     3100 peer0 event "gcs" "pos" from sender 2
+     3100 peer0 event "gcs" "pos" from sender 3
+     3100 peer0 event "gcs" "pos" from sender 4
+     3100 peer0 event "gcs" "pos" from sender 5
+     3100 deliver 3 -> 0 "gcs" 40B ×200
+     3100 deliver 4 -> 0 "gcs" 40B ×200
+     3200 peer0 dropped Open(Tag) ×400
+     3200 deliver 3 -> 0 "gcs" 40B ×200
+     3200 deliver 4 -> 0 "gcs" 40B ×200
+     3300 peer0 dropped Open(Tag) ×400
+     3300 deliver 3 -> 0 "gcs" 40B ×200
+     3300 deliver 4 -> 0 "gcs" 40B ×200
+     3400 peer0 dropped Open(Tag) ×400
+     3400 deliver 3 -> 0 "gcs" 40B ×200
+     3400 deliver 4 -> 0 "gcs" 40B ×200
+     3500 peer0 dropped Open(Tag) ×400
+     3500 deliver 3 -> 0 "gcs" 40B ×200
+     3500 deliver 4 -> 0 "gcs" 40B ×200
+     3600 peer0 dropped Open(Tag) ×400
+     3600 deliver 3 -> 0 "gcs" 40B ×200
+     3600 deliver 4 -> 0 "gcs" 40B ×200
+     3700 peer0 dropped Open(Tag) ×400
+     3700 deliver 3 -> 0 "gcs" 40B ×200
+     3700 deliver 4 -> 0 "gcs" 40B ×200
+     3800 peer0 dropped Open(Tag) ×400
+     3800 deliver 3 -> 0 "gcs" 40B ×200
+     3800 deliver 4 -> 0 "gcs" 40B ×200
+     3900 peer0 dropped Open(Tag) ×400
+     3900 deliver 3 -> 0 "gcs" 40B ×200
+     3900 deliver 4 -> 0 "gcs" 40B ×200
+     4000 peer0 honest events landed this second: 4
+     4000 host: every drone publishes its position to gcs
+     4000 peer0 dropped Open(Tag) ×400
+     4000 send 1 "gcs" 103B ttl 600
+     4000 send 2 "gcs" 103B ttl 600
+     4000 send 3 "gcs" 103B ttl 600
+     4000 send 4 "gcs" 103B ttl 600
+     4000 event Telemetry
+     4000 deliver 3 -> 0 "gcs" 40B ×200
+     4000 deliver 4 -> 0 "gcs" 40B ×200
+     4000 deliver 1 -> 0 "gcs" 103B
+     4000 deliver 2 -> 0 "gcs" 103B
+     4000 deliver 3 -> 0 "gcs" 103B
+     4000 deliver 4 -> 0 "gcs" 103B
+     4100 peer0 dropped Open(Tag) ×400
+     4100 peer0 event "gcs" "pos" from sender 2
+     4100 peer0 event "gcs" "pos" from sender 3
+     4100 peer0 event "gcs" "pos" from sender 4
+     4100 peer0 event "gcs" "pos" from sender 5
+     4100 deliver 3 -> 0 "gcs" 40B ×200
+     4100 deliver 4 -> 0 "gcs" 40B ×200
+     4200 peer0 dropped Open(Tag) ×400
+     4200 deliver 3 -> 0 "gcs" 40B ×200
+     4200 deliver 4 -> 0 "gcs" 40B ×200
+     4300 peer0 dropped Open(Tag) ×400
+     4300 deliver 3 -> 0 "gcs" 40B ×200
+     4300 deliver 4 -> 0 "gcs" 40B ×200
+     4400 peer0 dropped Open(Tag) ×400
+     4400 deliver 3 -> 0 "gcs" 40B ×200
+     4400 deliver 4 -> 0 "gcs" 40B ×200
+     4500 peer0 dropped Open(Tag) ×400
+     4500 deliver 3 -> 0 "gcs" 40B ×200
+     4500 deliver 4 -> 0 "gcs" 40B ×200
+     4600 peer0 dropped Open(Tag) ×400
+     4600 deliver 3 -> 0 "gcs" 40B ×200
+     4600 deliver 4 -> 0 "gcs" 40B ×200
+     4700 peer0 dropped Open(Tag) ×400
+     4700 deliver 3 -> 0 "gcs" 40B ×200
+     4700 deliver 4 -> 0 "gcs" 40B ×200
+     4800 peer0 dropped Open(Tag) ×400
+     4800 deliver 3 -> 0 "gcs" 40B ×200
+     4800 deliver 4 -> 0 "gcs" 40B ×200
+     4900 peer0 dropped Open(Tag) ×400
+     4900 deliver 3 -> 0 "gcs" 40B ×200
+     4900 deliver 4 -> 0 "gcs" 40B ×200
+     5000 peer0 honest events landed this second: 4
+     5000 host: every drone publishes its position to gcs
+     5000 peer0 dropped Open(Tag) ×400
+     5000 send 1 "gcs" 103B ttl 600
+     5000 send 2 "gcs" 103B ttl 600
+     5000 send 3 "gcs" 103B ttl 600
+     5000 send 4 "gcs" 103B ttl 600
+     5000 event Telemetry
+     5000 deliver 3 -> 0 "gcs" 40B ×200
+     5000 deliver 4 -> 0 "gcs" 40B ×200
+     5000 deliver 1 -> 0 "gcs" 103B
+     5000 deliver 2 -> 0 "gcs" 103B
+     5000 deliver 3 -> 0 "gcs" 103B
+     5000 deliver 4 -> 0 "gcs" 103B
+     5100 peer0 dropped Open(Tag) ×400
+     5100 peer0 event "gcs" "pos" from sender 2
+     5100 peer0 event "gcs" "pos" from sender 3
+     5100 peer0 event "gcs" "pos" from sender 4
+     5100 peer0 event "gcs" "pos" from sender 5
+     5100 deliver 3 -> 0 "gcs" 40B ×200
+     5100 deliver 4 -> 0 "gcs" 40B ×200
+     5200 peer0 dropped Open(Tag) ×400
+     5200 deliver 3 -> 0 "gcs" 40B ×200
+     5200 deliver 4 -> 0 "gcs" 40B ×200
+     5300 peer0 dropped Open(Tag) ×400
+     5300 deliver 3 -> 0 "gcs" 40B ×200
+     5300 deliver 4 -> 0 "gcs" 40B ×200
+     5400 peer0 dropped Open(Tag) ×400
+     5400 deliver 3 -> 0 "gcs" 40B ×200
+     5400 deliver 4 -> 0 "gcs" 40B ×200
+     5500 peer0 dropped Open(Tag) ×400
+     5500 deliver 3 -> 0 "gcs" 40B ×200
+     5500 deliver 4 -> 0 "gcs" 40B ×200
+     5600 peer0 dropped Open(Tag) ×400
+     5600 deliver 3 -> 0 "gcs" 40B ×200
+     5600 deliver 4 -> 0 "gcs" 40B ×200
+     5700 peer0 dropped Open(Tag) ×400
+     5700 deliver 3 -> 0 "gcs" 40B ×200
+     5700 deliver 4 -> 0 "gcs" 40B ×200
+     5800 peer0 dropped Open(Tag) ×400
+     5800 deliver 3 -> 0 "gcs" 40B ×200
+     5800 deliver 4 -> 0 "gcs" 40B ×200
+     5900 peer0 dropped Open(Tag) ×400
+     5900 deliver 3 -> 0 "gcs" 40B ×200
+     5900 deliver 4 -> 0 "gcs" 40B ×200
+     6000 peer0 honest events landed this second: 4
+     6000 host: every drone publishes its position to gcs
+     6000 peer0 dropped Open(Tag) ×400
+     6000 send 1 "gcs" 103B ttl 600
+     6000 send 2 "gcs" 103B ttl 600
+     6000 send 3 "gcs" 103B ttl 600
+     6000 send 4 "gcs" 103B ttl 600
+     6000 event Telemetry
+     6000 deliver 3 -> 0 "gcs" 40B ×200
+     6000 deliver 4 -> 0 "gcs" 40B ×200
+     6000 deliver 1 -> 0 "gcs" 103B
+     6000 deliver 2 -> 0 "gcs" 103B
+     6000 deliver 3 -> 0 "gcs" 103B
+     6000 deliver 4 -> 0 "gcs" 103B
+     6100 peer0 dropped Open(Tag) ×400
+     6100 peer0 event "gcs" "pos" from sender 2
+     6100 peer0 event "gcs" "pos" from sender 3
+     6100 peer0 event "gcs" "pos" from sender 4
+     6100 peer0 event "gcs" "pos" from sender 5
+     6100 deliver 3 -> 0 "gcs" 40B ×200
+     6100 deliver 4 -> 0 "gcs" 40B ×200
+     6200 peer0 dropped Open(Tag) ×400
+     6200 deliver 3 -> 0 "gcs" 40B ×200
+     6200 deliver 4 -> 0 "gcs" 40B ×200
+     6300 peer0 dropped Open(Tag) ×400
+     6300 deliver 3 -> 0 "gcs" 40B ×200
+     6300 deliver 4 -> 0 "gcs" 40B ×200
+     6400 peer0 dropped Open(Tag) ×400
+     6400 deliver 3 -> 0 "gcs" 40B ×200
+     6400 deliver 4 -> 0 "gcs" 40B ×200
+     6500 peer0 dropped Open(Tag) ×400
+     6500 deliver 3 -> 0 "gcs" 40B ×200
+     6500 deliver 4 -> 0 "gcs" 40B ×200
+     6600 peer0 dropped Open(Tag) ×400
+     6600 deliver 3 -> 0 "gcs" 40B ×200
+     6600 deliver 4 -> 0 "gcs" 40B ×200
+     6700 peer0 dropped Open(Tag) ×400
+     6700 deliver 3 -> 0 "gcs" 40B ×200
+     6700 deliver 4 -> 0 "gcs" 40B ×200
+     6800 peer0 dropped Open(Tag) ×400
+     6800 deliver 3 -> 0 "gcs" 40B ×200
+     6800 deliver 4 -> 0 "gcs" 40B ×200
+     6900 peer0 dropped Open(Tag) ×400
+     6900 deliver 3 -> 0 "gcs" 40B ×200
+     6900 deliver 4 -> 0 "gcs" 40B ×200
+     7000 peer0 honest events landed this second: 4
+     7000 host: every drone publishes its position to gcs
+     7000 peer0 dropped Open(Tag) ×400
+     7000 send 1 "gcs" 103B ttl 600
+     7000 send 2 "gcs" 103B ttl 600
+     7000 send 3 "gcs" 103B ttl 600
+     7000 send 4 "gcs" 103B ttl 600
+     7000 event Telemetry
+     7000 deliver 3 -> 0 "gcs" 40B ×200
+     7000 deliver 4 -> 0 "gcs" 40B ×200
+     7000 deliver 1 -> 0 "gcs" 103B
+     7000 deliver 2 -> 0 "gcs" 103B
+     7000 deliver 3 -> 0 "gcs" 103B
+     7000 deliver 4 -> 0 "gcs" 103B
+     7100 peer0 dropped Open(Tag) ×400
+     7100 peer0 event "gcs" "pos" from sender 2
+     7100 peer0 event "gcs" "pos" from sender 3
+     7100 peer0 event "gcs" "pos" from sender 4
+     7100 peer0 event "gcs" "pos" from sender 5
+     7100 deliver 3 -> 0 "gcs" 40B ×200
+     7100 deliver 4 -> 0 "gcs" 40B ×200
+     7200 peer0 dropped Open(Tag) ×400
+     7200 deliver 3 -> 0 "gcs" 40B ×200
+     7200 deliver 4 -> 0 "gcs" 40B ×200
+     7300 peer0 dropped Open(Tag) ×400
+     7300 deliver 3 -> 0 "gcs" 40B ×200
+     7300 deliver 4 -> 0 "gcs" 40B ×200
+     7400 peer0 dropped Open(Tag) ×400
+     7400 deliver 3 -> 0 "gcs" 40B ×200
+     7400 deliver 4 -> 0 "gcs" 40B ×200
+     7500 peer0 dropped Open(Tag) ×400
+     7500 deliver 3 -> 0 "gcs" 40B ×200
+     7500 deliver 4 -> 0 "gcs" 40B ×200
+     7600 peer0 dropped Open(Tag) ×400
+     7600 deliver 3 -> 0 "gcs" 40B ×200
+     7600 deliver 4 -> 0 "gcs" 40B ×200
+     7700 peer0 dropped Open(Tag) ×400
+     7700 deliver 3 -> 0 "gcs" 40B ×200
+     7700 deliver 4 -> 0 "gcs" 40B ×200
+     7800 peer0 dropped Open(Tag) ×400
+     7800 deliver 3 -> 0 "gcs" 40B ×200
+     7800 deliver 4 -> 0 "gcs" 40B ×200
+     7900 peer0 dropped Open(Tag) ×400
+     7900 deliver 3 -> 0 "gcs" 40B ×200
+     7900 deliver 4 -> 0 "gcs" 40B ×200
+     8000 peer0 honest events landed this second: 4
+     8000 host: every drone publishes its position to gcs
+     8000 peer0 dropped Open(Tag) ×400
+     8000 send 1 "gcs" 103B ttl 600
+     8000 send 2 "gcs" 103B ttl 600
+     8000 send 3 "gcs" 103B ttl 600
+     8000 send 4 "gcs" 103B ttl 600
+     8000 event Telemetry
+     8000 deliver 3 -> 0 "gcs" 40B ×200
+     8000 deliver 4 -> 0 "gcs" 40B ×200
+     8000 deliver 1 -> 0 "gcs" 103B
+     8000 deliver 2 -> 0 "gcs" 103B
+     8000 deliver 3 -> 0 "gcs" 103B
+     8000 deliver 4 -> 0 "gcs" 103B
+     8100 peer0 dropped Open(Tag) ×400
+     8100 peer0 event "gcs" "pos" from sender 2
+     8100 peer0 event "gcs" "pos" from sender 3
+     8100 peer0 event "gcs" "pos" from sender 4
+     8100 peer0 event "gcs" "pos" from sender 5
+     8100 deliver 3 -> 0 "gcs" 40B ×200
+     8100 deliver 4 -> 0 "gcs" 40B ×200
+     8200 peer0 dropped Open(Tag) ×400
+     8200 deliver 3 -> 0 "gcs" 40B ×200
+     8200 deliver 4 -> 0 "gcs" 40B ×200
+     8300 peer0 dropped Open(Tag) ×400
+     8300 deliver 3 -> 0 "gcs" 40B ×200
+     8300 deliver 4 -> 0 "gcs" 40B ×200
+     8400 peer0 dropped Open(Tag) ×400
+     8400 deliver 3 -> 0 "gcs" 40B ×200
+     8400 deliver 4 -> 0 "gcs" 40B ×200
+     8500 peer0 dropped Open(Tag) ×400
+     8500 deliver 3 -> 0 "gcs" 40B ×200
+     8500 deliver 4 -> 0 "gcs" 40B ×200
+     8600 peer0 dropped Open(Tag) ×400
+     8600 deliver 3 -> 0 "gcs" 40B ×200
+     8600 deliver 4 -> 0 "gcs" 40B ×200
+     8700 peer0 dropped Open(Tag) ×400
+     8700 deliver 3 -> 0 "gcs" 40B ×200
+     8700 deliver 4 -> 0 "gcs" 40B ×200
+     8800 peer0 dropped Open(Tag) ×400
+     8800 deliver 3 -> 0 "gcs" 40B ×200
+     8800 deliver 4 -> 0 "gcs" 40B ×200
+     8900 peer0 dropped Open(Tag) ×400
+     8900 deliver 3 -> 0 "gcs" 40B ×200
+     8900 deliver 4 -> 0 "gcs" 40B ×200
+     9000 peer0 honest events landed this second: 4
+     9000 host: every drone publishes its position to gcs
+     9000 peer0 dropped Open(Tag) ×400
+     9000 send 1 "gcs" 103B ttl 600
+     9000 send 2 "gcs" 103B ttl 600
+     9000 send 3 "gcs" 103B ttl 600
+     9000 send 4 "gcs" 103B ttl 600
+     9000 event Telemetry
+     9000 deliver 3 -> 0 "gcs" 40B ×200
+     9000 deliver 4 -> 0 "gcs" 40B ×200
+     9000 deliver 1 -> 0 "gcs" 103B
+     9000 deliver 2 -> 0 "gcs" 103B
+     9000 deliver 3 -> 0 "gcs" 103B
+     9000 deliver 4 -> 0 "gcs" 103B
+     9100 peer0 dropped Open(Tag) ×400
+     9100 peer0 event "gcs" "pos" from sender 2
+     9100 peer0 event "gcs" "pos" from sender 3
+     9100 peer0 event "gcs" "pos" from sender 4
+     9100 peer0 event "gcs" "pos" from sender 5
+     9100 deliver 3 -> 0 "gcs" 40B ×200
+     9100 deliver 4 -> 0 "gcs" 40B ×200
+     9200 peer0 dropped Open(Tag) ×400
+     9200 deliver 3 -> 0 "gcs" 40B ×200
+     9200 deliver 4 -> 0 "gcs" 40B ×200
+     9300 peer0 dropped Open(Tag) ×400
+     9300 deliver 3 -> 0 "gcs" 40B ×200
+     9300 deliver 4 -> 0 "gcs" 40B ×200
+     9400 peer0 dropped Open(Tag) ×400
+     9400 deliver 3 -> 0 "gcs" 40B ×200
+     9400 deliver 4 -> 0 "gcs" 40B ×200
+     9500 peer0 dropped Open(Tag) ×400
+     9500 deliver 3 -> 0 "gcs" 40B ×200
+     9500 deliver 4 -> 0 "gcs" 40B ×200
+     9600 peer0 dropped Open(Tag) ×400
+     9600 deliver 3 -> 0 "gcs" 40B ×200
+     9600 deliver 4 -> 0 "gcs" 40B ×200
+     9700 peer0 dropped Open(Tag) ×400
+     9700 deliver 3 -> 0 "gcs" 40B ×200
+     9700 deliver 4 -> 0 "gcs" 40B ×200
+     9800 peer0 dropped Open(Tag) ×400
+     9800 deliver 3 -> 0 "gcs" 40B ×200
+     9800 deliver 4 -> 0 "gcs" 40B ×200
+     9900 peer0 dropped Open(Tag) ×400
+     9900 deliver 3 -> 0 "gcs" 40B ×200
+     9900 deliver 4 -> 0 "gcs" 40B ×200
+    10000 peer0 honest events landed this second: 4
+    10000 host: every drone publishes its position to gcs
+    10000 peer0 dropped Open(Tag) ×400
+    10000 send 1 "gcs" 103B ttl 600
+    10000 send 2 "gcs" 103B ttl 600
+    10000 send 3 "gcs" 103B ttl 600
+    10000 send 4 "gcs" 103B ttl 600
+    10000 event Telemetry
+    10000 deliver 3 -> 0 "gcs" 40B ×200
+    10000 deliver 4 -> 0 "gcs" 40B ×200
+    10000 deliver 1 -> 0 "gcs" 103B
+    10000 deliver 2 -> 0 "gcs" 103B
+    10000 deliver 3 -> 0 "gcs" 103B
+    10000 deliver 4 -> 0 "gcs" 103B
+    10000 expire 0 "nav"
+    10100 peer0 dropped Open(Tag) ×400
+    10100 peer0 event "gcs" "pos" from sender 2
+    10100 peer0 event "gcs" "pos" from sender 3
+    10100 peer0 event "gcs" "pos" from sender 4
+    10100 peer0 event "gcs" "pos" from sender 5
+    10100 deliver 3 -> 0 "gcs" 40B ×200
+    10100 deliver 4 -> 0 "gcs" 40B ×200
+    10200 peer0 dropped Open(Tag) ×400
+    10200 deliver 3 -> 0 "gcs" 40B ×200
+    10200 deliver 4 -> 0 "gcs" 40B ×200
+    10300 peer0 dropped Open(Tag) ×400
+    10300 deliver 3 -> 0 "gcs" 40B ×200
+    10300 deliver 4 -> 0 "gcs" 40B ×200
+    10400 peer0 dropped Open(Tag) ×400
+    10400 deliver 3 -> 0 "gcs" 40B ×200
+    10400 deliver 4 -> 0 "gcs" 40B ×200
+    10500 peer0 dropped Open(Tag) ×400
+    10500 deliver 3 -> 0 "gcs" 40B ×200
+    10500 deliver 4 -> 0 "gcs" 40B ×200
+    10600 peer0 dropped Open(Tag) ×400
+    10600 deliver 3 -> 0 "gcs" 40B ×200
+    10600 deliver 4 -> 0 "gcs" 40B ×200
+    10700 peer0 dropped Open(Tag) ×400
+    10700 deliver 3 -> 0 "gcs" 40B ×200
+    10700 deliver 4 -> 0 "gcs" 40B ×200
+    10800 peer0 dropped Open(Tag) ×400
+    10800 deliver 3 -> 0 "gcs" 40B ×200
+    10800 deliver 4 -> 0 "gcs" 40B ×200
+    10900 peer0 dropped Open(Tag) ×400
+    10900 deliver 3 -> 0 "gcs" 40B ×200
+    10900 deliver 4 -> 0 "gcs" 40B ×200
+    11000 peer0 honest events landed this second: 4
+    11000 host: every drone publishes its position to gcs
+    11000 peer0 dropped Open(Tag) ×400
+    11000 send 1 "gcs" 103B ttl 600
+    11000 send 2 "gcs" 103B ttl 600
+    11000 send 3 "gcs" 103B ttl 600
+    11000 send 4 "gcs" 103B ttl 600
+    11000 event Telemetry
+    11000 deliver 3 -> 0 "gcs" 40B ×200
+    11000 deliver 4 -> 0 "gcs" 40B ×200
+    11000 deliver 1 -> 0 "gcs" 103B
+    11000 deliver 2 -> 0 "gcs" 103B
+    11000 deliver 3 -> 0 "gcs" 103B
+    11000 deliver 4 -> 0 "gcs" 103B
+    11100 peer0 dropped Open(Tag) ×400
+    11100 peer0 event "gcs" "pos" from sender 2
+    11100 peer0 event "gcs" "pos" from sender 3
+    11100 peer0 event "gcs" "pos" from sender 4
+    11100 peer0 event "gcs" "pos" from sender 5
+    11100 deliver 3 -> 0 "gcs" 40B ×200
+    11100 deliver 4 -> 0 "gcs" 40B ×200
+    11200 peer0 dropped Open(Tag) ×400
+    11200 deliver 3 -> 0 "gcs" 40B ×200
+    11200 deliver 4 -> 0 "gcs" 40B ×200
+    11200 expire 1 "gcs"
+    11200 expire 2 "gcs"
+    11200 expire 3 "gcs"
+    11200 expire 4 "gcs"
+    11300 peer0 dropped Open(Tag) ×400
+    11300 deliver 3 -> 0 "gcs" 40B ×200
+    11300 deliver 4 -> 0 "gcs" 40B ×200
+    11400 peer0 dropped Open(Tag) ×400
+    11400 deliver 3 -> 0 "gcs" 40B ×200
+    11400 deliver 4 -> 0 "gcs" 40B ×200
+    11500 peer0 dropped Open(Tag) ×400
+    11500 deliver 3 -> 0 "gcs" 40B ×200
+    11500 deliver 4 -> 0 "gcs" 40B ×200
+    11600 peer0 dropped Open(Tag) ×400
+    11600 deliver 3 -> 0 "gcs" 40B ×200
+    11600 deliver 4 -> 0 "gcs" 40B ×200
+    11700 peer0 dropped Open(Tag) ×400
+    11700 deliver 3 -> 0 "gcs" 40B ×200
+    11700 deliver 4 -> 0 "gcs" 40B ×200
+    11800 peer0 dropped Open(Tag) ×400
+    11800 deliver 3 -> 0 "gcs" 40B ×200
+    11800 deliver 4 -> 0 "gcs" 40B ×200
+    11900 peer0 dropped Open(Tag) ×400
+    11900 deliver 3 -> 0 "gcs" 40B ×200
+    11900 deliver 4 -> 0 "gcs" 40B ×200
+    12000 peer0 honest events landed this second: 4
+    12000 host: every drone publishes its position to gcs
+    12000 peer0 dropped Open(Tag) ×400
+    12000 send 1 "gcs" 103B ttl 600
+    12000 send 2 "gcs" 103B ttl 600
+    12000 send 3 "gcs" 103B ttl 600
+    12000 send 4 "gcs" 103B ttl 600
+    12000 event Telemetry
+    12000 deliver 3 -> 0 "gcs" 40B ×200
+    12000 deliver 4 -> 0 "gcs" 40B ×200
+    12000 deliver 1 -> 0 "gcs" 103B
+    12000 deliver 2 -> 0 "gcs" 103B
+    12000 deliver 3 -> 0 "gcs" 103B
+    12000 deliver 4 -> 0 "gcs" 103B
+    12100 peer0 dropped Open(Tag) ×400
+    12100 peer0 event "gcs" "pos" from sender 2
+    12100 peer0 event "gcs" "pos" from sender 3
+    12100 peer0 event "gcs" "pos" from sender 4
+    12100 peer0 event "gcs" "pos" from sender 5
+    12100 deliver 3 -> 0 "gcs" 40B ×200
+    12100 deliver 4 -> 0 "gcs" 40B ×200
+    12200 peer0 dropped Open(Tag) ×400
+    12200 deliver 3 -> 0 "gcs" 40B ×200
+    12200 deliver 4 -> 0 "gcs" 40B ×200
+    12300 peer0 dropped Open(Tag) ×400
+    12300 deliver 3 -> 0 "gcs" 40B ×200
+    12300 deliver 4 -> 0 "gcs" 40B ×200
+    12400 peer0 dropped Open(Tag) ×400
+    12400 deliver 3 -> 0 "gcs" 40B ×200
+    12400 deliver 4 -> 0 "gcs" 40B ×200
+    12500 peer0 dropped Open(Tag) ×400
+    12500 deliver 3 -> 0 "gcs" 40B ×200
+    12500 deliver 4 -> 0 "gcs" 40B ×200
+    12600 peer0 dropped Open(Tag) ×400
+    12600 deliver 3 -> 0 "gcs" 40B ×200
+    12600 deliver 4 -> 0 "gcs" 40B ×200
+    12700 peer0 dropped Open(Tag) ×400
+    12700 deliver 3 -> 0 "gcs" 40B ×200
+    12700 deliver 4 -> 0 "gcs" 40B ×200
+    12800 peer0 dropped Open(Tag) ×400
+    12800 deliver 3 -> 0 "gcs" 40B ×200
+    12800 deliver 4 -> 0 "gcs" 40B ×200
+    12900 peer0 dropped Open(Tag) ×400
+    12900 deliver 3 -> 0 "gcs" 40B ×200
+    12900 deliver 4 -> 0 "gcs" 40B ×200
+    13000 peer0 honest events landed this second: 4
+    13000 host: every drone publishes its position to gcs
+    13000 peer0 dropped Open(Tag) ×400
+    13000 send 1 "gcs" 103B ttl 600
+    13000 send 2 "gcs" 103B ttl 600
+    13000 send 3 "gcs" 103B ttl 600
+    13000 send 4 "gcs" 103B ttl 600
+    13000 event Telemetry
+    13000 deliver 3 -> 0 "gcs" 40B ×200
+    13000 deliver 4 -> 0 "gcs" 40B ×200
+    13000 deliver 1 -> 0 "gcs" 103B
+    13000 deliver 2 -> 0 "gcs" 103B
+    13000 deliver 3 -> 0 "gcs" 103B
+    13000 deliver 4 -> 0 "gcs" 103B
+    13100 peer0 dropped Open(Tag) ×400
+    13100 peer0 event "gcs" "pos" from sender 2
+    13100 peer0 event "gcs" "pos" from sender 3
+    13100 peer0 event "gcs" "pos" from sender 4
+    13100 peer0 event "gcs" "pos" from sender 5
+    13100 deliver 3 -> 0 "gcs" 40B ×200
+    13100 deliver 4 -> 0 "gcs" 40B ×200
+    13200 peer0 dropped Open(Tag) ×400
+    13200 deliver 3 -> 0 "gcs" 40B ×200
+    13200 deliver 4 -> 0 "gcs" 40B ×200
+    13300 peer0 dropped Open(Tag) ×400
+    13300 deliver 3 -> 0 "gcs" 40B ×200
+    13300 deliver 4 -> 0 "gcs" 40B ×200
+    13400 peer0 dropped Open(Tag) ×400
+    13400 deliver 3 -> 0 "gcs" 40B ×200
+    13400 deliver 4 -> 0 "gcs" 40B ×200
+    13500 peer0 dropped Open(Tag) ×400
+    13500 deliver 3 -> 0 "gcs" 40B ×200
+    13500 deliver 4 -> 0 "gcs" 40B ×200
+    13600 peer0 dropped Open(Tag) ×400
+    13600 deliver 3 -> 0 "gcs" 40B ×200
+    13600 deliver 4 -> 0 "gcs" 40B ×200
+    13700 peer0 dropped Open(Tag) ×400
+    13700 deliver 3 -> 0 "gcs" 40B ×200
+    13700 deliver 4 -> 0 "gcs" 40B ×200
+    13800 peer0 dropped Open(Tag) ×400
+    13800 deliver 3 -> 0 "gcs" 40B ×200
+    13800 deliver 4 -> 0 "gcs" 40B ×200
+    13900 peer0 dropped Open(Tag) ×400
+    13900 deliver 3 -> 0 "gcs" 40B ×200
+    13900 deliver 4 -> 0 "gcs" 40B ×200
+    14000 peer0 honest events landed this second: 4
+    14000 host: every drone publishes its position to gcs
+    14000 peer0 dropped Open(Tag) ×400
+    14000 send 1 "gcs" 103B ttl 600
+    14000 send 2 "gcs" 103B ttl 600
+    14000 send 3 "gcs" 103B ttl 600
+    14000 send 4 "gcs" 103B ttl 600
+    14000 event Telemetry
+    14000 deliver 3 -> 0 "gcs" 40B ×200
+    14000 deliver 4 -> 0 "gcs" 40B ×200
+    14000 deliver 1 -> 0 "gcs" 103B
+    14000 deliver 2 -> 0 "gcs" 103B
+    14000 deliver 3 -> 0 "gcs" 103B
+    14000 deliver 4 -> 0 "gcs" 103B
+    14100 peer0 dropped Open(Tag) ×400
+    14100 peer0 event "gcs" "pos" from sender 2
+    14100 peer0 event "gcs" "pos" from sender 3
+    14100 peer0 event "gcs" "pos" from sender 4
+    14100 peer0 event "gcs" "pos" from sender 5
+    14100 deliver 3 -> 0 "gcs" 40B ×200
+    14100 deliver 4 -> 0 "gcs" 40B ×200
+    14200 peer0 dropped Open(Tag) ×400
+    14200 deliver 3 -> 0 "gcs" 40B ×200
+    14200 deliver 4 -> 0 "gcs" 40B ×200
+    14300 peer0 dropped Open(Tag) ×400
+    14300 deliver 3 -> 0 "gcs" 40B ×200
+    14300 deliver 4 -> 0 "gcs" 40B ×200
+    14400 peer0 dropped Open(Tag) ×400
+    14400 deliver 3 -> 0 "gcs" 40B ×200
+    14400 deliver 4 -> 0 "gcs" 40B ×200
+    14500 peer0 dropped Open(Tag) ×400
+    14500 deliver 3 -> 0 "gcs" 40B ×200
+    14500 deliver 4 -> 0 "gcs" 40B ×200
+    14600 peer0 dropped Open(Tag) ×400
+    14600 deliver 3 -> 0 "gcs" 40B ×200
+    14600 deliver 4 -> 0 "gcs" 40B ×200
+    14700 peer0 dropped Open(Tag) ×400
+    14700 deliver 3 -> 0 "gcs" 40B ×200
+    14700 deliver 4 -> 0 "gcs" 40B ×200
+    14800 peer0 dropped Open(Tag) ×400
+    14800 deliver 3 -> 0 "gcs" 40B ×200
+    14800 deliver 4 -> 0 "gcs" 40B ×200
+    14900 peer0 dropped Open(Tag) ×400
+    14900 deliver 3 -> 0 "gcs" 40B ×200
+    14900 deliver 4 -> 0 "gcs" 40B ×200
+    15000 peer0 honest events landed this second: 4
+    15000 host: every drone publishes its position to gcs
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 113B ttl 20
+    15000 peer0 dropped Open(Tag) ×400
+    15000 send 1 "gcs" 103B ttl 600
+    15000 send 2 "gcs" 103B ttl 600
+    15000 send 3 "gcs" 103B ttl 600
+    15000 send 4 "gcs" 103B ttl 600
+    15000 event Telemetry
+    15000 deliver 3 -> 0 "gcs" 40B ×200
+    15000 deliver 4 -> 0 "gcs" 40B ×200
+    15000 deliver 0 -> 1 "nav" 113B
+    15000 deliver 0 -> 2 "nav" 113B
+    15000 deliver 0 -> 3 "nav" 113B
+    15000 deliver 0 -> 4 "nav" 113B
+    15000 deliver 1 -> 0 "gcs" 103B
+    15000 deliver 2 -> 0 "gcs" 103B
+    15000 deliver 3 -> 0 "gcs" 103B
+    15000 deliver 4 -> 0 "gcs" 103B
+    15100 peer0 dropped Open(Tag) ×400
+    15100 peer0 event "gcs" "pos" from sender 2
+    15100 peer0 event "gcs" "pos" from sender 3
+    15100 peer0 event "gcs" "pos" from sender 4
+    15100 peer0 event "gcs" "pos" from sender 5
+    15100 peer1 call "Ping" "3"
+    15100 peer2 call "Ping" "3"
+    15100 peer3 call "Ping" "3"
+    15100 peer4 call "Ping" "3"
+    15100 deliver 3 -> 0 "gcs" 40B ×200
+    15100 deliver 4 -> 0 "gcs" 40B ×200
+    15200 peer0 dropped Open(Tag) ×400
+    15200 send 1 "gcs" 116B ttl 20
+    15200 send 2 "gcs" 116B ttl 20
+    15200 send 3 "gcs" 116B ttl 20
+    15200 send 4 "gcs" 116B ttl 20
+    15200 deliver 3 -> 0 "gcs" 40B ×200
+    15200 deliver 4 -> 0 "gcs" 40B ×200
+    15200 deliver 1 -> 0 "gcs" 116B
+    15200 deliver 2 -> 0 "gcs" 116B
+    15200 deliver 3 -> 0 "gcs" 116B
+    15200 deliver 4 -> 0 "gcs" 116B
+    15300 peer0 dropped Open(Tag) ×400
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    15300 peer0 dropped NoPending ×3
+    15300 deliver 3 -> 0 "gcs" 40B ×200
+    15300 deliver 4 -> 0 "gcs" 40B ×200
+    15400 peer0 dropped Open(Tag) ×400
+    15400 deliver 3 -> 0 "gcs" 40B ×200
+    15400 deliver 4 -> 0 "gcs" 40B ×200
+    15500 peer0 dropped Open(Tag) ×400
+    15500 deliver 3 -> 0 "gcs" 40B ×200
+    15500 deliver 4 -> 0 "gcs" 40B ×200
+    15600 peer0 dropped Open(Tag) ×400
+    15600 deliver 3 -> 0 "gcs" 40B ×200
+    15600 deliver 4 -> 0 "gcs" 40B ×200
+    15700 peer0 dropped Open(Tag) ×400
+    15700 deliver 3 -> 0 "gcs" 40B ×200
+    15700 deliver 4 -> 0 "gcs" 40B ×200
+    15800 peer0 dropped Open(Tag) ×400
+    15800 deliver 3 -> 0 "gcs" 40B ×200
+    15800 deliver 4 -> 0 "gcs" 40B ×200
+    15900 peer0 dropped Open(Tag) ×400
+    15900 deliver 3 -> 0 "gcs" 40B ×200
+    15900 deliver 4 -> 0 "gcs" 40B ×200
+    16000 peer0 honest events landed this second: 4
+    16000 host: every drone publishes its position to gcs
+    16000 peer0 dropped Open(Tag) ×400
+    16000 send 1 "gcs" 103B ttl 600
+    16000 send 2 "gcs" 103B ttl 600
+    16000 send 3 "gcs" 103B ttl 600
+    16000 send 4 "gcs" 103B ttl 600
+    16000 event Telemetry
+    16000 deliver 3 -> 0 "gcs" 40B ×200
+    16000 deliver 4 -> 0 "gcs" 40B ×200
+    16000 deliver 1 -> 0 "gcs" 103B
+    16000 deliver 2 -> 0 "gcs" 103B
+    16000 deliver 3 -> 0 "gcs" 103B
+    16000 deliver 4 -> 0 "gcs" 103B
+    16100 peer0 dropped Open(Tag) ×400
+    16100 peer0 event "gcs" "pos" from sender 2
+    16100 peer0 event "gcs" "pos" from sender 3
+    16100 peer0 event "gcs" "pos" from sender 4
+    16100 peer0 event "gcs" "pos" from sender 5
+    16100 deliver 3 -> 0 "gcs" 40B ×200
+    16100 deliver 4 -> 0 "gcs" 40B ×200
+    16200 peer0 dropped Open(Tag) ×400
+    16200 deliver 3 -> 0 "gcs" 40B ×200
+    16200 deliver 4 -> 0 "gcs" 40B ×200
+    16300 peer0 dropped Open(Tag) ×400
+    16300 deliver 3 -> 0 "gcs" 40B ×200
+    16300 deliver 4 -> 0 "gcs" 40B ×200
+    16400 peer0 dropped Open(Tag) ×400
+    16400 deliver 3 -> 0 "gcs" 40B ×200
+    16400 deliver 4 -> 0 "gcs" 40B ×200
+    16500 peer0 dropped Open(Tag) ×400
+    16500 deliver 3 -> 0 "gcs" 40B ×200
+    16500 deliver 4 -> 0 "gcs" 40B ×200
+    16600 peer0 dropped Open(Tag) ×400
+    16600 deliver 3 -> 0 "gcs" 40B ×200
+    16600 deliver 4 -> 0 "gcs" 40B ×200
+    16700 peer0 dropped Open(Tag) ×400
+    16700 deliver 3 -> 0 "gcs" 40B ×200
+    16700 deliver 4 -> 0 "gcs" 40B ×200
+    16800 peer0 dropped Open(Tag) ×400
+    16800 deliver 3 -> 0 "gcs" 40B ×200
+    16800 deliver 4 -> 0 "gcs" 40B ×200
+    16900 peer0 dropped Open(Tag) ×400
+    16900 deliver 3 -> 0 "gcs" 40B ×200
+    16900 deliver 4 -> 0 "gcs" 40B ×200
+    17000 peer0 honest events landed this second: 4
+    17000 host: every drone publishes its position to gcs
+    17000 peer0 dropped Open(Tag) ×400
+    17000 send 1 "gcs" 103B ttl 600
+    17000 send 2 "gcs" 103B ttl 600
+    17000 send 3 "gcs" 103B ttl 600
+    17000 send 4 "gcs" 103B ttl 600
+    17000 event Flood(3, "gcs", 20000)
+    17000 event Flood(4, "gcs", 20000)
+    17000 event Telemetry
+    17000 deliver 3 -> 0 "gcs" 40B ×2000
+    17000 deliver 4 -> 0 "gcs" 40B ×2000
+    17000 deliver 1 -> 0 "gcs" 103B
+    17000 deliver 2 -> 0 "gcs" 103B
+    17000 deliver 3 -> 0 "gcs" 103B
+    17000 deliver 4 -> 0 "gcs" 103B
+    17100 peer0 dropped Open(Tag) ×4000
+    17100 peer0 event "gcs" "pos" from sender 2
+    17100 peer0 event "gcs" "pos" from sender 3
+    17100 peer0 event "gcs" "pos" from sender 4
+    17100 peer0 event "gcs" "pos" from sender 5
+    17100 deliver 3 -> 0 "gcs" 40B ×2000
+    17100 deliver 4 -> 0 "gcs" 40B ×2000
+    17200 peer0 dropped Open(Tag) ×4000
+    17200 deliver 3 -> 0 "gcs" 40B ×2000
+    17200 deliver 4 -> 0 "gcs" 40B ×2000
+    17300 peer0 dropped Open(Tag) ×4000
+    17300 deliver 3 -> 0 "gcs" 40B ×2000
+    17300 deliver 4 -> 0 "gcs" 40B ×2000
+    17400 peer0 dropped Open(Tag) ×4000
+    17400 deliver 3 -> 0 "gcs" 40B ×2000
+    17400 deliver 4 -> 0 "gcs" 40B ×2000
+    17500 peer0 dropped Open(Tag) ×4000
+    17500 deliver 3 -> 0 "gcs" 40B ×2000
+    17500 deliver 4 -> 0 "gcs" 40B ×2000
+    17600 peer0 dropped Open(Tag) ×4000
+    17600 deliver 3 -> 0 "gcs" 40B ×2000
+    17600 deliver 4 -> 0 "gcs" 40B ×2000
+    17700 peer0 dropped Open(Tag) ×4000
+    17700 deliver 3 -> 0 "gcs" 40B ×2000
+    17700 deliver 4 -> 0 "gcs" 40B ×2000
+    17800 peer0 dropped Open(Tag) ×4000
+    17800 deliver 3 -> 0 "gcs" 40B ×2000
+    17800 deliver 4 -> 0 "gcs" 40B ×2000
+    17900 peer0 dropped Open(Tag) ×4000
+    17900 deliver 3 -> 0 "gcs" 40B ×2000
+    17900 deliver 4 -> 0 "gcs" 40B ×2000
+    18000 peer0 honest events landed this second: 4
+    18000 host: every drone publishes its position to gcs
+    18000 peer0 dropped Open(Tag) ×4000
+    18000 send 1 "gcs" 103B ttl 600
+    18000 send 2 "gcs" 103B ttl 600
+    18000 send 3 "gcs" 103B ttl 600
+    18000 send 4 "gcs" 103B ttl 600
+    18000 event Telemetry
+    18000 deliver 3 -> 0 "gcs" 40B ×2000
+    18000 deliver 4 -> 0 "gcs" 40B ×2000
+    18000 deliver 1 -> 0 "gcs" 103B
+    18000 deliver 2 -> 0 "gcs" 103B
+    18000 deliver 3 -> 0 "gcs" 103B
+    18000 deliver 4 -> 0 "gcs" 103B
+    18100 peer0 dropped Open(Tag) ×4000
+    18100 peer0 event "gcs" "pos" from sender 2
+    18100 peer0 event "gcs" "pos" from sender 3
+    18100 peer0 event "gcs" "pos" from sender 4
+    18100 peer0 event "gcs" "pos" from sender 5
+    18100 deliver 3 -> 0 "gcs" 40B ×2000
+    18100 deliver 4 -> 0 "gcs" 40B ×2000
+    18200 peer0 dropped Open(Tag) ×4000
+    18200 deliver 3 -> 0 "gcs" 40B ×2000
+    18200 deliver 4 -> 0 "gcs" 40B ×2000
+    18300 peer0 dropped Open(Tag) ×4000
+    18300 deliver 3 -> 0 "gcs" 40B ×2000
+    18300 deliver 4 -> 0 "gcs" 40B ×2000
+    18400 peer0 dropped Open(Tag) ×4000
+    18400 deliver 3 -> 0 "gcs" 40B ×2000
+    18400 deliver 4 -> 0 "gcs" 40B ×2000
+    18500 peer0 dropped Open(Tag) ×4000
+    18500 deliver 3 -> 0 "gcs" 40B ×2000
+    18500 deliver 4 -> 0 "gcs" 40B ×2000
+    18600 peer0 dropped Open(Tag) ×4000
+    18600 deliver 3 -> 0 "gcs" 40B ×2000
+    18600 deliver 4 -> 0 "gcs" 40B ×2000
+    18700 peer0 dropped Open(Tag) ×4000
+    18700 deliver 3 -> 0 "gcs" 40B ×2000
+    18700 deliver 4 -> 0 "gcs" 40B ×2000
+    18800 peer0 dropped Open(Tag) ×4000
+    18800 deliver 3 -> 0 "gcs" 40B ×2000
+    18800 deliver 4 -> 0 "gcs" 40B ×2000
+    18900 peer0 dropped Open(Tag) ×4000
+    18900 deliver 3 -> 0 "gcs" 40B ×2000
+    18900 deliver 4 -> 0 "gcs" 40B ×2000
+    19000 peer0 honest events landed this second: 4
+    19000 host: every drone publishes its position to gcs
+    19000 peer0 dropped Open(Tag) ×4000
+    19000 send 1 "gcs" 103B ttl 600
+    19000 send 2 "gcs" 103B ttl 600
+    19000 send 3 "gcs" 103B ttl 600
+    19000 send 4 "gcs" 103B ttl 600
+    19000 event Telemetry
+    19000 deliver 3 -> 0 "gcs" 40B ×2000
+    19000 deliver 4 -> 0 "gcs" 40B ×2000
+    19000 deliver 1 -> 0 "gcs" 103B
+    19000 deliver 2 -> 0 "gcs" 103B
+    19000 deliver 3 -> 0 "gcs" 103B
+    19000 deliver 4 -> 0 "gcs" 103B
+    19100 peer0 dropped Open(Tag) ×4000
+    19100 peer0 event "gcs" "pos" from sender 2
+    19100 peer0 event "gcs" "pos" from sender 3
+    19100 peer0 event "gcs" "pos" from sender 4
+    19100 peer0 event "gcs" "pos" from sender 5
+    19100 deliver 3 -> 0 "gcs" 40B ×2000
+    19100 deliver 4 -> 0 "gcs" 40B ×2000
+    19200 peer0 dropped Open(Tag) ×4000
+    19200 deliver 3 -> 0 "gcs" 40B ×2000
+    19200 deliver 4 -> 0 "gcs" 40B ×2000
+    19300 peer0 dropped Open(Tag) ×4000
+    19300 deliver 3 -> 0 "gcs" 40B ×2000
+    19300 deliver 4 -> 0 "gcs" 40B ×2000
+    19400 peer0 dropped Open(Tag) ×4000
+    19400 deliver 3 -> 0 "gcs" 40B ×2000
+    19400 deliver 4 -> 0 "gcs" 40B ×2000
+    19500 peer0 dropped Open(Tag) ×4000
+    19500 deliver 3 -> 0 "gcs" 40B ×2000
+    19500 deliver 4 -> 0 "gcs" 40B ×2000
+    19600 peer0 dropped Open(Tag) ×4000
+    19600 deliver 3 -> 0 "gcs" 40B ×2000
+    19600 deliver 4 -> 0 "gcs" 40B ×2000
+    19700 peer0 dropped Open(Tag) ×4000
+    19700 deliver 3 -> 0 "gcs" 40B ×2000
+    19700 deliver 4 -> 0 "gcs" 40B ×2000
+    19800 peer0 dropped Open(Tag) ×4000
+    19800 deliver 3 -> 0 "gcs" 40B ×2000
+    19800 deliver 4 -> 0 "gcs" 40B ×2000
+    19900 peer0 dropped Open(Tag) ×4000
+    19900 deliver 3 -> 0 "gcs" 40B ×2000
+    19900 deliver 4 -> 0 "gcs" 40B ×2000
+    20000 peer0 honest events landed this second: 4
+    20000 host: every drone publishes its position to gcs
+    20000 peer0 dropped Open(Tag) ×4000
+    20000 send 1 "gcs" 103B ttl 600
+    20000 send 2 "gcs" 103B ttl 600
+    20000 send 3 "gcs" 103B ttl 600
+    20000 send 4 "gcs" 103B ttl 600
+    20000 event Telemetry
+    20000 deliver 3 -> 0 "gcs" 40B ×2000
+    20000 deliver 4 -> 0 "gcs" 40B ×2000
+    20000 deliver 1 -> 0 "gcs" 103B
+    20000 deliver 2 -> 0 "gcs" 103B
+    20000 deliver 3 -> 0 "gcs" 103B
+    20000 deliver 4 -> 0 "gcs" 103B
+    20100 peer0 dropped Open(Tag) ×4000
+    20100 peer0 event "gcs" "pos" from sender 2
+    20100 peer0 event "gcs" "pos" from sender 3
+    20100 peer0 event "gcs" "pos" from sender 4
+    20100 peer0 event "gcs" "pos" from sender 5
+    20100 deliver 3 -> 0 "gcs" 40B ×2000
+    20100 deliver 4 -> 0 "gcs" 40B ×2000
+    20200 peer0 dropped Open(Tag) ×4000
+    20200 deliver 3 -> 0 "gcs" 40B ×2000
+    20200 deliver 4 -> 0 "gcs" 40B ×2000
+    20300 peer0 dropped Open(Tag) ×4000
+    20300 deliver 3 -> 0 "gcs" 40B ×2000
+    20300 deliver 4 -> 0 "gcs" 40B ×2000
+    20400 peer0 dropped Open(Tag) ×4000
+    20400 deliver 3 -> 0 "gcs" 40B ×2000
+    20400 deliver 4 -> 0 "gcs" 40B ×2000
+    20500 peer0 dropped Open(Tag) ×4000
+    20500 deliver 3 -> 0 "gcs" 40B ×2000
+    20500 deliver 4 -> 0 "gcs" 40B ×2000
+    20600 peer0 dropped Open(Tag) ×4000
+    20600 deliver 3 -> 0 "gcs" 40B ×2000
+    20600 deliver 4 -> 0 "gcs" 40B ×2000
+    20700 peer0 dropped Open(Tag) ×4000
+    20700 deliver 3 -> 0 "gcs" 40B ×2000
+    20700 deliver 4 -> 0 "gcs" 40B ×2000
+    20800 peer0 dropped Open(Tag) ×4000
+    20800 deliver 3 -> 0 "gcs" 40B ×2000
+    20800 deliver 4 -> 0 "gcs" 40B ×2000
+    20900 peer0 dropped Open(Tag) ×4000
+    20900 deliver 3 -> 0 "gcs" 40B ×2000
+    20900 deliver 4 -> 0 "gcs" 40B ×2000
+    21000 peer0 honest events landed this second: 4
+    21000 host: every drone publishes its position to gcs
+    21000 peer0 dropped Open(Tag) ×4000
+    21000 send 1 "gcs" 103B ttl 600
+    21000 send 2 "gcs" 103B ttl 600
+    21000 send 3 "gcs" 103B ttl 600
+    21000 send 4 "gcs" 103B ttl 600
+    21000 event Telemetry
+    21000 deliver 3 -> 0 "gcs" 40B ×2000
+    21000 deliver 4 -> 0 "gcs" 40B ×2000
+    21000 deliver 1 -> 0 "gcs" 103B
+    21000 deliver 2 -> 0 "gcs" 103B
+    21000 deliver 3 -> 0 "gcs" 103B
+    21000 deliver 4 -> 0 "gcs" 103B
+    21100 peer0 dropped Open(Tag) ×4000
+    21100 peer0 event "gcs" "pos" from sender 2
+    21100 peer0 event "gcs" "pos" from sender 3
+    21100 peer0 event "gcs" "pos" from sender 4
+    21100 peer0 event "gcs" "pos" from sender 5
+    21100 deliver 3 -> 0 "gcs" 40B ×2000
+    21100 deliver 4 -> 0 "gcs" 40B ×2000
+    21200 peer0 dropped Open(Tag) ×4000
+    21200 deliver 3 -> 0 "gcs" 40B ×2000
+    21200 deliver 4 -> 0 "gcs" 40B ×2000
+    21300 peer0 dropped Open(Tag) ×4000
+    21300 deliver 3 -> 0 "gcs" 40B ×2000
+    21300 deliver 4 -> 0 "gcs" 40B ×2000
+    21400 peer0 dropped Open(Tag) ×4000
+    21400 deliver 3 -> 0 "gcs" 40B ×2000
+    21400 deliver 4 -> 0 "gcs" 40B ×2000
+    21500 peer0 dropped Open(Tag) ×4000
+    21500 deliver 3 -> 0 "gcs" 40B ×2000
+    21500 deliver 4 -> 0 "gcs" 40B ×2000
+    21600 peer0 dropped Open(Tag) ×4000
+    21600 deliver 3 -> 0 "gcs" 40B ×2000
+    21600 deliver 4 -> 0 "gcs" 40B ×2000
+    21700 peer0 dropped Open(Tag) ×4000
+    21700 deliver 3 -> 0 "gcs" 40B ×2000
+    21700 deliver 4 -> 0 "gcs" 40B ×2000
+    21800 peer0 dropped Open(Tag) ×4000
+    21800 deliver 3 -> 0 "gcs" 40B ×2000
+    21800 deliver 4 -> 0 "gcs" 40B ×2000
+    21900 peer0 dropped Open(Tag) ×4000
+    21900 deliver 3 -> 0 "gcs" 40B ×2000
+    21900 deliver 4 -> 0 "gcs" 40B ×2000
+    22000 peer0 honest events landed this second: 4
+    22000 host: every drone publishes its position to gcs
+    22000 peer0 dropped Open(Tag) ×4000
+    22000 send 1 "gcs" 103B ttl 600
+    22000 send 2 "gcs" 103B ttl 600
+    22000 send 3 "gcs" 103B ttl 600
+    22000 send 4 "gcs" 103B ttl 600
+    22000 event Telemetry
+    22000 deliver 3 -> 0 "gcs" 40B ×2000
+    22000 deliver 4 -> 0 "gcs" 40B ×2000
+    22000 deliver 1 -> 0 "gcs" 103B
+    22000 deliver 2 -> 0 "gcs" 103B
+    22000 deliver 3 -> 0 "gcs" 103B
+    22000 deliver 4 -> 0 "gcs" 103B
+    22100 peer0 dropped Open(Tag) ×4000
+    22100 peer0 event "gcs" "pos" from sender 2
+    22100 peer0 event "gcs" "pos" from sender 3
+    22100 peer0 event "gcs" "pos" from sender 4
+    22100 peer0 event "gcs" "pos" from sender 5
+    22100 deliver 3 -> 0 "gcs" 40B ×2000
+    22100 deliver 4 -> 0 "gcs" 40B ×2000
+    22200 peer0 dropped Open(Tag) ×4000
+    22200 deliver 3 -> 0 "gcs" 40B ×2000
+    22200 deliver 4 -> 0 "gcs" 40B ×2000
+    22300 peer0 dropped Open(Tag) ×4000
+    22300 deliver 3 -> 0 "gcs" 40B ×2000
+    22300 deliver 4 -> 0 "gcs" 40B ×2000
+    22400 peer0 dropped Open(Tag) ×4000
+    22400 deliver 3 -> 0 "gcs" 40B ×2000
+    22400 deliver 4 -> 0 "gcs" 40B ×2000
+    22500 peer0 dropped Open(Tag) ×4000
+    22500 deliver 3 -> 0 "gcs" 40B ×2000
+    22500 deliver 4 -> 0 "gcs" 40B ×2000
+    22600 peer0 dropped Open(Tag) ×4000
+    22600 deliver 3 -> 0 "gcs" 40B ×2000
+    22600 deliver 4 -> 0 "gcs" 40B ×2000
+    22700 peer0 dropped Open(Tag) ×4000
+    22700 deliver 3 -> 0 "gcs" 40B ×2000
+    22700 deliver 4 -> 0 "gcs" 40B ×2000
+    22800 peer0 dropped Open(Tag) ×4000
+    22800 deliver 3 -> 0 "gcs" 40B ×2000
+    22800 deliver 4 -> 0 "gcs" 40B ×2000
+    22900 peer0 dropped Open(Tag) ×4000
+    22900 deliver 3 -> 0 "gcs" 40B ×2000
+    22900 deliver 4 -> 0 "gcs" 40B ×2000
+    23000 peer0 honest events landed this second: 4
+    23000 host: every drone publishes its position to gcs
+    23000 peer0 dropped Open(Tag) ×4000
+    23000 send 1 "gcs" 103B ttl 600
+    23000 send 2 "gcs" 103B ttl 600
+    23000 send 3 "gcs" 103B ttl 600
+    23000 send 4 "gcs" 103B ttl 600
+    23000 event Telemetry
+    23000 deliver 3 -> 0 "gcs" 40B ×2000
+    23000 deliver 4 -> 0 "gcs" 40B ×2000
+    23000 deliver 1 -> 0 "gcs" 103B
+    23000 deliver 2 -> 0 "gcs" 103B
+    23000 deliver 3 -> 0 "gcs" 103B
+    23000 deliver 4 -> 0 "gcs" 103B
+    23100 peer0 dropped Open(Tag) ×4000
+    23100 peer0 event "gcs" "pos" from sender 2
+    23100 peer0 event "gcs" "pos" from sender 3
+    23100 peer0 event "gcs" "pos" from sender 4
+    23100 peer0 event "gcs" "pos" from sender 5
+    23100 deliver 3 -> 0 "gcs" 40B ×2000
+    23100 deliver 4 -> 0 "gcs" 40B ×2000
+    23200 peer0 dropped Open(Tag) ×4000
+    23200 deliver 3 -> 0 "gcs" 40B ×2000
+    23200 deliver 4 -> 0 "gcs" 40B ×2000
+    23300 peer0 dropped Open(Tag) ×4000
+    23300 deliver 3 -> 0 "gcs" 40B ×2000
+    23300 deliver 4 -> 0 "gcs" 40B ×2000
+    23400 peer0 dropped Open(Tag) ×4000
+    23400 deliver 3 -> 0 "gcs" 40B ×2000
+    23400 deliver 4 -> 0 "gcs" 40B ×2000
+    23500 peer0 dropped Open(Tag) ×4000
+    23500 deliver 3 -> 0 "gcs" 40B ×2000
+    23500 deliver 4 -> 0 "gcs" 40B ×2000
+    23600 peer0 dropped Open(Tag) ×4000
+    23600 deliver 3 -> 0 "gcs" 40B ×2000
+    23600 deliver 4 -> 0 "gcs" 40B ×2000
+    23700 peer0 dropped Open(Tag) ×4000
+    23700 deliver 3 -> 0 "gcs" 40B ×2000
+    23700 deliver 4 -> 0 "gcs" 40B ×2000
+    23800 peer0 dropped Open(Tag) ×4000
+    23800 deliver 3 -> 0 "gcs" 40B ×2000
+    23800 deliver 4 -> 0 "gcs" 40B ×2000
+    23900 peer0 dropped Open(Tag) ×4000
+    23900 deliver 3 -> 0 "gcs" 40B ×2000
+    23900 deliver 4 -> 0 "gcs" 40B ×2000
+    24000 peer0 honest events landed this second: 4
+    24000 host: every drone publishes its position to gcs
+    24000 peer0 dropped Open(Tag) ×4000
+    24000 send 1 "gcs" 103B ttl 600
+    24000 send 2 "gcs" 103B ttl 600
+    24000 send 3 "gcs" 103B ttl 600
+    24000 send 4 "gcs" 103B ttl 600
+    24000 event Telemetry
+    24000 deliver 3 -> 0 "gcs" 40B ×2000
+    24000 deliver 4 -> 0 "gcs" 40B ×2000
+    24000 deliver 1 -> 0 "gcs" 103B
+    24000 deliver 2 -> 0 "gcs" 103B
+    24000 deliver 3 -> 0 "gcs" 103B
+    24000 deliver 4 -> 0 "gcs" 103B
+    24100 peer0 dropped Open(Tag) ×4000
+    24100 peer0 event "gcs" "pos" from sender 2
+    24100 peer0 event "gcs" "pos" from sender 3
+    24100 peer0 event "gcs" "pos" from sender 4
+    24100 peer0 event "gcs" "pos" from sender 5
+    24100 deliver 3 -> 0 "gcs" 40B ×2000
+    24100 deliver 4 -> 0 "gcs" 40B ×2000
+    24200 peer0 dropped Open(Tag) ×4000
+    24200 deliver 3 -> 0 "gcs" 40B ×2000
+    24200 deliver 4 -> 0 "gcs" 40B ×2000
+    24300 peer0 dropped Open(Tag) ×4000
+    24300 deliver 3 -> 0 "gcs" 40B ×2000
+    24300 deliver 4 -> 0 "gcs" 40B ×2000
+    24400 peer0 dropped Open(Tag) ×4000
+    24400 deliver 3 -> 0 "gcs" 40B ×2000
+    24400 deliver 4 -> 0 "gcs" 40B ×2000
+    24500 peer0 dropped Open(Tag) ×4000
+    24500 deliver 3 -> 0 "gcs" 40B ×2000
+    24500 deliver 4 -> 0 "gcs" 40B ×2000
+    24600 peer0 dropped Open(Tag) ×4000
+    24600 deliver 3 -> 0 "gcs" 40B ×2000
+    24600 deliver 4 -> 0 "gcs" 40B ×2000
+    24700 peer0 dropped Open(Tag) ×4000
+    24700 deliver 3 -> 0 "gcs" 40B ×2000
+    24700 deliver 4 -> 0 "gcs" 40B ×2000
+    24800 peer0 dropped Open(Tag) ×4000
+    24800 deliver 3 -> 0 "gcs" 40B ×2000
+    24800 deliver 4 -> 0 "gcs" 40B ×2000
+    24900 peer0 dropped Open(Tag) ×4000
+    24900 deliver 3 -> 0 "gcs" 40B ×2000
+    24900 deliver 4 -> 0 "gcs" 40B ×2000
+    25000 peer0 honest events landed this second: 4
+    25000 host: every drone publishes its position to gcs
+    25000 peer0 dropped Open(Tag) ×4000
+    25000 send 1 "gcs" 103B ttl 600
+    25000 send 2 "gcs" 103B ttl 600
+    25000 send 3 "gcs" 103B ttl 600
+    25000 send 4 "gcs" 103B ttl 600
+    25000 event Telemetry
+    25000 deliver 3 -> 0 "gcs" 40B ×2000
+    25000 deliver 4 -> 0 "gcs" 40B ×2000
+    25000 deliver 1 -> 0 "gcs" 103B
+    25000 deliver 2 -> 0 "gcs" 103B
+    25000 deliver 3 -> 0 "gcs" 103B
+    25000 deliver 4 -> 0 "gcs" 103B
+    25100 peer0 dropped Open(Tag) ×4000
+    25100 peer0 event "gcs" "pos" from sender 2
+    25100 peer0 event "gcs" "pos" from sender 3
+    25100 peer0 event "gcs" "pos" from sender 4
+    25100 peer0 event "gcs" "pos" from sender 5
+    25100 deliver 3 -> 0 "gcs" 40B ×2000
+    25100 deliver 4 -> 0 "gcs" 40B ×2000
+    25200 peer0 dropped Open(Tag) ×4000
+    25200 deliver 3 -> 0 "gcs" 40B ×2000
+    25200 deliver 4 -> 0 "gcs" 40B ×2000
+    25300 peer0 dropped Open(Tag) ×4000
+    25300 deliver 3 -> 0 "gcs" 40B ×2000
+    25300 deliver 4 -> 0 "gcs" 40B ×2000
+    25400 peer0 dropped Open(Tag) ×4000
+    25400 deliver 3 -> 0 "gcs" 40B ×2000
+    25400 deliver 4 -> 0 "gcs" 40B ×2000
+    25500 peer0 dropped Open(Tag) ×4000
+    25500 deliver 3 -> 0 "gcs" 40B ×2000
+    25500 deliver 4 -> 0 "gcs" 40B ×2000
+    25600 peer0 dropped Open(Tag) ×4000
+    25600 deliver 3 -> 0 "gcs" 40B ×2000
+    25600 deliver 4 -> 0 "gcs" 40B ×2000
+    25700 peer0 dropped Open(Tag) ×4000
+    25700 deliver 3 -> 0 "gcs" 40B ×2000
+    25700 deliver 4 -> 0 "gcs" 40B ×2000
+    25800 peer0 dropped Open(Tag) ×4000
+    25800 deliver 3 -> 0 "gcs" 40B ×2000
+    25800 deliver 4 -> 0 "gcs" 40B ×2000
+    25900 peer0 dropped Open(Tag) ×4000
+    25900 deliver 3 -> 0 "gcs" 40B ×2000
+    25900 deliver 4 -> 0 "gcs" 40B ×2000
+    26000 peer0 honest events landed this second: 4
+    26000 host: every drone publishes its position to gcs
+    26000 peer0 dropped Open(Tag) ×4000
+    26000 send 1 "gcs" 103B ttl 600
+    26000 send 2 "gcs" 103B ttl 600
+    26000 send 3 "gcs" 103B ttl 600
+    26000 send 4 "gcs" 103B ttl 600
+    26000 event Telemetry
+    26000 deliver 3 -> 0 "gcs" 40B ×2000
+    26000 deliver 4 -> 0 "gcs" 40B ×2000
+    26000 deliver 1 -> 0 "gcs" 103B
+    26000 deliver 2 -> 0 "gcs" 103B
+    26000 deliver 3 -> 0 "gcs" 103B
+    26000 deliver 4 -> 0 "gcs" 103B
+    26100 peer0 dropped Open(Tag) ×4000
+    26100 peer0 event "gcs" "pos" from sender 2
+    26100 peer0 event "gcs" "pos" from sender 3
+    26100 peer0 event "gcs" "pos" from sender 4
+    26100 peer0 event "gcs" "pos" from sender 5
+    26100 deliver 3 -> 0 "gcs" 40B ×2000
+    26100 deliver 4 -> 0 "gcs" 40B ×2000
+    26200 peer0 dropped Open(Tag) ×4000
+    26200 deliver 3 -> 0 "gcs" 40B ×2000
+    26200 deliver 4 -> 0 "gcs" 40B ×2000
+    26300 peer0 dropped Open(Tag) ×4000
+    26300 deliver 3 -> 0 "gcs" 40B ×2000
+    26300 deliver 4 -> 0 "gcs" 40B ×2000
+    26400 peer0 dropped Open(Tag) ×4000
+    26400 deliver 3 -> 0 "gcs" 40B ×2000
+    26400 deliver 4 -> 0 "gcs" 40B ×2000
+    26500 peer0 dropped Open(Tag) ×4000
+    26500 deliver 3 -> 0 "gcs" 40B ×2000
+    26500 deliver 4 -> 0 "gcs" 40B ×2000
+    26600 peer0 dropped Open(Tag) ×4000
+    26600 deliver 3 -> 0 "gcs" 40B ×2000
+    26600 deliver 4 -> 0 "gcs" 40B ×2000
+    26700 peer0 dropped Open(Tag) ×4000
+    26700 deliver 3 -> 0 "gcs" 40B ×2000
+    26700 deliver 4 -> 0 "gcs" 40B ×2000
+    26800 peer0 dropped Open(Tag) ×4000
+    26800 deliver 3 -> 0 "gcs" 40B ×2000
+    26800 deliver 4 -> 0 "gcs" 40B ×2000
+    26900 peer0 dropped Open(Tag) ×4000
+    26900 deliver 3 -> 0 "gcs" 40B ×2000
+    26900 deliver 4 -> 0 "gcs" 40B ×2000
+    27000 peer0 honest events landed this second: 4
+    27000 host: every drone publishes its position to gcs
+    27000 peer0 dropped Open(Tag) ×4000
+    27000 send 1 "gcs" 103B ttl 600
+    27000 send 2 "gcs" 103B ttl 600
+    27000 send 3 "gcs" 103B ttl 600
+    27000 send 4 "gcs" 103B ttl 600
+    27000 event Telemetry
+    27000 deliver 3 -> 0 "gcs" 40B ×2000
+    27000 deliver 4 -> 0 "gcs" 40B ×2000
+    27000 deliver 1 -> 0 "gcs" 103B
+    27000 deliver 2 -> 0 "gcs" 103B
+    27000 deliver 3 -> 0 "gcs" 103B
+    27000 deliver 4 -> 0 "gcs" 103B
+    27100 peer0 dropped Open(Tag) ×4000
+    27100 peer0 event "gcs" "pos" from sender 2
+    27100 peer0 event "gcs" "pos" from sender 3
+    27100 peer0 event "gcs" "pos" from sender 4
+    27100 peer0 event "gcs" "pos" from sender 5
+    27100 deliver 3 -> 0 "gcs" 40B ×2000
+    27100 deliver 4 -> 0 "gcs" 40B ×2000
+    27200 peer0 dropped Open(Tag) ×4000
+    27200 deliver 3 -> 0 "gcs" 40B ×2000
+    27200 deliver 4 -> 0 "gcs" 40B ×2000
+    27300 peer0 dropped Open(Tag) ×4000
+    27300 deliver 3 -> 0 "gcs" 40B ×2000
+    27300 deliver 4 -> 0 "gcs" 40B ×2000
+    27400 peer0 dropped Open(Tag) ×4000
+    27400 deliver 3 -> 0 "gcs" 40B ×2000
+    27400 deliver 4 -> 0 "gcs" 40B ×2000
+    27500 peer0 dropped Open(Tag) ×4000
+    27500 deliver 3 -> 0 "gcs" 40B ×2000
+    27500 deliver 4 -> 0 "gcs" 40B ×2000
+    27600 peer0 dropped Open(Tag) ×4000
+    27600 deliver 3 -> 0 "gcs" 40B ×2000
+    27600 deliver 4 -> 0 "gcs" 40B ×2000
+    27700 peer0 dropped Open(Tag) ×4000
+    27700 deliver 3 -> 0 "gcs" 40B ×2000
+    27700 deliver 4 -> 0 "gcs" 40B ×2000
+    27800 peer0 dropped Open(Tag) ×4000
+    27800 deliver 3 -> 0 "gcs" 40B ×2000
+    27800 deliver 4 -> 0 "gcs" 40B ×2000
+    27900 peer0 dropped Open(Tag) ×4000
+    27900 deliver 3 -> 0 "gcs" 40B ×2000
+    27900 deliver 4 -> 0 "gcs" 40B ×2000
+    28000 peer0 honest events landed this second: 4
+    28000 host: every drone publishes its position to gcs
+    28000 peer0 dropped Open(Tag) ×4000
+    28000 send 1 "gcs" 103B ttl 600
+    28000 send 2 "gcs" 103B ttl 600
+    28000 send 3 "gcs" 103B ttl 600
+    28000 send 4 "gcs" 103B ttl 600
+    28000 event Telemetry
+    28000 deliver 3 -> 0 "gcs" 40B ×2000
+    28000 deliver 4 -> 0 "gcs" 40B ×2000
+    28000 deliver 1 -> 0 "gcs" 103B
+    28000 deliver 2 -> 0 "gcs" 103B
+    28000 deliver 3 -> 0 "gcs" 103B
+    28000 deliver 4 -> 0 "gcs" 103B
+    28100 peer0 dropped Open(Tag) ×4000
+    28100 peer0 event "gcs" "pos" from sender 2
+    28100 peer0 event "gcs" "pos" from sender 3
+    28100 peer0 event "gcs" "pos" from sender 4
+    28100 peer0 event "gcs" "pos" from sender 5
+    28100 deliver 3 -> 0 "gcs" 40B ×2000
+    28100 deliver 4 -> 0 "gcs" 40B ×2000
+    28200 peer0 dropped Open(Tag) ×4000
+    28200 deliver 3 -> 0 "gcs" 40B ×2000
+    28200 deliver 4 -> 0 "gcs" 40B ×2000
+    28300 peer0 dropped Open(Tag) ×4000
+    28300 deliver 3 -> 0 "gcs" 40B ×2000
+    28300 deliver 4 -> 0 "gcs" 40B ×2000
+    28400 peer0 dropped Open(Tag) ×4000
+    28400 deliver 3 -> 0 "gcs" 40B ×2000
+    28400 deliver 4 -> 0 "gcs" 40B ×2000
+    28500 peer0 dropped Open(Tag) ×4000
+    28500 deliver 3 -> 0 "gcs" 40B ×2000
+    28500 deliver 4 -> 0 "gcs" 40B ×2000
+    28600 peer0 dropped Open(Tag) ×4000
+    28600 deliver 3 -> 0 "gcs" 40B ×2000
+    28600 deliver 4 -> 0 "gcs" 40B ×2000
+    28700 peer0 dropped Open(Tag) ×4000
+    28700 deliver 3 -> 0 "gcs" 40B ×2000
+    28700 deliver 4 -> 0 "gcs" 40B ×2000
+    28800 peer0 dropped Open(Tag) ×4000
+    28800 deliver 3 -> 0 "gcs" 40B ×2000
+    28800 deliver 4 -> 0 "gcs" 40B ×2000
+    28900 peer0 dropped Open(Tag) ×4000
+    28900 deliver 3 -> 0 "gcs" 40B ×2000
+    28900 deliver 4 -> 0 "gcs" 40B ×2000
+    29000 peer0 honest events landed this second: 4
+    29000 host: every drone publishes its position to gcs
+    29000 peer0 dropped Open(Tag) ×4000
+    29000 send 1 "gcs" 103B ttl 600
+    29000 send 2 "gcs" 103B ttl 600
+    29000 send 3 "gcs" 103B ttl 600
+    29000 send 4 "gcs" 103B ttl 600
+    29000 event Telemetry
+    29000 deliver 3 -> 0 "gcs" 40B ×2000
+    29000 deliver 4 -> 0 "gcs" 40B ×2000
+    29000 deliver 1 -> 0 "gcs" 103B
+    29000 deliver 2 -> 0 "gcs" 103B
+    29000 deliver 3 -> 0 "gcs" 103B
+    29000 deliver 4 -> 0 "gcs" 103B
+    29100 peer0 dropped Open(Tag) ×4000
+    29100 peer0 event "gcs" "pos" from sender 2
+    29100 peer0 event "gcs" "pos" from sender 3
+    29100 peer0 event "gcs" "pos" from sender 4
+    29100 peer0 event "gcs" "pos" from sender 5
+    29100 deliver 3 -> 0 "gcs" 40B ×2000
+    29100 deliver 4 -> 0 "gcs" 40B ×2000
+    29200 peer0 dropped Open(Tag) ×4000
+    29200 deliver 3 -> 0 "gcs" 40B ×2000
+    29200 deliver 4 -> 0 "gcs" 40B ×2000
+    29300 peer0 dropped Open(Tag) ×4000
+    29300 deliver 3 -> 0 "gcs" 40B ×2000
+    29300 deliver 4 -> 0 "gcs" 40B ×2000
+    29400 peer0 dropped Open(Tag) ×4000
+    29400 deliver 3 -> 0 "gcs" 40B ×2000
+    29400 deliver 4 -> 0 "gcs" 40B ×2000
+    29500 peer0 dropped Open(Tag) ×4000
+    29500 deliver 3 -> 0 "gcs" 40B ×2000
+    29500 deliver 4 -> 0 "gcs" 40B ×2000
+    29600 peer0 dropped Open(Tag) ×4000
+    29600 deliver 3 -> 0 "gcs" 40B ×2000
+    29600 deliver 4 -> 0 "gcs" 40B ×2000
+    29700 peer0 dropped Open(Tag) ×4000
+    29700 deliver 3 -> 0 "gcs" 40B ×2000
+    29700 deliver 4 -> 0 "gcs" 40B ×2000
+    29800 peer0 dropped Open(Tag) ×4000
+    29800 deliver 3 -> 0 "gcs" 40B ×2000
+    29800 deliver 4 -> 0 "gcs" 40B ×2000
+    29900 peer0 dropped Open(Tag) ×4000
+    29900 deliver 3 -> 0 "gcs" 40B ×2000
+    29900 deliver 4 -> 0 "gcs" 40B ×2000
+    30000 peer0 honest events landed this second: 4
+    30000 host: every drone publishes its position to gcs
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 113B ttl 20
+    30000 peer0 dropped Open(Tag) ×4000
+    30000 send 1 "gcs" 103B ttl 600
+    30000 send 2 "gcs" 103B ttl 600
+    30000 send 3 "gcs" 103B ttl 600
+    30000 send 4 "gcs" 103B ttl 600
+    30000 event Telemetry
+    30000 deliver 3 -> 0 "gcs" 40B ×2000
+    30000 deliver 4 -> 0 "gcs" 40B ×2000
+    30000 deliver 0 -> 1 "nav" 113B
+    30000 deliver 0 -> 2 "nav" 113B
+    30000 deliver 0 -> 3 "nav" 113B
+    30000 deliver 0 -> 4 "nav" 113B
+    30000 deliver 1 -> 0 "gcs" 103B
+    30000 deliver 2 -> 0 "gcs" 103B
+    30000 deliver 3 -> 0 "gcs" 103B
+    30000 deliver 4 -> 0 "gcs" 103B
+    30100 peer0 dropped Open(Tag) ×4000
+    30100 peer0 event "gcs" "pos" from sender 2
+    30100 peer0 event "gcs" "pos" from sender 3
+    30100 peer0 event "gcs" "pos" from sender 4
+    30100 peer0 event "gcs" "pos" from sender 5
+    30100 peer1 call "Ping" "4"
+    30100 peer2 call "Ping" "4"
+    30100 peer3 call "Ping" "4"
+    30100 peer4 call "Ping" "4"
+    30100 deliver 3 -> 0 "gcs" 40B ×2000
+    30100 deliver 4 -> 0 "gcs" 40B ×2000
+    30200 peer0 dropped Open(Tag) ×4000
+    30200 send 1 "gcs" 116B ttl 20
+    30200 send 2 "gcs" 116B ttl 20
+    30200 send 3 "gcs" 116B ttl 20
+    30200 send 4 "gcs" 116B ttl 20
+    30200 deliver 3 -> 0 "gcs" 40B ×2000
+    30200 deliver 4 -> 0 "gcs" 40B ×2000
+    30200 deliver 1 -> 0 "gcs" 116B
+    30200 deliver 2 -> 0 "gcs" 116B
+    30200 deliver 3 -> 0 "gcs" 116B
+    30200 deliver 4 -> 0 "gcs" 116B
+    30300 peer0 dropped Open(Tag) ×4000
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    30300 peer0 dropped NoPending ×3
+    30300 deliver 3 -> 0 "gcs" 40B ×2000
+    30300 deliver 4 -> 0 "gcs" 40B ×2000
+    30400 peer0 dropped Open(Tag) ×4000
+    30400 deliver 3 -> 0 "gcs" 40B ×2000
+    30400 deliver 4 -> 0 "gcs" 40B ×2000
+    30500 peer0 dropped Open(Tag) ×4000
+    30500 deliver 3 -> 0 "gcs" 40B ×2000
+    30500 deliver 4 -> 0 "gcs" 40B ×2000
+    30600 peer0 dropped Open(Tag) ×4000
+    30600 deliver 3 -> 0 "gcs" 40B ×2000
+    30600 deliver 4 -> 0 "gcs" 40B ×2000
+    30700 peer0 dropped Open(Tag) ×4000
+    30700 deliver 3 -> 0 "gcs" 40B ×2000
+    30700 deliver 4 -> 0 "gcs" 40B ×2000
+    30800 peer0 dropped Open(Tag) ×4000
+    30800 deliver 3 -> 0 "gcs" 40B ×2000
+    30800 deliver 4 -> 0 "gcs" 40B ×2000
+    30900 peer0 dropped Open(Tag) ×4000
+    30900 deliver 3 -> 0 "gcs" 40B ×2000
+    30900 deliver 4 -> 0 "gcs" 40B ×2000
+    31000 peer0 honest events landed this second: 4
+    31000 host: every drone publishes its position to gcs
+    31000 peer0 dropped Open(Tag) ×4000
+    31000 send 1 "gcs" 103B ttl 600
+    31000 send 2 "gcs" 103B ttl 600
+    31000 send 3 "gcs" 103B ttl 600
+    31000 send 4 "gcs" 103B ttl 600
+    31000 event Telemetry
+    31000 deliver 3 -> 0 "gcs" 40B ×2000
+    31000 deliver 4 -> 0 "gcs" 40B ×2000
+    31000 deliver 1 -> 0 "gcs" 103B
+    31000 deliver 2 -> 0 "gcs" 103B
+    31000 deliver 3 -> 0 "gcs" 103B
+    31000 deliver 4 -> 0 "gcs" 103B
+    31100 peer0 dropped Open(Tag) ×4000
+    31100 peer0 event "gcs" "pos" from sender 2
+    31100 peer0 event "gcs" "pos" from sender 3
+    31100 peer0 event "gcs" "pos" from sender 4
+    31100 peer0 event "gcs" "pos" from sender 5
+    31100 deliver 3 -> 0 "gcs" 40B ×2000
+    31100 deliver 4 -> 0 "gcs" 40B ×2000
+    31200 peer0 dropped Open(Tag) ×4000
+    31200 deliver 3 -> 0 "gcs" 40B ×2000
+    31200 deliver 4 -> 0 "gcs" 40B ×2000
+    31300 peer0 dropped Open(Tag) ×4000
+    31300 deliver 3 -> 0 "gcs" 40B ×2000
+    31300 deliver 4 -> 0 "gcs" 40B ×2000
+    31400 peer0 dropped Open(Tag) ×4000
+    31400 deliver 3 -> 0 "gcs" 40B ×2000
+    31400 deliver 4 -> 0 "gcs" 40B ×2000
+    31500 peer0 dropped Open(Tag) ×4000
+    31500 deliver 3 -> 0 "gcs" 40B ×2000
+    31500 deliver 4 -> 0 "gcs" 40B ×2000
+    31600 peer0 dropped Open(Tag) ×4000
+    31600 deliver 3 -> 0 "gcs" 40B ×2000
+    31600 deliver 4 -> 0 "gcs" 40B ×2000
+    31700 peer0 dropped Open(Tag) ×4000
+    31700 deliver 3 -> 0 "gcs" 40B ×2000
+    31700 deliver 4 -> 0 "gcs" 40B ×2000
+    31800 peer0 dropped Open(Tag) ×4000
+    31800 deliver 3 -> 0 "gcs" 40B ×2000
+    31800 deliver 4 -> 0 "gcs" 40B ×2000
+    31900 peer0 dropped Open(Tag) ×4000
+    31900 deliver 3 -> 0 "gcs" 40B ×2000
+    31900 deliver 4 -> 0 "gcs" 40B ×2000
+    32000 peer0 honest events landed this second: 4
+    32000 peer0 dropped Open(Tag) ×4000
+    32000 event Flood(3, "gcs", 0)
+    32000 event Flood(4, "gcs", 0)
+    35000 expire 0 "nav"
+    35200 expire 1 "gcs"
+    35200 expire 2 "gcs"
+    35200 expire 3 "gcs"
+    35200 expire 4 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 113B ttl 20
+    45000 deliver 0 -> 1 "nav" 113B
+    45000 deliver 0 -> 2 "nav" 113B
+    45000 deliver 0 -> 3 "nav" 113B
+    45000 deliver 0 -> 4 "nav" 113B
+    45100 peer1 call "Ping" "5"
+    45100 peer2 call "Ping" "5"
+    45100 peer3 call "Ping" "5"
+    45100 peer4 call "Ping" "5"
+    45200 send 1 "gcs" 116B ttl 20
+    45200 send 2 "gcs" 116B ttl 20
+    45200 send 3 "gcs" 116B ttl 20
+    45200 send 4 "gcs" 116B ttl 20
+    45200 deliver 1 -> 0 "gcs" 116B
+    45200 deliver 2 -> 0 "gcs" 116B
+    45200 deliver 3 -> 0 "gcs" 116B
+    45200 deliver 4 -> 0 "gcs" 116B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    45300 peer0 dropped NoPending ×3
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    50200 expire 2 "gcs"
+    50200 expire 3 "gcs"
+    50200 expire 4 "gcs"
+    60000 gcs calls Ping#6 ttl 20
+    60000 send 0 "nav" 113B ttl 20
+    60000 deliver 0 -> 1 "nav" 113B
+    60000 deliver 0 -> 2 "nav" 113B
+    60000 deliver 0 -> 3 "nav" 113B
+    60000 deliver 0 -> 4 "nav" 113B
+    60000 expire 0 "nav"
+    60100 peer1 call "Ping" "6"
+    60100 peer2 call "Ping" "6"
+    60100 peer3 call "Ping" "6"
+    60100 peer4 call "Ping" "6"
+    60200 send 1 "gcs" 116B ttl 20
+    60200 send 2 "gcs" 116B ttl 20
+    60200 send 3 "gcs" 116B ttl 20
+    60200 send 4 "gcs" 116B ttl 20
+    60200 deliver 1 -> 0 "gcs" 116B
+    60200 deliver 2 -> 0 "gcs" 116B
+    60200 deliver 3 -> 0 "gcs" 116B
+    60200 deliver 4 -> 0 "gcs" 116B
+    60300 peer0 reply seq=0 end=true status=0 "6"
+    60300 peer0 dropped NoPending ×3
+    61200 expire 1 "gcs"
+    61200 expire 2 "gcs"
+    61200 expire 3 "gcs"
+    61200 expire 4 "gcs"
+    65000 expire 0 "nav"
+    65200 expire 1 "gcs"
+    65200 expire 2 "gcs"
+    65200 expire 3 "gcs"
+    65200 expire 4 "gcs"
+    75000 gcs calls Ping#7 ttl 20
+    75000 send 0 "nav" 113B ttl 20
+    75000 deliver 0 -> 1 "nav" 113B
+    75000 deliver 0 -> 2 "nav" 113B
+    75000 deliver 0 -> 3 "nav" 113B
+    75000 deliver 0 -> 4 "nav" 113B
+    75100 peer1 call "Ping" "7"
+    75100 peer2 call "Ping" "7"
+    75100 peer3 call "Ping" "7"
+    75100 peer4 call "Ping" "7"
+    75200 send 1 "gcs" 116B ttl 20
+    75200 send 2 "gcs" 116B ttl 20
+    75200 send 3 "gcs" 116B ttl 20
+    75200 send 4 "gcs" 116B ttl 20
+    75200 deliver 1 -> 0 "gcs" 116B
+    75200 deliver 2 -> 0 "gcs" 116B
+    75200 deliver 3 -> 0 "gcs" 116B
+    75200 deliver 4 -> 0 "gcs" 116B
+    75300 peer0 reply seq=0 end=true status=0 "7"
+    75300 peer0 dropped NoPending ×3
+    80000 expire 0 "nav"
+    80200 expire 1 "gcs"
+    80200 expire 2 "gcs"
+    80200 expire 3 "gcs"
+    80200 expire 4 "gcs"
+    82100 peer0 pressure 0
+    82100 peer1 pressure 0
+    82100 peer2 pressure 0
+    82100 peer3 pressure 0
+    82100 peer4 pressure 0

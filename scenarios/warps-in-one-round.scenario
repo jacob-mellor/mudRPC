@@ -1,0 +1,18 @@
+# The round a warp lands on runs again at the new clock: at t = 0, so gcs's first calls are made at 1 s; twice in one
+# round at 5 s, with drone-1 down across both, so the rounds after run at 6 s and 8 s; and the simulator moves only
+# what is alive at a step's end: Ping#2 (ttl 10, made at 1 s) reaches drone-1 at the heal at 10.8 s and runs there at
+# 10.9 s, its last second, where its answer finds the call expired; Ping#1 (ttl 60) is dead at the end of the step the
+# heal to drone-2 at 60.9 s lands on, so it never moves and drone-2 never runs it.
+seed 3
+peers 3
+profile dtn
+0     partition 0 1
+0     partition 0 2
+0     partition 1 2
+0     warp 1000
+5000  warp 1000
+5000  warp 2000
+5000  peer_down 1
+8000  peer_up 1
+10800 heal 0 1
+60900 heal 0 2

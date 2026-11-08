@@ -1,0 +1,12 @@
+# The simulator's ceiling: a ground station and 1 023 drones on a custody mesh, reporting three times, 5 s apart, as
+# hub-telemetry does at forty. Every call to nav draws 1 023 answers; the first lands, the rest find no pending call.
+# Signed, gcs is the hub and its 256-line roster believes drones 1 to 255: the other 768 are strangers, Open(Roster)
+# on telemetry and indistinguishable late answers on a call. Unsigned, gcs is a leaf with 16 windows, and the drones
+# with none share one sender's 64 a second, so 80 of 1 023 reports in one second land, the 65th windowless is Flood and
+# 942 are Rate.
+seed 1024
+peers 1024
+profile dtn
+5000   telemetry
+10000  telemetry
+15000  telemetry

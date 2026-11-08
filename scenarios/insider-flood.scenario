@@ -1,0 +1,7 @@
+# Three peers; drone-2 holds the key and floods nav at 100 a second with a lying clock for 5 s. drone-1 reports one
+# Flood a second for sender 3 and drops the rest as Rate; gcs's calls keep being answered; nobody is blamed by name.
+seed 23
+peers 3
+profile dtn
+10000  spam  2 100
+15000  spam  2 0

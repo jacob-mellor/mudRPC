@@ -1,0 +1,28 @@
+[package]
+name = "mudrpc-tripwire"
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+
+[[bin]]
+name = "tripwire"
+path = "main.rs"
+test = false
+bench = false
+
+[dependencies]
+mudrpc-core = { path = "../core" }
+mudrpc-auth = { path = "../auth" }
+mudrpc-gcm = { path = "../gcm" }
+mudrpc-c = { path = "../bindings/c", default-features = false }   # the ABI as a firmware links it, and its panic handler
+
+[workspace]
+
+# A product's release shape, whole-program optimised, so only panics that truly survive remain.
+[profile.tripwire]
+inherits = "release"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+overflow-checks = false
+opt-level = 3

@@ -1,0 +1,8 @@
+# Drone 1 is down from the start, so Ping#1 (ttl 60) and Ping#2 (ttl 10) wait in gcs's custody; the clock jumps a week
+# at 5 s and the drone comes up after it. Both calls died inside the jump.
+seed 2
+peers 2
+profile dtn
+0 peer_down 1
+5000 warp 604800000
+604805000 peer_up 1

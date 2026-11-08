@@ -1,0 +1,11 @@
+# Two peers on a DTN. For the first minute both radios' receivers flip about one bit in a thousand (noise 8: eight bits
+# per thousand bytes, so a 49-byte call is damaged one time in three). A damaged wire fails its tag and is dropped:
+# nothing corrupt ever reaches product code, and a damaged call is a call that did not arrive, which the ttl handles.
+# After the minute the noise stops and every call lands.
+seed 37
+peers 2
+profile dtn
+0      noise 0 8
+0      noise 1 8
+60000  noise 0 0
+60000  noise 1 0

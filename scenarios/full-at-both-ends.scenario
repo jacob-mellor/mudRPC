@@ -1,0 +1,30 @@
+# Radio 1 holds for a week what it hears in the first second. At 0.5 s the host asks gcs for eighteen calls: sixteen are made,
+# two are refused for want of a pending slot, `peer0 refused call Full` after each. Drone 2 is down until after the warp and
+# has no window for gcs, so the eighteen held calls run there in one round; its outbox holds sixteen, so two answers are
+# refused, `peer2 refused reply Full ×2`.
+seed 7
+peers 3
+profile dtn
+0 peer_down 2
+0 hold 1 604800000
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+500 hostile 0
+1000 hold 1 0
+20000 warp 604800000
+604821000 peer_up 2

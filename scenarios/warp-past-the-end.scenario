@@ -1,0 +1,9 @@
+# The last reader's: a week's warp at 5 s, the last event's millisecond, then telemetry, a hostile call and a second warp
+# at that millisecond. The run's end follows the clock, 50 s after the last warp, so the restarted rounds perform all three.
+seed 3
+peers 3
+profile dtn
+5000 warp 604800000
+5000 telemetry
+5000 hostile 0
+5000 warp 1000

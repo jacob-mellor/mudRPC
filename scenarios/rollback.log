@@ -1,0 +1,61 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 1 "nav" 49B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      200 send 1 "gcs" 52B ttl 60
+      200 send 1 "gcs" 52B ttl 10
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 1 -> 0 "gcs" 52B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+     5000 host: the clock jumps 604800000 ms
+     5000 event Warp(604800000)
+604805000 expire 0 "nav"
+604805000 expire 0 "nav"
+604805000 expire 1 "gcs"
+604805000 expire 1 "gcs"
+604806000 host: radio 2 is a clone of peer1 from an old image
+604806000 listen 2 "drone-1"
+604806000 listen 2 "nav"
+604806000 event PeerDown(1)
+604806000 event Clone(1, 2)
+604806000 radio 1 off-mesh
+604815000 gcs calls Ping#3 ttl 20
+604815000 send 0 "nav" 49B ttl 20
+604815000 deliver 0 -> 2 "nav" 49B
+604815100 peer2 call "Ping" "3"
+604815200 send 2 "gcs" 52B ttl 20
+604815200 deliver 2 -> 0 "gcs" 52B
+604815300 peer0 rollback from sender 2
+604830000 gcs calls Ping#4 ttl 20
+604830000 send 0 "nav" 49B ttl 20
+604830000 deliver 0 -> 2 "nav" 49B
+604830100 peer2 call "Ping" "4"
+604830200 send 2 "gcs" 52B ttl 20
+604830200 deliver 2 -> 0 "gcs" 52B
+604830300 peer0 rollback from sender 2
+604835000 peer0 expired
+604835000 expire 0 "nav"
+604835200 expire 2 "gcs"
+604845000 gcs calls Ping#5 ttl 20
+604845000 send 0 "nav" 49B ttl 20
+604845000 deliver 0 -> 2 "nav" 49B
+604845100 peer2 call "Ping" "5"
+604845200 send 2 "gcs" 52B ttl 20
+604845200 deliver 2 -> 0 "gcs" 52B
+604845300 peer0 rollback from sender 2
+604850000 peer0 expired
+604850000 expire 0 "nav"
+604850200 expire 2 "gcs"
+604856100 peer0 pressure 0
+604856100 peer1 pressure 0
+604856100 peer2 pressure 0

@@ -1,0 +1,8 @@
+# The clock jumps a week and a millisecond at 20 s, then the run goes on for 110 s. t is off the round grid from then on;
+# gcs calls every 150 rounds, not when t is a multiple of 15 s, so it calls on, from 604 830 001 ms every 15 s; the drones
+# report at 80 s.
+seed 5
+peers 3
+profile dtn
+20000     warp 604800001
+604880000 telemetry

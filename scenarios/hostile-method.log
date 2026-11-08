@@ -1,0 +1,57 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+     1000 deliver 0 -> 1 "nav" 49B
+     1000 deliver 0 -> 1 "nav" 49B
+     1100 peer1 call "Ping" "1"
+     1100 peer1 call "Ping" "2"
+     1200 send 1 "gcs" 52B ttl 60
+     1200 send 1 "gcs" 52B ttl 10
+     1200 deliver 1 -> 0 "gcs" 52B
+     1200 deliver 1 -> 0 "gcs" 52B
+     1300 peer0 reply seq=0 end=true status=0 "1"
+     1300 peer0 reply seq=0 end=true status=0 "2"
+     5000 host: peer0 calls a hostile method
+     5000 send 0 "nav" 74B ttl 20
+     5000 event Hostile(0)
+     5000 deliver 0 -> 1 "nav" 74B
+     5100 peer1 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x"
+     5200 send 1 "gcs" 52B ttl 20
+     5200 deliver 1 -> 0 "gcs" 52B
+     5300 peer0 reply seq=0 end=true status=0 "x"
+    10000 expire 0 "nav"
+    11200 expire 1 "gcs"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    15000 deliver 0 -> 1 "nav" 49B
+    15100 peer1 call "Ping" "3"
+    15200 send 1 "gcs" 52B ttl 20
+    15200 deliver 1 -> 0 "gcs" 52B
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    25000 expire 0 "nav"
+    25200 expire 1 "gcs"
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 deliver 0 -> 1 "nav" 49B
+    30100 peer1 call "Ping" "4"
+    30200 send 1 "gcs" 52B ttl 20
+    30200 deliver 1 -> 0 "gcs" 52B
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    35000 expire 0 "nav"
+    35200 expire 1 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B
+    45100 peer1 call "Ping" "5"
+    45200 send 1 "gcs" 52B ttl 20
+    45200 deliver 1 -> 0 "gcs" 52B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    55100 peer0 pressure 0
+    55100 peer1 pressure 0

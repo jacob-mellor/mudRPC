@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The Maven Central artefact's POM: the jar packages/build.sh makes from Mud.java and MudChannel.java with the library inside it,
+     its sources and javadoc jars beside. grpc-api is optional: the drop-in's users have it, the binding's need not. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.jacob-mellor</groupId>
+  <artifactId>mudrpc</artifactId>
+  <version>@VERSION@</version>
+  <packaging>jar</packaging>
+  <name>Mud RPC — gRPC for unstable networks</name>
+  <description>Mud RPC: gRPC for unstable networks. gRPC's service model over mesh, radio and UDP as sealed packets, without HTTP/2 or a server stack, and an io.grpc.Channel and a server taking a BindableService so the stubs grpc-java and grpc-kotlin generate run unchanged.</description>
+  <url>https://github.com/jacob-mellor/mudRPC</url>
+  <licenses><license><name>MIT License</name><url>https://opensource.org/licenses/MIT</url></license></licenses>
+  <developers><developer><name>the mudRPC authors</name><url>https://github.com/jacob-mellor/mudRPC</url></developer></developers>
+  <scm><url>https://github.com/jacob-mellor/mudRPC</url><connection>scm:git:https://github.com/jacob-mellor/mudRPC.git</connection></scm>
+  <dependencies>
+    <dependency><groupId>io.grpc</groupId><artifactId>grpc-api</artifactId><version>1.85.1</version><optional>true</optional></dependency>
+  </dependencies>
+</project>

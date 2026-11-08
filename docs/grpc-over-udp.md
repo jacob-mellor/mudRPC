@@ -1,0 +1,11 @@
+# gRPC over UDP
+
+**gRPC over UDP** is a mudRPC peer with the UDP transport every binding shares: each wire, a sealed packet of at most 512 bytes, sent to every listed peer, on private addresses alone.
+
+gRPC itself cannot run over UDP: HTTP/2 needs a stream. mudRPC needs nothing of a connection, so UDP is its natural transport, one datagram per message: a call's packet goes out, a reply's packet comes back, a stream's items come in any order and are read in sequence, and a packet lost on the way is a reply that never comes, which the call's ttl turns into `DEADLINE_EXCEEDED` where gRPC would have hung a connection.
+
+The transport is in the C ABI, so every language has the same one: `mud_udp_new("10.0.0.2:7000", "10.0.0.3:7000 10.0.0.4:7000")` binds the first address and sends to each of the others; a listen keeps wires on a topic from then, and every other topic is dropped unread. In Python it is `mud.Udp`, in .NET `Udp`, in Go `mud.NewUdp`, in JavaScript `Udp.open`, in PHP `Mud\Udp`; a channel for gRPC pumps it on its own thread or event loop, and in PHP while a call waits, so a product writes no loop.
+
+Nothing listens on the internet unless built to. A public address, `0.0.0.0` included, is refused in every release build, tested in every binding: a product on a LAN, a VPN or a mesh stays there, and widening that is a build with two keys that no release carries, the rule in [CLAUDE.md](../CLAUDE.md). The sealing is the same on every transport: AES-256-GCM under the fleet key, or ChaCha20-Poly1305, and a per-sender signature where the fleet is signed, so a packet on the wire is opaque, a forged one is dropped, and under a signed fleet a key holder can forge only as itself.
+
+Two peers over UDP on one machine is the second rung of every skill's test ladder, after the simulator and before a box on your own LAN; `partition_heal_over_loopback_shows_the_same_peer_events_as_the_simulator` is the reference behaviour over real sockets through the scenario-driven loopback adapter, `lan`, and the product's `Udp` is tested through the ABI and in every drop-in's cases over UDP. The one line that puts a gRPC client on it is in [From gRPC](../README.md#from-grpc); the silo this page belongs to is [gRPC without HTTP/2](grpc-without-http2.md), and the [home page](../README.md) has the rest.

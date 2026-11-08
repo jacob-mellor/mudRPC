@@ -1,0 +1,9 @@
+# Three peers at epoch 2. After a week (the floor needs MAX_TTL to advance), drone-1 is reflashed from an old image:
+# its radio goes dark and radio 2 comes up as its clone at epoch 1. The clone's answers carry an epoch below gcs's floor
+# for sender 2 and are reported as rollbacks, never as replays; with no honest drone left, gcs's calls expire.
+seed 19
+peers 3
+profile dtn
+5000      warp      604800000
+604806000 peer_down 1
+604806000 clone     1 2

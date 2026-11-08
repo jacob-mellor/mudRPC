@@ -1,0 +1,6 @@
+# Cargo reads this from the directory it runs in, so the qemu binary is built from qemu/.
+[target.thumbv7em-none-eabihf]
+rustflags = ["-C", "link-arg=-Tan386.ld"]
+
+[target.riscv32imc-unknown-none-elf]
+rustflags = ["-C", "link-arg=-Tvirt.ld"]

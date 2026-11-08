@@ -1,0 +1,11 @@
+{
+  "name": "mudrpc-demo-drones",
+  "private": true,
+  "type": "module",
+  "description": "gRPC drone telemetry in JavaScript: Connect code from protoc-gen-es over mudRPC, two peers on UDP.",
+  "dependencies": {
+    "@bufbuild/protobuf": "2.16.0",
+    "@bufbuild/protoc-gen-es": "2.16.0",
+    "@connectrpc/connect": "2.2.0"
+  }
+}

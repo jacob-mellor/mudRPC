@@ -1,0 +1,20 @@
+[package]
+name = "mudrpc-adapters"
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+description = "mudRPC transports, the mesh simulator and the standard harness."
+repository = "https://github.com/jacob-mellor/mudRPC"
+keywords = ["grpc", "rpc", "mesh", "udp", "no-std"]
+categories = ["network-programming", "simulation"]
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+mudrpc-core = { path = "../core", version = "0.3.0" }
+mudrpc-auth = { path = "../auth", version = "0.3.0" }
+mudrpc-gcm = { path = "../gcm", version = "0.3.0" }
+
+[features]
+internet = []   # `udp` may bind and send to public addresses, with MUDRPC_INTERNET=listen-on-public-addresses in the builder's environment, or the build fails; no release carries it

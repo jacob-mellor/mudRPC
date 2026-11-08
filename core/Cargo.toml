@@ -1,0 +1,14 @@
+[package]
+name = "mudrpc-core"
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+description = "The mudRPC peer, wire and cipher: no_std, no allocation, no crates."
+repository = "https://github.com/jacob-mellor/mudRPC"
+keywords = ["grpc", "rpc", "mesh", "udp", "no-std"]
+categories = ["network-programming", "embedded", "no-std"]
+
+[lib]
+path = "lib.rs"
+
+[dependencies]

@@ -1,0 +1,10 @@
+# Three peers. Everyone stages the next key at 10 s; drone-1 rotates early at 20 s; the rest at 40 s; the old key is
+# retired at 70 s. Nothing is lost on the way: early wires open via Next, late ones via Previous.
+seed 29
+peers 3
+profile reticulum
+10000  stage
+20000  rotate 1
+40000  rotate 0
+40000  rotate 2
+70000  retire

@@ -1,0 +1,11 @@
+// The sensor demo's messages, one .proto for every language: sensors publish readings, a gateway listens and calibrates one.
+syntax = "proto3";
+package demo.sensors;
+
+service Sensor {
+  rpc Calibrate (Offset) returns (Ack);
+}
+
+message Reading { string sensor = 1; sint32 centi_degrees = 2; }   // published on the topic sensors.Readings; no reply
+message Offset { sint32 centi_degrees = 1; }
+message Ack { string sensor = 1; sint32 offset_centi_degrees = 2; }

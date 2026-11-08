@@ -1,0 +1,9 @@
+# The loopback rung's ceiling: lan carries the radio index in one byte, so 256 radios is the most one scenario can run
+# over UDP. A ground station and 255 drones on a custody mesh, reporting three times, 5 s apart, as hub-telemetry
+# does at forty. Signed, the hub's roster holds every drone; unsigned the leaf's 16 windows do not.
+seed 256
+peers 256
+profile dtn
+5000   telemetry
+10000  telemetry
+15000  telemetry

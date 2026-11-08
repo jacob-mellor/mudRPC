@@ -1,0 +1,10 @@
+# Forty drones report a position to the ground station's name three times, 5 s apart, every report inside its ttl when
+# the last lands: 120 wires from 40 senders at one receiver. Signed, gcs is the hub, whose 256 windows and 1024 seen
+# entries hold them all, so its pressure is 0 and a replay would be a duplicate; unsigned, gcs is a leaf, whose 16 and 64
+# do not, and its pressure says so.
+seed 41
+peers 41
+profile dtn
+5000   telemetry
+10000  telemetry
+15000  telemetry

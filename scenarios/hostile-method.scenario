@@ -1,0 +1,7 @@
+# Two peers. At 5 s gcs calls nav with a method made of a terminal escape sequence, a bell, both quotes, a backslash
+# and a tab. drone-1 answers it like any call. Every harness logs the method escaped exactly as Rust's {:?} does, so no
+# wire-derived string reaches an operator's terminal raw; the five logs are byte-identical.
+seed 31
+peers 2
+profile reticulum
+5000   hostile 0

@@ -1,0 +1,6 @@
+# Two peers, cut from the start, healed at 30 s. A 60 s call waits and lands; a 10 s call expires.
+seed 7
+peers 2
+profile reticulum
+0      partition 0 1
+30000  heal      0 1

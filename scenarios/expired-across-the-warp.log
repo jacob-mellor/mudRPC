@@ -1,0 +1,42 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 event PeerDown(1)
+     5000 host: the clock jumps 604800000 ms
+     5000 event Warp(604800000)
+604805000 peer0 expired ×2
+604805000 event PeerUp(1)
+604805000 expire 0 "nav"
+604805000 expire 0 "nav"
+604805000 radio 0 on-mesh
+604805000 radio 1 on-mesh
+604815000 gcs calls Ping#3 ttl 20
+604815000 send 0 "nav" 49B ttl 20
+604815000 deliver 0 -> 1 "nav" 49B
+604815100 peer1 call "Ping" "3"
+604815200 send 1 "gcs" 52B ttl 20
+604815200 deliver 1 -> 0 "gcs" 52B
+604815300 peer0 reply seq=0 end=true status=0 "3"
+604830000 gcs calls Ping#4 ttl 20
+604830000 send 0 "nav" 49B ttl 20
+604830000 deliver 0 -> 1 "nav" 49B
+604830100 peer1 call "Ping" "4"
+604830200 send 1 "gcs" 52B ttl 20
+604830200 deliver 1 -> 0 "gcs" 52B
+604830300 peer0 reply seq=0 end=true status=0 "4"
+604835000 expire 0 "nav"
+604835200 expire 1 "gcs"
+604845000 gcs calls Ping#5 ttl 20
+604845000 send 0 "nav" 49B ttl 20
+604845000 deliver 0 -> 1 "nav" 49B
+604845100 peer1 call "Ping" "5"
+604845200 send 1 "gcs" 52B ttl 20
+604845200 deliver 1 -> 0 "gcs" 52B
+604845300 peer0 reply seq=0 end=true status=0 "5"
+604850000 expire 0 "nav"
+604850200 expire 1 "gcs"
+604855100 peer0 pressure 0
+604855100 peer1 pressure 0

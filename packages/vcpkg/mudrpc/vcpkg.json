@@ -1,0 +1,7 @@
+{
+    "name": "mudrpc",
+    "version": "@VERSION@",
+    "description": "Mud RPC: gRPC for unstable networks. gRPC's service model over mesh, radio and UDP as sealed packets, without HTTP/2 or a server stack; the C ABI as a static library with mudrpc.h, and mud.hpp and mud_grpc.hpp over it so the code protoc generates runs with the include changed. Built by cargo, which the port needs on the path.",
+    "homepage": "https://github.com/jacob-mellor/mudRPC",
+    "license": "MIT"
+}

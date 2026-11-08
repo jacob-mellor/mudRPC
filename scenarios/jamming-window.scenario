@@ -1,0 +1,7 @@
+# Three peers. drone-1 is jammed from 5 s to 25 s; drone-2 keeps answering. When the jam lifts, drone-1 receives the
+# calls that waited at gcs and answers late; gcs already has drone-2's answers and drops the late ones as duplicates.
+seed 11
+peers 3
+profile reticulum
+5000   jam   1
+25000  heal  1

@@ -1,0 +1,10 @@
+# Three peers. Radio 2 is compromised: it injects malformed bytes, replays the last message it saw, and floods nav at
+# 20 junk packets per second for 10 s. drone-2 on that radio is honest and keeps answering. Every junk packet costs the
+# receivers one tag check and nothing else; the replayed call is a duplicate at drone-1.
+seed 13
+peers 3
+profile dtn
+3000   malformed 2 nav
+20000  replay    2
+30000  flood     2 nav 20
+40000  flood     2 nav 0

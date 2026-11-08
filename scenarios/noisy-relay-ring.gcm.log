@@ -1,0 +1,98 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 listen 3 "drone-3"
+        0 listen 3 "nav"
+        0 event Hold(1, 100)
+        0 event Hold(2, 100)
+        0 event Hold(3, 100)
+        0 event Noise(1, 50)
+        0 event Noise(2, 50)
+        0 event Noise(3, 50)
+        0 deliver 0 -> 1 "nav" 49B with 1 bit(s) flipped
+        0 deliver 0 -> 2 "nav" 49B with 5 bit(s) flipped
+        0 deliver 0 -> 3 "nav" 49B with 3 bit(s) flipped
+        0 deliver 0 -> 1 "nav" 49B with 4 bit(s) flipped
+        0 deliver 0 -> 2 "nav" 49B with 1 bit(s) flipped
+        0 deliver 0 -> 3 "nav" 49B with 1 bit(s) flipped
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+        0 radio 3 on-mesh
+      100 peer1 dropped Open(Tag) ×2
+      100 peer2 dropped Open(Tag) ×2
+      100 peer3 dropped Open(Tag) ×2
+      100 send 1 "nav" 49B ttl 60
+      100 send 1 "nav" 49B ttl 60
+      100 send 2 "nav" 49B ttl 60
+      100 send 2 "nav" 49B ttl 60
+      100 send 3 "nav" 49B ttl 60
+      100 send 3 "nav" 49B ttl 60
+      100 deliver 1 -> 2 "nav" 49B with 3 bit(s) flipped
+      100 deliver 1 -> 3 "nav" 49B with 3 bit(s) flipped
+      100 deliver 1 -> 2 "nav" 49B with 1 bit(s) flipped
+      100 deliver 1 -> 3 "nav" 49B with 2 bit(s) flipped
+      100 deliver 2 -> 1 "nav" 49B with 2 bit(s) flipped
+      100 deliver 2 -> 3 "nav" 49B
+      100 deliver 2 -> 1 "nav" 49B with 3 bit(s) flipped
+      100 deliver 2 -> 3 "nav" 49B with 4 bit(s) flipped
+      100 deliver 3 -> 1 "nav" 49B with 2 bit(s) flipped
+      100 deliver 3 -> 2 "nav" 49B with 2 bit(s) flipped
+      100 deliver 3 -> 1 "nav" 49B with 4 bit(s) flipped
+      100 deliver 3 -> 2 "nav" 49B with 3 bit(s) flipped
+      200 peer1 dropped Open(Tag)
+      200 peer1 dropped Version(7)
+      200 peer1 dropped Open(Tag)
+      200 peer1 dropped Version(1)
+      200 peer2 dropped Open(Tag) ×4
+      200 peer3 dropped Open(Tag) ×2
+      200 peer3 call "Ping" "1"
+      200 peer3 dropped Open(Tag)
+      300 send 3 "gcs" 52B ttl 60
+      300 deliver 3 -> 0 "gcs" 52B
+      400 peer0 reply seq=0 end=true status=0 "1"
+      600 event Hold(1, 0)
+      600 event Hold(2, 0)
+      600 event Hold(3, 0)
+    10000 peer0 expired
+    10000 expire 0 "nav"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    15000 deliver 0 -> 1 "nav" 49B with 1 bit(s) flipped
+    15000 deliver 0 -> 2 "nav" 49B with 3 bit(s) flipped
+    15000 deliver 0 -> 3 "nav" 49B
+    15100 peer1 dropped Open(Tag)
+    15100 peer2 dropped Open(Tag)
+    15100 peer3 call "Ping" "3"
+    15200 send 3 "gcs" 52B ttl 20
+    15200 deliver 3 -> 0 "gcs" 52B
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 deliver 0 -> 1 "nav" 49B with 1 bit(s) flipped
+    30000 deliver 0 -> 2 "nav" 49B with 2 bit(s) flipped
+    30000 deliver 0 -> 3 "nav" 49B with 3 bit(s) flipped
+    30100 peer1 dropped Open(Tag)
+    30100 peer2 dropped Open(Tag)
+    30100 peer3 dropped Open(Tag)
+    35000 expire 0 "nav"
+    35200 expire 3 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B with 1 bit(s) flipped
+    45000 deliver 0 -> 2 "nav" 49B with 3 bit(s) flipped
+    45000 deliver 0 -> 3 "nav" 49B with 2 bit(s) flipped
+    45100 peer1 dropped Open(Tag)
+    45100 peer2 dropped Open(Tag)
+    45100 peer3 dropped Open(Tag)
+    50000 peer0 expired
+    50000 expire 0 "nav"
+    50700 peer0 pressure 0
+    50700 peer1 pressure 0
+    50700 peer2 pressure 0
+    50700 peer3 pressure 0

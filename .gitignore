@@ -1,0 +1,17 @@
+.DS_Store
+obj/
+bin/
+*.class
+target/
+__pycache__/
+demos/*/*/gen/
+demos/*/*/pb/
+demos/*/*/out/
+demos/*/*/node_modules/
+demos/*/*/vendor/
+demos/*/*/.build/
+demos/*/*/drones
+demos/*/*/sensors
+demos/*/*/protoc-gen-mud
+demos/*/*/.venv/
+demos/*/*/bin/

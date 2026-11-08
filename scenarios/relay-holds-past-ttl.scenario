@@ -1,0 +1,16 @@
+# Four peers. Radio 3 is a store-and-forward relay that keeps every wire it hears and sends it again a week later, past
+# its ttl; drone-3 on that radio is honest. It holds gcs's first three calls, then stops keeping; drone-1 also hears
+# Ping#4. drone-2 is out of range of all three until the week is over, then comes into range of the relay alone.
+# The held calls land at drone-1, which keeps gcs's window and floor, as Replay; at drone-2, which never heard gcs, each
+# runs once, its answer finding no call at gcs. A relay holding wires past their ttl is the one way a receiver that never
+# heard a sender sees a wire that old.
+seed 59
+peers 4
+profile reticulum
+0          partition 0 2
+0          partition 1 2
+0          partition 2 3
+0          hold      3 604800000
+20000      hold      3 0
+35000      warp      604800000
+604835000  heal      2 3

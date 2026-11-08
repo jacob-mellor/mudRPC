@@ -1,0 +1,8 @@
+# The clock jumps a week at 15 s, the round gcs's cadence calls on, and the host asks for a call at the same millisecond;
+# the drones report 30 s later so the run goes on. Which `now` that round's calls are made with is the harness's.
+seed 5
+peers 3
+profile dtn
+15000 warp 604800000
+15000 hostile 0
+604845000 telemetry

@@ -1,0 +1,62 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 event Partition(0, 1)
+    10000 peer0 expired
+    10000 expire 0 "nav"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 event Heal(0, 1)
+    30000 radio 0 on-mesh
+    30000 radio 1 on-mesh
+    31000 deliver 0 -> 1 "nav" 49B
+    31000 deliver 0 -> 1 "nav" 49B
+    31000 deliver 0 -> 1 "nav" 49B
+    31100 peer1 call "Ping" "1"
+    31100 peer1 call "Ping" "3"
+    31100 peer1 call "Ping" "4"
+    31200 send 1 "gcs" 52B ttl 60
+    31200 send 1 "gcs" 52B ttl 20
+    31200 send 1 "gcs" 52B ttl 20
+    31200 deliver 1 -> 0 "gcs" 52B
+    31200 deliver 1 -> 0 "gcs" 52B
+    31200 deliver 1 -> 0 "gcs" 52B
+    31300 peer0 reply seq=0 end=true status=0 "1"
+    31300 peer0 reply seq=0 end=true status=0 "3"
+    31300 peer0 reply seq=0 end=true status=0 "4"
+    35000 expire 0 "nav"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B
+    45100 peer1 call "Ping" "5"
+    45200 send 1 "gcs" 52B ttl 20
+    45200 deliver 1 -> 0 "gcs" 52B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    50000 expire 0 "nav"
+    51200 expire 1 "gcs"
+    51200 expire 1 "gcs"
+    60000 gcs calls Ping#6 ttl 20
+    60000 send 0 "nav" 49B ttl 20
+    60000 deliver 0 -> 1 "nav" 49B
+    60000 expire 0 "nav"
+    60100 peer1 call "Ping" "6"
+    60200 send 1 "gcs" 52B ttl 20
+    60200 deliver 1 -> 0 "gcs" 52B
+    60300 peer0 reply seq=0 end=true status=0 "6"
+    65000 expire 0 "nav"
+    65200 expire 1 "gcs"
+    75000 gcs calls Ping#7 ttl 20
+    75000 send 0 "nav" 49B ttl 20
+    75000 deliver 0 -> 1 "nav" 49B
+    75100 peer1 call "Ping" "7"
+    75200 send 1 "gcs" 52B ttl 20
+    75200 deliver 1 -> 0 "gcs" 52B
+    75300 peer0 reply seq=0 end=true status=0 "7"
+    80000 expire 0 "nav"
+    80100 peer0 pressure 0
+    80100 peer1 pressure 0

@@ -1,0 +1,7 @@
+# Two host events of different kinds at one millisecond, after a line with an earlier time: file order within a tick.
+seed 5
+peers 3
+profile dtn
+1000 telemetry
+1000 hostile 0
+500 stage

@@ -1,0 +1,8 @@
+# Two peers. At 20 s drone-1 reboots from a block whose first half is its latest save and whose second half is its boot
+# image, as a flash write that failed midway leaves it. resume checks every field: the block is refused as Corrupt or it
+# runs on with whatever state the halves agree on; it never traps. A refused block means booting from the last good
+# image, which is what a host does.
+seed 43
+peers 2
+profile dtn
+20000  torn_save 1

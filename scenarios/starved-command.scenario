@@ -1,0 +1,22 @@
+# Five key holders, drones 1 to 5, spam nav for two seconds at 100 a round, which their outbox makes 16, the rest
+# `refused publish Full ×84` (×85 the round after they answer gcs); drones 6 and 7 listen on nav too. At
+# every receiver the five spend the global cap of 256 inside the first four rounds of each second, before any one of
+# them reaches its own 64, and each is named `Flood` there as over its share of the second. gcs calls nav twice in
+# second 10: the call at 10.0 s is first in its second and every drone runs it; the call at 10.7 s is Rate at every
+# drone, flooders included, nobody runs it, and it expires. Signed, drones 1 to 5 are senders 2 to 6, inside every
+# leaf's roster: the same.
+seed 4
+peers 8
+profile reticulum
+10000 spam 1 1000
+10000 spam 2 1000
+10000 spam 3 1000
+10000 spam 4 1000
+10000 spam 5 1000
+10000 hostile 0
+10700 hostile 0
+12000 spam 1 0
+12000 spam 2 0
+12000 spam 3 0
+12000 spam 4 0
+12000 spam 5 0

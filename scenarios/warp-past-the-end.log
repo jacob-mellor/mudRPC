@@ -1,0 +1,109 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      100 peer2 call "Ping" "1"
+      100 peer2 call "Ping" "2"
+      200 send 1 "gcs" 52B ttl 60
+      200 send 1 "gcs" 52B ttl 10
+      200 send 2 "gcs" 52B ttl 60
+      200 send 2 "gcs" 52B ttl 10
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+      300 peer0 dropped NoPending ×2
+     5000 host: the clock jumps 604800000 ms
+     5000 event Warp(604800000)
+     5000 event Telemetry
+     5000 event Hostile(0)
+     5000 event Warp(1000)
+604805000 host: every drone publishes its position to gcs
+604805000 host: peer0 calls a hostile method
+604805000 host: the clock jumps 1000 ms
+604805000 expire 0 "nav"
+604805000 expire 0 "nav"
+604805000 expire 1 "gcs"
+604805000 expire 1 "gcs"
+604805000 expire 2 "gcs"
+604805000 expire 2 "gcs"
+604806000 send 0 "nav" 74B ttl 20
+604806000 send 1 "gcs" 39B ttl 600
+604806000 send 2 "gcs" 39B ttl 600
+604806000 deliver 0 -> 1 "nav" 74B
+604806000 deliver 0 -> 2 "nav" 74B
+604806000 deliver 1 -> 0 "gcs" 39B
+604806000 deliver 2 -> 0 "gcs" 39B
+604806100 peer0 event "gcs" "pos" from sender 2
+604806100 peer0 event "gcs" "pos" from sender 3
+604806100 peer1 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x"
+604806100 peer2 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x"
+604806200 send 1 "gcs" 52B ttl 20
+604806200 send 2 "gcs" 52B ttl 20
+604806200 deliver 1 -> 0 "gcs" 52B
+604806200 deliver 2 -> 0 "gcs" 52B
+604806300 peer0 reply seq=0 end=true status=0 "x"
+604806300 peer0 dropped NoPending
+604816000 gcs calls Ping#3 ttl 20
+604816000 send 0 "nav" 49B ttl 20
+604816000 deliver 0 -> 1 "nav" 49B
+604816000 deliver 0 -> 2 "nav" 49B
+604816100 peer1 call "Ping" "3"
+604816100 peer2 call "Ping" "3"
+604816200 send 1 "gcs" 52B ttl 20
+604816200 send 2 "gcs" 52B ttl 20
+604816200 deliver 1 -> 0 "gcs" 52B
+604816200 deliver 2 -> 0 "gcs" 52B
+604816300 peer0 reply seq=0 end=true status=0 "3"
+604816300 peer0 dropped NoPending
+604826000 expire 0 "nav"
+604826200 expire 1 "gcs"
+604826200 expire 2 "gcs"
+604831000 gcs calls Ping#4 ttl 20
+604831000 send 0 "nav" 49B ttl 20
+604831000 deliver 0 -> 1 "nav" 49B
+604831000 deliver 0 -> 2 "nav" 49B
+604831100 peer1 call "Ping" "4"
+604831100 peer2 call "Ping" "4"
+604831200 send 1 "gcs" 52B ttl 20
+604831200 send 2 "gcs" 52B ttl 20
+604831200 deliver 1 -> 0 "gcs" 52B
+604831200 deliver 2 -> 0 "gcs" 52B
+604831300 peer0 reply seq=0 end=true status=0 "4"
+604831300 peer0 dropped NoPending
+604836000 expire 0 "nav"
+604836200 expire 1 "gcs"
+604836200 expire 2 "gcs"
+604846000 gcs calls Ping#5 ttl 20
+604846000 send 0 "nav" 49B ttl 20
+604846000 deliver 0 -> 1 "nav" 49B
+604846000 deliver 0 -> 2 "nav" 49B
+604846100 peer1 call "Ping" "5"
+604846100 peer2 call "Ping" "5"
+604846200 send 1 "gcs" 52B ttl 20
+604846200 send 2 "gcs" 52B ttl 20
+604846200 deliver 1 -> 0 "gcs" 52B
+604846200 deliver 2 -> 0 "gcs" 52B
+604846300 peer0 reply seq=0 end=true status=0 "5"
+604846300 peer0 dropped NoPending
+604851000 expire 0 "nav"
+604851200 expire 1 "gcs"
+604851200 expire 2 "gcs"
+604856100 peer0 pressure 0
+604856100 peer1 pressure 0
+604856100 peer2 pressure 0

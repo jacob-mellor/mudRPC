@@ -1,0 +1,1658 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      100 peer2 call "Ping" "1"
+      100 peer2 call "Ping" "2"
+      200 send 1 "gcs" 52B ttl 60
+      200 send 1 "gcs" 52B ttl 10
+      200 send 2 "gcs" 52B ttl 60
+      200 send 2 "gcs" 52B ttl 10
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+      300 peer0 dropped NoPending ×2
+    10000 host: peer2 spams at 100/s
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 send 2 "nav" 39B ttl 5
+    10000 event Spam(2, 100)
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 deliver 2 -> 1 "nav" 39B
+    10000 expire 0 "nav"
+    10100 peer1 event "nav" "spam" from sender 3 ×10
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 send 2 "nav" 39B ttl 5
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10100 deliver 2 -> 1 "nav" 39B
+    10200 peer1 event "nav" "spam" from sender 3 ×10
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 send 2 "nav" 39B ttl 5
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 deliver 2 -> 1 "nav" 39B
+    10200 expire 1 "gcs"
+    10200 expire 2 "gcs"
+    10300 peer1 event "nav" "spam" from sender 3 ×10
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 send 2 "nav" 39B ttl 5
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10300 deliver 2 -> 1 "nav" 39B
+    10400 peer1 event "nav" "spam" from sender 3 ×10
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 send 2 "nav" 39B ttl 5
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10400 deliver 2 -> 1 "nav" 39B
+    10500 peer1 event "nav" "spam" from sender 3 ×10
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 send 2 "nav" 39B ttl 5
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10500 deliver 2 -> 1 "nav" 39B
+    10600 peer1 event "nav" "spam" from sender 3 ×10
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 send 2 "nav" 39B ttl 5
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10600 deliver 2 -> 1 "nav" 39B
+    10700 peer1 event "nav" "spam" from sender 3 ×4
+    10700 peer1 flood from sender 3
+    10700 peer1 dropped Rate ×5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 send 2 "nav" 39B ttl 5
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10700 deliver 2 -> 1 "nav" 39B
+    10800 peer1 dropped Rate ×10
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 send 2 "nav" 39B ttl 5
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10800 deliver 2 -> 1 "nav" 39B
+    10900 peer1 dropped Rate ×10
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 send 2 "nav" 39B ttl 5
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    10900 deliver 2 -> 1 "nav" 39B
+    11000 peer1 event "nav" "spam" from sender 3 ×10
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 send 2 "nav" 39B ttl 5
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11000 deliver 2 -> 1 "nav" 39B
+    11100 peer1 event "nav" "spam" from sender 3 ×10
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 send 2 "nav" 39B ttl 5
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11100 deliver 2 -> 1 "nav" 39B
+    11200 peer1 event "nav" "spam" from sender 3 ×10
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 send 2 "nav" 39B ttl 5
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11200 deliver 2 -> 1 "nav" 39B
+    11300 peer1 event "nav" "spam" from sender 3 ×10
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 send 2 "nav" 39B ttl 5
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11300 deliver 2 -> 1 "nav" 39B
+    11400 peer1 event "nav" "spam" from sender 3 ×10
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 send 2 "nav" 39B ttl 5
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11400 deliver 2 -> 1 "nav" 39B
+    11500 peer1 event "nav" "spam" from sender 3 ×10
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 send 2 "nav" 39B ttl 5
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11500 deliver 2 -> 1 "nav" 39B
+    11600 peer1 event "nav" "spam" from sender 3 ×4
+    11600 peer1 flood from sender 3
+    11600 peer1 dropped Rate ×5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 send 2 "nav" 39B ttl 5
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11600 deliver 2 -> 1 "nav" 39B
+    11700 peer1 dropped Rate ×10
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 send 2 "nav" 39B ttl 5
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11700 deliver 2 -> 1 "nav" 39B
+    11800 peer1 dropped Rate ×10
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 send 2 "nav" 39B ttl 5
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11800 deliver 2 -> 1 "nav" 39B
+    11900 peer1 dropped Rate ×10
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 send 2 "nav" 39B ttl 5
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    11900 deliver 2 -> 1 "nav" 39B
+    12000 peer1 event "nav" "spam" from sender 3 ×10
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 send 2 "nav" 39B ttl 5
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12000 deliver 2 -> 1 "nav" 39B
+    12100 peer1 event "nav" "spam" from sender 3 ×10
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 send 2 "nav" 39B ttl 5
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12100 deliver 2 -> 1 "nav" 39B
+    12200 peer1 event "nav" "spam" from sender 3 ×10
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 send 2 "nav" 39B ttl 5
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12200 deliver 2 -> 1 "nav" 39B
+    12300 peer1 event "nav" "spam" from sender 3 ×10
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 send 2 "nav" 39B ttl 5
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12300 deliver 2 -> 1 "nav" 39B
+    12400 peer1 event "nav" "spam" from sender 3 ×10
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 send 2 "nav" 39B ttl 5
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12400 deliver 2 -> 1 "nav" 39B
+    12500 peer1 event "nav" "spam" from sender 3 ×10
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 send 2 "nav" 39B ttl 5
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12500 deliver 2 -> 1 "nav" 39B
+    12600 peer1 event "nav" "spam" from sender 3 ×4
+    12600 peer1 flood from sender 3
+    12600 peer1 dropped Rate ×5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 send 2 "nav" 39B ttl 5
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12600 deliver 2 -> 1 "nav" 39B
+    12700 peer1 dropped Rate ×10
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 send 2 "nav" 39B ttl 5
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12700 deliver 2 -> 1 "nav" 39B
+    12800 peer1 dropped Rate ×10
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 send 2 "nav" 39B ttl 5
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12800 deliver 2 -> 1 "nav" 39B
+    12900 peer1 dropped Rate ×10
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 send 2 "nav" 39B ttl 5
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    12900 deliver 2 -> 1 "nav" 39B
+    13000 peer1 event "nav" "spam" from sender 3 ×10
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 send 2 "nav" 39B ttl 5
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13000 deliver 2 -> 1 "nav" 39B
+    13100 peer1 event "nav" "spam" from sender 3 ×10
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 send 2 "nav" 39B ttl 5
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13100 deliver 2 -> 1 "nav" 39B
+    13200 peer1 event "nav" "spam" from sender 3 ×10
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 send 2 "nav" 39B ttl 5
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13200 deliver 2 -> 1 "nav" 39B
+    13300 peer1 event "nav" "spam" from sender 3 ×10
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 send 2 "nav" 39B ttl 5
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13300 deliver 2 -> 1 "nav" 39B
+    13400 peer1 event "nav" "spam" from sender 3 ×10
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 send 2 "nav" 39B ttl 5
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13400 deliver 2 -> 1 "nav" 39B
+    13500 peer1 event "nav" "spam" from sender 3 ×10
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 send 2 "nav" 39B ttl 5
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13500 deliver 2 -> 1 "nav" 39B
+    13600 peer1 event "nav" "spam" from sender 3 ×4
+    13600 peer1 flood from sender 3
+    13600 peer1 dropped Rate ×5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 send 2 "nav" 39B ttl 5
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13600 deliver 2 -> 1 "nav" 39B
+    13700 peer1 dropped Rate ×10
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 send 2 "nav" 39B ttl 5
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13700 deliver 2 -> 1 "nav" 39B
+    13800 peer1 dropped Rate ×10
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 send 2 "nav" 39B ttl 5
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13800 deliver 2 -> 1 "nav" 39B
+    13900 peer1 dropped Rate ×10
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 send 2 "nav" 39B ttl 5
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    13900 deliver 2 -> 1 "nav" 39B
+    14000 peer1 event "nav" "spam" from sender 3 ×10
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 send 2 "nav" 39B ttl 5
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14000 deliver 2 -> 1 "nav" 39B
+    14100 peer1 event "nav" "spam" from sender 3 ×10
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 send 2 "nav" 39B ttl 5
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14100 deliver 2 -> 1 "nav" 39B
+    14200 peer1 event "nav" "spam" from sender 3 ×10
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 send 2 "nav" 39B ttl 5
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14200 deliver 2 -> 1 "nav" 39B
+    14300 peer1 event "nav" "spam" from sender 3 ×10
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 send 2 "nav" 39B ttl 5
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14300 deliver 2 -> 1 "nav" 39B
+    14400 peer1 event "nav" "spam" from sender 3 ×10
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 send 2 "nav" 39B ttl 5
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14400 deliver 2 -> 1 "nav" 39B
+    14500 peer1 event "nav" "spam" from sender 3 ×10
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 send 2 "nav" 39B ttl 5
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14500 deliver 2 -> 1 "nav" 39B
+    14600 peer1 event "nav" "spam" from sender 3 ×4
+    14600 peer1 flood from sender 3
+    14600 peer1 dropped Rate ×5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 send 2 "nav" 39B ttl 5
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14600 deliver 2 -> 1 "nav" 39B
+    14700 peer1 dropped Rate ×10
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 send 2 "nav" 39B ttl 5
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14700 deliver 2 -> 1 "nav" 39B
+    14800 peer1 dropped Rate ×10
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 send 2 "nav" 39B ttl 5
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14800 deliver 2 -> 1 "nav" 39B
+    14900 peer1 dropped Rate ×10
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 send 2 "nav" 39B ttl 5
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    14900 deliver 2 -> 1 "nav" 39B
+    15000 host: peer2 spams at 0/s
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    15000 peer1 event "nav" "spam" from sender 3 ×10
+    15000 event Spam(2, 0)
+    15000 deliver 0 -> 1 "nav" 49B
+    15000 deliver 0 -> 2 "nav" 49B
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15000 expire 2 "nav"
+    15100 peer1 call "Ping" "3"
+    15100 peer2 call "Ping" "3"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15100 expire 2 "nav"
+    15200 send 1 "gcs" 52B ttl 20
+    15200 send 2 "gcs" 52B ttl 20
+    15200 deliver 1 -> 0 "gcs" 52B
+    15200 deliver 2 -> 0 "gcs" 52B
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15200 expire 2 "nav"
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    15300 peer0 dropped NoPending
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15300 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15400 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15500 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15600 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15700 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15800 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    15900 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16000 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16100 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16200 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16300 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16400 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16500 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16600 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16700 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16800 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    16900 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17000 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17100 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17200 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17300 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17400 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17500 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17600 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17700 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17800 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    17900 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18000 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18100 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18200 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18300 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18400 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18500 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18600 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18700 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18800 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    18900 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19000 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19100 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19200 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19300 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19400 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19500 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19600 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19700 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19800 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    19900 expire 2 "nav"
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 deliver 0 -> 1 "nav" 49B
+    30000 deliver 0 -> 2 "nav" 49B
+    30100 peer1 call "Ping" "4"
+    30100 peer2 call "Ping" "4"
+    30200 send 1 "gcs" 52B ttl 20
+    30200 send 2 "gcs" 52B ttl 20
+    30200 deliver 1 -> 0 "gcs" 52B
+    30200 deliver 2 -> 0 "gcs" 52B
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    30300 peer0 dropped NoPending
+    35000 expire 0 "nav"
+    35200 expire 1 "gcs"
+    35200 expire 2 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B
+    45000 deliver 0 -> 2 "nav" 49B
+    45100 peer1 call "Ping" "5"
+    45100 peer2 call "Ping" "5"
+    45200 send 1 "gcs" 52B ttl 20
+    45200 send 2 "gcs" 52B ttl 20
+    45200 deliver 1 -> 0 "gcs" 52B
+    45200 deliver 2 -> 0 "gcs" 52B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    45300 peer0 dropped NoPending
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    50200 expire 2 "gcs"
+    60000 gcs calls Ping#6 ttl 20
+    60000 send 0 "nav" 49B ttl 20
+    60000 deliver 0 -> 1 "nav" 49B
+    60000 deliver 0 -> 2 "nav" 49B
+    60000 expire 0 "nav"
+    60100 peer1 call "Ping" "6"
+    60100 peer2 call "Ping" "6"
+    60200 send 1 "gcs" 52B ttl 20
+    60200 send 2 "gcs" 52B ttl 20
+    60200 deliver 1 -> 0 "gcs" 52B
+    60200 deliver 2 -> 0 "gcs" 52B
+    60200 expire 1 "gcs"
+    60200 expire 2 "gcs"
+    60300 peer0 reply seq=0 end=true status=0 "6"
+    60300 peer0 dropped NoPending
+    65000 expire 0 "nav"
+    65100 peer0 pressure 0
+    65100 peer1 pressure 268
+    65100 peer2 pressure 0

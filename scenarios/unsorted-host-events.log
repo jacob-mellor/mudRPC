@@ -1,0 +1,104 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      100 peer2 call "Ping" "1"
+      100 peer2 call "Ping" "2"
+      200 send 1 "gcs" 52B ttl 60
+      200 send 1 "gcs" 52B ttl 10
+      200 send 2 "gcs" 52B ttl 60
+      200 send 2 "gcs" 52B ttl 10
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+      300 peer0 dropped NoPending ×2
+      500 host: every peer stages the next key
+      500 event Stage
+     1000 host: every drone publishes its position to gcs
+     1000 host: peer0 calls a hostile method
+     1000 send 0 "nav" 74B ttl 20
+     1000 send 1 "gcs" 39B ttl 600
+     1000 send 2 "gcs" 39B ttl 600
+     1000 event Telemetry
+     1000 event Hostile(0)
+     1000 deliver 0 -> 1 "nav" 74B
+     1000 deliver 0 -> 2 "nav" 74B
+     1000 deliver 1 -> 0 "gcs" 39B
+     1000 deliver 2 -> 0 "gcs" 39B
+     1100 peer0 event "gcs" "pos" from sender 2
+     1100 peer0 event "gcs" "pos" from sender 3
+     1100 peer1 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x"
+     1100 peer2 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x"
+     1200 send 1 "gcs" 52B ttl 20
+     1200 send 2 "gcs" 52B ttl 20
+     1200 deliver 1 -> 0 "gcs" 52B
+     1200 deliver 2 -> 0 "gcs" 52B
+     1300 peer0 reply seq=0 end=true status=0 "x"
+     1300 peer0 dropped NoPending
+    10000 expire 0 "nav"
+    10200 expire 1 "gcs"
+    10200 expire 2 "gcs"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    15000 deliver 0 -> 1 "nav" 49B
+    15000 deliver 0 -> 2 "nav" 49B
+    15100 peer1 call "Ping" "3"
+    15100 peer2 call "Ping" "3"
+    15200 send 1 "gcs" 52B ttl 20
+    15200 send 2 "gcs" 52B ttl 20
+    15200 deliver 1 -> 0 "gcs" 52B
+    15200 deliver 2 -> 0 "gcs" 52B
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    15300 peer0 dropped NoPending
+    21000 expire 0 "nav"
+    21200 expire 1 "gcs"
+    21200 expire 2 "gcs"
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 deliver 0 -> 1 "nav" 49B
+    30000 deliver 0 -> 2 "nav" 49B
+    30100 peer1 call "Ping" "4"
+    30100 peer2 call "Ping" "4"
+    30200 send 1 "gcs" 52B ttl 20
+    30200 send 2 "gcs" 52B ttl 20
+    30200 deliver 1 -> 0 "gcs" 52B
+    30200 deliver 2 -> 0 "gcs" 52B
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    30300 peer0 dropped NoPending
+    35000 expire 0 "nav"
+    35200 expire 1 "gcs"
+    35200 expire 2 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B
+    45000 deliver 0 -> 2 "nav" 49B
+    45100 peer1 call "Ping" "5"
+    45100 peer2 call "Ping" "5"
+    45200 send 1 "gcs" 52B ttl 20
+    45200 send 2 "gcs" 52B ttl 20
+    45200 deliver 1 -> 0 "gcs" 52B
+    45200 deliver 2 -> 0 "gcs" 52B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    45300 peer0 dropped NoPending
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    50200 expire 2 "gcs"
+    51100 peer0 pressure 0
+    51100 peer1 pressure 0
+    51100 peer2 pressure 0

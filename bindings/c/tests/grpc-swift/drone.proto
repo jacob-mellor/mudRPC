@@ -1,0 +1,22 @@
+// The drop-in's test service: protoc-gen-swift and protoc-gen-grpc-swift-2 generate its client and service, and the test runs them over mudRPC unchanged.
+syntax = "proto3";
+package test;
+
+
+service Drone {
+  rpc Arm (ArmRequest) returns (ArmReply);
+  rpc Telemetry (TelemetryRequest) returns (stream Sample);
+  rpc Upload (stream Sample) returns (ArmReply);
+  rpc Fly (ArmRequest) returns (ArmReply);   // left unimplemented by the test's service
+}
+
+// A native mudRPC server, no gRPC on its side, answering the same shapes.
+service Rover {
+  rpc Arm (ArmRequest) returns (ArmReply);
+  rpc Telemetry (TelemetryRequest) returns (stream Sample);
+}
+
+message ArmRequest { uint32 id = 1; bytes note = 2; }
+message ArmReply { bool armed = 1; uint32 id = 2; string by = 3; }
+message TelemetryRequest { uint32 count = 1; uint32 fail_after = 2; uint32 big_at = 3; }
+message Sample { uint32 seq = 1; bytes pad = 2; }

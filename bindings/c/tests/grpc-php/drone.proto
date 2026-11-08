@@ -1,0 +1,15 @@
+// The drop-in's test service: grpc_php_plugin generates its client, and the test runs it over mudRPC unchanged.
+syntax = "proto3";
+package test;
+
+service Drone {
+  rpc Arm (ArmRequest) returns (ArmReply);
+  rpc Telemetry (TelemetryRequest) returns (stream Sample);
+  rpc Upload (stream Sample) returns (ArmReply);
+  rpc Chat (stream Sample) returns (stream Sample);
+}
+
+message ArmRequest { uint32 id = 1; bytes note = 2; }
+message ArmReply { bool armed = 1; uint32 id = 2; string by = 3; }
+message TelemetryRequest { uint32 count = 1; uint32 fail_after = 2; }
+message Sample { uint32 seq = 1; }

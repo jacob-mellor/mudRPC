@@ -1,0 +1,16 @@
+{
+    "name": "mudrpc",
+    "version": "0.0.0",
+    "description": "Mud RPC: gRPC for unstable networks. gRPC's service model over mesh, radio and UDP as sealed packets, without HTTP/2 or a server stack, and a Connect transport so the clients and services protoc-gen-es generates run unchanged.",
+    "keywords": ["grpc", "rpc", "connect", "connectrpc", "protobuf", "mesh", "udp", "delay-tolerant", "iot", "drone", "lora", "wasm", "no-http2"],
+    "license": "MIT",
+    "homepage": "https://github.com/jacob-mellor/mudRPC",
+    "repository": { "type": "git", "url": "git+https://github.com/jacob-mellor/mudRPC.git" },
+    "type": "module",
+    "exports": { ".": "./mud.js", "./connect": "./mud-connect.js" },
+    "files": ["mud.js", "mud-connect.js", "mudrpc.wasm", "SKILL.md"],
+    "engines": { "node": ">=22" },
+    "peerDependencies": { "@bufbuild/protobuf": ">=2", "@connectrpc/connect": ">=2" },
+    "peerDependenciesMeta": { "@bufbuild/protobuf": { "optional": true }, "@connectrpc/connect": { "optional": true } },
+    "scripts": { "postinstall": "node --input-type=module -e \"import { existsSync, mkdirSync, copyFileSync } from 'node:fs'; const p = process.env.INIT_CWD + '/.claude'; if (existsSync(p)) { mkdirSync(p + '/skills/mudrpc', { recursive: true }); copyFileSync('SKILL.md', p + '/skills/mudrpc/SKILL.md'); }\"" }
+}

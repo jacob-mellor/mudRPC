@@ -1,0 +1,8 @@
+// The only protobuf mudRPC ships. Every other protobuf tool ignores these options.
+syntax = "proto3";
+package mud;
+import "google/protobuf/descriptor.proto";
+extend google.protobuf.MethodOptions {
+  uint32 ttl_secs = 51001;   // lifetime of a call made through this method
+  string topic    = 51003;   // publish to this topic, no reply
+}

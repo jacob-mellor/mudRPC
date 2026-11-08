@@ -1,0 +1,8 @@
+# Two peers. gcs's radio collapses to 4 bytes per second between 10 s and 40 s: a 49-byte call takes 12 s of airtime,
+# so calls land seconds late and queue behind each other. With ttl 20 and one call per 15 s they still arrive: a ttl
+# sized to the link survives a collapse. Traffic is instant again after 40 s.
+seed 17
+peers 2
+profile dtn
+10000  bandwidth 0 4
+40000  bandwidth 0 0

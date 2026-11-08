@@ -1,0 +1,8 @@
+# Three peers, each roster line a host's to drop. drone-1 revokes gcs's line at 15 s, so every signed call gcs makes
+# after it is Open(Roster) at drone-1 while drone-2 answers; gcs revokes drone-2's at 30 s, so drone-2's signed replies
+# are Open(Roster) at gcs and its calls expire. Unsigned there is no roster, and nothing changes.
+seed 31
+peers 3
+profile reticulum
+15000  revoke 1 0
+30000  revoke 0 2

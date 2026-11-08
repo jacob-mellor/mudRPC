@@ -1,0 +1,10 @@
+[workspace]
+members = ["core", "auth", "gcm", "adapters", "bindings/c", "gen"]
+exclude = ["tripwire", "qemu"]   # bare no_std binaries with their own profile, never under the test profile
+resolver = "2"
+
+[profile.release]
+overflow-checks = true
+
+[profile.dev]
+opt-level = 3   # Ed25519 and AES run 20× slower unoptimised; debug assertions and overflow checks stay on, as in any dev build

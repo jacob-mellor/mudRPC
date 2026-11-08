@@ -1,0 +1,27 @@
+[package]
+name = "mudrpc-c"
+version = "0.4.0"
+edition = "2021"
+license = "MIT"
+description = "The mudRPC C ABI every language wrapper sits on, with the simulator and generator behind it."
+repository = "https://github.com/jacob-mellor/mudRPC"
+keywords = ["grpc", "rpc", "mesh", "udp", "no-std"]
+categories = ["network-programming", "external-ffi-bindings"]
+exclude = ["tests/*"]   # the drop-ins' tests, with their lock files, are not what a crate user builds
+
+[lib]
+name = "mudrpc"
+path = "ffi.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+mudrpc-auth = { path = "../../auth", version = "0.3.0" }
+mudrpc-core = { path = "../../core", version = "0.3.0" }
+mudrpc-gcm = { path = "../../gcm", version = "0.3.0" }
+mudrpc-adapters = { path = "../../adapters", version = "0.3.0", optional = true }
+mudrpc-gen = { path = "../../gen", version = "0.3.0", optional = true }
+
+[features]
+default = ["std"]
+std = ["dep:mudrpc-adapters", "dep:mudrpc-gen"]   # the simulator, the generator and wasm's allocator; a firmware builds without it
+internet = ["std", "mudrpc-adapters/internet"]   # mud_udp_new may bind and send to public addresses, with MUDRPC_INTERNET=listen-on-public-addresses beside it; no release carries it

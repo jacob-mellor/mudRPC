@@ -1,0 +1,16 @@
+// The drone demo's service, one .proto for every language: a ground station arms a drone, reads its telemetry and lands it.
+syntax = "proto3";
+package demo.drones;
+
+service Drone {
+  rpc Arm (ArmRequest) returns (ArmReply);
+  rpc Telemetry (TelemetryRequest) returns (stream Sample);
+  rpc Land (LandRequest) returns (LandReply);
+}
+
+message ArmRequest { string pilot = 1; }
+message ArmReply { bool armed = 1; string drone = 2; }
+message TelemetryRequest { uint32 samples = 1; }
+message Sample { uint32 seq = 1; sint32 altitude_m = 2; sint32 battery_pct = 3; }
+message LandRequest {}
+message LandReply { bool landed = 1; }

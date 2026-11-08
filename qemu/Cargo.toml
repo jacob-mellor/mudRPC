@@ -1,0 +1,30 @@
+[package]
+name = "mudrpc-qemu"
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+
+[[bin]]
+name = "qemu"
+path = "main.rs"
+test = false
+bench = false
+
+[dependencies]
+mudrpc-core = { path = "../core" }
+mudrpc-auth = { path = "../auth" }
+mudrpc-gcm = { path = "../gcm" }
+
+[features]
+icount = []   # the instruction counts after the checks, on the Cortex-M4 under `-icount shift=0`
+
+[workspace]
+
+# The tripwire's profile: the code a product ships, run on its instruction set.
+[profile.tripwire]
+inherits = "release"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+overflow-checks = false
+opt-level = 3

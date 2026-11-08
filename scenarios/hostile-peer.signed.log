@@ -1,0 +1,827 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 113B ttl 60
+        0 send 0 "nav" 113B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 deliver 0 -> 1 "nav" 113B
+        0 deliver 0 -> 2 "nav" 113B
+        0 deliver 0 -> 1 "nav" 113B
+        0 deliver 0 -> 2 "nav" 113B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      100 peer2 call "Ping" "1"
+      100 peer2 call "Ping" "2"
+      200 send 1 "gcs" 116B ttl 60
+      200 send 1 "gcs" 116B ttl 10
+      200 send 2 "gcs" 116B ttl 60
+      200 send 2 "gcs" 116B ttl 10
+      200 deliver 1 -> 0 "gcs" 116B
+      200 deliver 1 -> 0 "gcs" 116B
+      200 deliver 2 -> 0 "gcs" 116B
+      200 deliver 2 -> 0 "gcs" 116B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+      300 peer0 dropped NoPending ×2
+     3000 event Malformed(2, "nav")
+     3000 send 2 "nav" 40B ttl 60
+     3000 deliver 2 -> 1 "nav" 40B
+     3100 peer1 dropped Version(1)
+    10000 expire 0 "nav"
+    10200 expire 1 "gcs"
+    10200 expire 2 "gcs"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 113B ttl 20
+    15000 deliver 0 -> 1 "nav" 113B
+    15000 deliver 0 -> 2 "nav" 113B
+    15100 peer1 call "Ping" "3"
+    15100 peer2 call "Ping" "3"
+    15200 send 1 "gcs" 116B ttl 20
+    15200 send 2 "gcs" 116B ttl 20
+    15200 deliver 1 -> 0 "gcs" 116B
+    15200 deliver 2 -> 0 "gcs" 116B
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    15300 peer0 dropped NoPending
+    20000 event Replay(2)
+    20000 send 2 "nav" 113B ttl 60
+    20000 deliver 2 -> 1 "nav" 113B
+    20100 peer1 dropped Duplicate
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 113B ttl 20
+    30000 event Flood(2, "nav", 20)
+    30000 send 2 "nav" 40B ttl 10
+    30000 send 2 "nav" 40B ttl 10
+    30000 deliver 0 -> 1 "nav" 113B
+    30000 deliver 0 -> 2 "nav" 113B
+    30000 deliver 2 -> 1 "nav" 40B
+    30000 deliver 2 -> 1 "nav" 40B
+    30100 peer1 call "Ping" "4"
+    30100 peer1 dropped Version(1) ×2
+    30100 peer2 call "Ping" "4"
+    30100 send 2 "nav" 40B ttl 10
+    30100 send 2 "nav" 40B ttl 10
+    30100 deliver 2 -> 1 "nav" 40B
+    30100 deliver 2 -> 1 "nav" 40B
+    30200 send 1 "gcs" 116B ttl 20
+    30200 peer1 dropped Version(1) ×2
+    30200 send 2 "gcs" 116B ttl 20
+    30200 send 2 "nav" 40B ttl 10
+    30200 send 2 "nav" 40B ttl 10
+    30200 deliver 1 -> 0 "gcs" 116B
+    30200 deliver 2 -> 0 "gcs" 116B
+    30200 deliver 2 -> 1 "nav" 40B
+    30200 deliver 2 -> 1 "nav" 40B
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    30300 peer0 dropped NoPending
+    30300 peer1 dropped Version(1) ×2
+    30300 send 2 "nav" 40B ttl 10
+    30300 send 2 "nav" 40B ttl 10
+    30300 deliver 2 -> 1 "nav" 40B
+    30300 deliver 2 -> 1 "nav" 40B
+    30400 peer1 dropped Version(1) ×2
+    30400 send 2 "nav" 40B ttl 10
+    30400 send 2 "nav" 40B ttl 10
+    30400 deliver 2 -> 1 "nav" 40B
+    30400 deliver 2 -> 1 "nav" 40B
+    30500 peer1 dropped Version(1) ×2
+    30500 send 2 "nav" 40B ttl 10
+    30500 send 2 "nav" 40B ttl 10
+    30500 deliver 2 -> 1 "nav" 40B
+    30500 deliver 2 -> 1 "nav" 40B
+    30600 peer1 dropped Version(1) ×2
+    30600 send 2 "nav" 40B ttl 10
+    30600 send 2 "nav" 40B ttl 10
+    30600 deliver 2 -> 1 "nav" 40B
+    30600 deliver 2 -> 1 "nav" 40B
+    30700 peer1 dropped Version(1) ×2
+    30700 send 2 "nav" 40B ttl 10
+    30700 send 2 "nav" 40B ttl 10
+    30700 deliver 2 -> 1 "nav" 40B
+    30700 deliver 2 -> 1 "nav" 40B
+    30800 peer1 dropped Version(1) ×2
+    30800 send 2 "nav" 40B ttl 10
+    30800 send 2 "nav" 40B ttl 10
+    30800 deliver 2 -> 1 "nav" 40B
+    30800 deliver 2 -> 1 "nav" 40B
+    30900 peer1 dropped Version(1) ×2
+    30900 send 2 "nav" 40B ttl 10
+    30900 send 2 "nav" 40B ttl 10
+    30900 deliver 2 -> 1 "nav" 40B
+    30900 deliver 2 -> 1 "nav" 40B
+    31000 peer1 dropped Version(1) ×2
+    31000 send 2 "nav" 40B ttl 10
+    31000 send 2 "nav" 40B ttl 10
+    31000 deliver 2 -> 1 "nav" 40B
+    31000 deliver 2 -> 1 "nav" 40B
+    31100 peer1 dropped Version(1) ×2
+    31100 send 2 "nav" 40B ttl 10
+    31100 send 2 "nav" 40B ttl 10
+    31100 deliver 2 -> 1 "nav" 40B
+    31100 deliver 2 -> 1 "nav" 40B
+    31200 peer1 dropped Version(1) ×2
+    31200 send 2 "nav" 40B ttl 10
+    31200 send 2 "nav" 40B ttl 10
+    31200 deliver 2 -> 1 "nav" 40B
+    31200 deliver 2 -> 1 "nav" 40B
+    31300 peer1 dropped Version(1) ×2
+    31300 send 2 "nav" 40B ttl 10
+    31300 send 2 "nav" 40B ttl 10
+    31300 deliver 2 -> 1 "nav" 40B
+    31300 deliver 2 -> 1 "nav" 40B
+    31400 peer1 dropped Version(1) ×2
+    31400 send 2 "nav" 40B ttl 10
+    31400 send 2 "nav" 40B ttl 10
+    31400 deliver 2 -> 1 "nav" 40B
+    31400 deliver 2 -> 1 "nav" 40B
+    31500 peer1 dropped Version(1) ×2
+    31500 send 2 "nav" 40B ttl 10
+    31500 send 2 "nav" 40B ttl 10
+    31500 deliver 2 -> 1 "nav" 40B
+    31500 deliver 2 -> 1 "nav" 40B
+    31600 peer1 dropped Version(1) ×2
+    31600 send 2 "nav" 40B ttl 10
+    31600 send 2 "nav" 40B ttl 10
+    31600 deliver 2 -> 1 "nav" 40B
+    31600 deliver 2 -> 1 "nav" 40B
+    31700 peer1 dropped Version(1) ×2
+    31700 send 2 "nav" 40B ttl 10
+    31700 send 2 "nav" 40B ttl 10
+    31700 deliver 2 -> 1 "nav" 40B
+    31700 deliver 2 -> 1 "nav" 40B
+    31800 peer1 dropped Version(1) ×2
+    31800 send 2 "nav" 40B ttl 10
+    31800 send 2 "nav" 40B ttl 10
+    31800 deliver 2 -> 1 "nav" 40B
+    31800 deliver 2 -> 1 "nav" 40B
+    31900 peer1 dropped Version(1) ×2
+    31900 send 2 "nav" 40B ttl 10
+    31900 send 2 "nav" 40B ttl 10
+    31900 deliver 2 -> 1 "nav" 40B
+    31900 deliver 2 -> 1 "nav" 40B
+    32000 peer1 dropped Version(1) ×2
+    32000 send 2 "nav" 40B ttl 10
+    32000 send 2 "nav" 40B ttl 10
+    32000 deliver 2 -> 1 "nav" 40B
+    32000 deliver 2 -> 1 "nav" 40B
+    32100 peer1 dropped Version(1) ×2
+    32100 send 2 "nav" 40B ttl 10
+    32100 send 2 "nav" 40B ttl 10
+    32100 deliver 2 -> 1 "nav" 40B
+    32100 deliver 2 -> 1 "nav" 40B
+    32200 peer1 dropped Version(1) ×2
+    32200 send 2 "nav" 40B ttl 10
+    32200 send 2 "nav" 40B ttl 10
+    32200 deliver 2 -> 1 "nav" 40B
+    32200 deliver 2 -> 1 "nav" 40B
+    32300 peer1 dropped Version(1) ×2
+    32300 send 2 "nav" 40B ttl 10
+    32300 send 2 "nav" 40B ttl 10
+    32300 deliver 2 -> 1 "nav" 40B
+    32300 deliver 2 -> 1 "nav" 40B
+    32400 peer1 dropped Version(1) ×2
+    32400 send 2 "nav" 40B ttl 10
+    32400 send 2 "nav" 40B ttl 10
+    32400 deliver 2 -> 1 "nav" 40B
+    32400 deliver 2 -> 1 "nav" 40B
+    32500 peer1 dropped Version(1) ×2
+    32500 send 2 "nav" 40B ttl 10
+    32500 send 2 "nav" 40B ttl 10
+    32500 deliver 2 -> 1 "nav" 40B
+    32500 deliver 2 -> 1 "nav" 40B
+    32600 peer1 dropped Version(1) ×2
+    32600 send 2 "nav" 40B ttl 10
+    32600 send 2 "nav" 40B ttl 10
+    32600 deliver 2 -> 1 "nav" 40B
+    32600 deliver 2 -> 1 "nav" 40B
+    32700 peer1 dropped Version(1) ×2
+    32700 send 2 "nav" 40B ttl 10
+    32700 send 2 "nav" 40B ttl 10
+    32700 deliver 2 -> 1 "nav" 40B
+    32700 deliver 2 -> 1 "nav" 40B
+    32800 peer1 dropped Version(1) ×2
+    32800 send 2 "nav" 40B ttl 10
+    32800 send 2 "nav" 40B ttl 10
+    32800 deliver 2 -> 1 "nav" 40B
+    32800 deliver 2 -> 1 "nav" 40B
+    32900 peer1 dropped Version(1) ×2
+    32900 send 2 "nav" 40B ttl 10
+    32900 send 2 "nav" 40B ttl 10
+    32900 deliver 2 -> 1 "nav" 40B
+    32900 deliver 2 -> 1 "nav" 40B
+    33000 peer1 dropped Version(1) ×2
+    33000 send 2 "nav" 40B ttl 10
+    33000 send 2 "nav" 40B ttl 10
+    33000 deliver 2 -> 1 "nav" 40B
+    33000 deliver 2 -> 1 "nav" 40B
+    33100 peer1 dropped Version(1) ×2
+    33100 send 2 "nav" 40B ttl 10
+    33100 send 2 "nav" 40B ttl 10
+    33100 deliver 2 -> 1 "nav" 40B
+    33100 deliver 2 -> 1 "nav" 40B
+    33200 peer1 dropped Version(1) ×2
+    33200 send 2 "nav" 40B ttl 10
+    33200 send 2 "nav" 40B ttl 10
+    33200 deliver 2 -> 1 "nav" 40B
+    33200 deliver 2 -> 1 "nav" 40B
+    33300 peer1 dropped Version(1) ×2
+    33300 send 2 "nav" 40B ttl 10
+    33300 send 2 "nav" 40B ttl 10
+    33300 deliver 2 -> 1 "nav" 40B
+    33300 deliver 2 -> 1 "nav" 40B
+    33400 peer1 dropped Version(1) ×2
+    33400 send 2 "nav" 40B ttl 10
+    33400 send 2 "nav" 40B ttl 10
+    33400 deliver 2 -> 1 "nav" 40B
+    33400 deliver 2 -> 1 "nav" 40B
+    33500 peer1 dropped Version(1) ×2
+    33500 send 2 "nav" 40B ttl 10
+    33500 send 2 "nav" 40B ttl 10
+    33500 deliver 2 -> 1 "nav" 40B
+    33500 deliver 2 -> 1 "nav" 40B
+    33600 peer1 dropped Version(1) ×2
+    33600 send 2 "nav" 40B ttl 10
+    33600 send 2 "nav" 40B ttl 10
+    33600 deliver 2 -> 1 "nav" 40B
+    33600 deliver 2 -> 1 "nav" 40B
+    33700 peer1 dropped Version(1) ×2
+    33700 send 2 "nav" 40B ttl 10
+    33700 send 2 "nav" 40B ttl 10
+    33700 deliver 2 -> 1 "nav" 40B
+    33700 deliver 2 -> 1 "nav" 40B
+    33800 peer1 dropped Version(1) ×2
+    33800 send 2 "nav" 40B ttl 10
+    33800 send 2 "nav" 40B ttl 10
+    33800 deliver 2 -> 1 "nav" 40B
+    33800 deliver 2 -> 1 "nav" 40B
+    33900 peer1 dropped Version(1) ×2
+    33900 send 2 "nav" 40B ttl 10
+    33900 send 2 "nav" 40B ttl 10
+    33900 deliver 2 -> 1 "nav" 40B
+    33900 deliver 2 -> 1 "nav" 40B
+    34000 peer1 dropped Version(1) ×2
+    34000 send 2 "nav" 40B ttl 10
+    34000 send 2 "nav" 40B ttl 10
+    34000 deliver 2 -> 1 "nav" 40B
+    34000 deliver 2 -> 1 "nav" 40B
+    34100 peer1 dropped Version(1) ×2
+    34100 send 2 "nav" 40B ttl 10
+    34100 send 2 "nav" 40B ttl 10
+    34100 deliver 2 -> 1 "nav" 40B
+    34100 deliver 2 -> 1 "nav" 40B
+    34200 peer1 dropped Version(1) ×2
+    34200 send 2 "nav" 40B ttl 10
+    34200 send 2 "nav" 40B ttl 10
+    34200 deliver 2 -> 1 "nav" 40B
+    34200 deliver 2 -> 1 "nav" 40B
+    34300 peer1 dropped Version(1) ×2
+    34300 send 2 "nav" 40B ttl 10
+    34300 send 2 "nav" 40B ttl 10
+    34300 deliver 2 -> 1 "nav" 40B
+    34300 deliver 2 -> 1 "nav" 40B
+    34400 peer1 dropped Version(1) ×2
+    34400 send 2 "nav" 40B ttl 10
+    34400 send 2 "nav" 40B ttl 10
+    34400 deliver 2 -> 1 "nav" 40B
+    34400 deliver 2 -> 1 "nav" 40B
+    34500 peer1 dropped Version(1) ×2
+    34500 send 2 "nav" 40B ttl 10
+    34500 send 2 "nav" 40B ttl 10
+    34500 deliver 2 -> 1 "nav" 40B
+    34500 deliver 2 -> 1 "nav" 40B
+    34600 peer1 dropped Version(1) ×2
+    34600 send 2 "nav" 40B ttl 10
+    34600 send 2 "nav" 40B ttl 10
+    34600 deliver 2 -> 1 "nav" 40B
+    34600 deliver 2 -> 1 "nav" 40B
+    34700 peer1 dropped Version(1) ×2
+    34700 send 2 "nav" 40B ttl 10
+    34700 send 2 "nav" 40B ttl 10
+    34700 deliver 2 -> 1 "nav" 40B
+    34700 deliver 2 -> 1 "nav" 40B
+    34800 peer1 dropped Version(1) ×2
+    34800 send 2 "nav" 40B ttl 10
+    34800 send 2 "nav" 40B ttl 10
+    34800 deliver 2 -> 1 "nav" 40B
+    34800 deliver 2 -> 1 "nav" 40B
+    34900 peer1 dropped Version(1) ×2
+    34900 send 2 "nav" 40B ttl 10
+    34900 send 2 "nav" 40B ttl 10
+    34900 deliver 2 -> 1 "nav" 40B
+    34900 deliver 2 -> 1 "nav" 40B
+    35000 peer1 dropped Version(1) ×2
+    35000 send 2 "nav" 40B ttl 10
+    35000 send 2 "nav" 40B ttl 10
+    35000 deliver 2 -> 1 "nav" 40B
+    35000 deliver 2 -> 1 "nav" 40B
+    35000 expire 0 "nav"
+    35100 peer1 dropped Version(1) ×2
+    35100 send 2 "nav" 40B ttl 10
+    35100 send 2 "nav" 40B ttl 10
+    35100 deliver 2 -> 1 "nav" 40B
+    35100 deliver 2 -> 1 "nav" 40B
+    35200 peer1 dropped Version(1) ×2
+    35200 send 2 "nav" 40B ttl 10
+    35200 send 2 "nav" 40B ttl 10
+    35200 deliver 2 -> 1 "nav" 40B
+    35200 deliver 2 -> 1 "nav" 40B
+    35200 expire 1 "gcs"
+    35200 expire 2 "gcs"
+    35300 peer1 dropped Version(1) ×2
+    35300 send 2 "nav" 40B ttl 10
+    35300 send 2 "nav" 40B ttl 10
+    35300 deliver 2 -> 1 "nav" 40B
+    35300 deliver 2 -> 1 "nav" 40B
+    35400 peer1 dropped Version(1) ×2
+    35400 send 2 "nav" 40B ttl 10
+    35400 send 2 "nav" 40B ttl 10
+    35400 deliver 2 -> 1 "nav" 40B
+    35400 deliver 2 -> 1 "nav" 40B
+    35500 peer1 dropped Version(1) ×2
+    35500 send 2 "nav" 40B ttl 10
+    35500 send 2 "nav" 40B ttl 10
+    35500 deliver 2 -> 1 "nav" 40B
+    35500 deliver 2 -> 1 "nav" 40B
+    35600 peer1 dropped Version(1) ×2
+    35600 send 2 "nav" 40B ttl 10
+    35600 send 2 "nav" 40B ttl 10
+    35600 deliver 2 -> 1 "nav" 40B
+    35600 deliver 2 -> 1 "nav" 40B
+    35700 peer1 dropped Version(1) ×2
+    35700 send 2 "nav" 40B ttl 10
+    35700 send 2 "nav" 40B ttl 10
+    35700 deliver 2 -> 1 "nav" 40B
+    35700 deliver 2 -> 1 "nav" 40B
+    35800 peer1 dropped Version(1) ×2
+    35800 send 2 "nav" 40B ttl 10
+    35800 send 2 "nav" 40B ttl 10
+    35800 deliver 2 -> 1 "nav" 40B
+    35800 deliver 2 -> 1 "nav" 40B
+    35900 peer1 dropped Version(1) ×2
+    35900 send 2 "nav" 40B ttl 10
+    35900 send 2 "nav" 40B ttl 10
+    35900 deliver 2 -> 1 "nav" 40B
+    35900 deliver 2 -> 1 "nav" 40B
+    36000 peer1 dropped Version(1) ×2
+    36000 send 2 "nav" 40B ttl 10
+    36000 send 2 "nav" 40B ttl 10
+    36000 deliver 2 -> 1 "nav" 40B
+    36000 deliver 2 -> 1 "nav" 40B
+    36100 peer1 dropped Version(1) ×2
+    36100 send 2 "nav" 40B ttl 10
+    36100 send 2 "nav" 40B ttl 10
+    36100 deliver 2 -> 1 "nav" 40B
+    36100 deliver 2 -> 1 "nav" 40B
+    36200 peer1 dropped Version(1) ×2
+    36200 send 2 "nav" 40B ttl 10
+    36200 send 2 "nav" 40B ttl 10
+    36200 deliver 2 -> 1 "nav" 40B
+    36200 deliver 2 -> 1 "nav" 40B
+    36300 peer1 dropped Version(1) ×2
+    36300 send 2 "nav" 40B ttl 10
+    36300 send 2 "nav" 40B ttl 10
+    36300 deliver 2 -> 1 "nav" 40B
+    36300 deliver 2 -> 1 "nav" 40B
+    36400 peer1 dropped Version(1) ×2
+    36400 send 2 "nav" 40B ttl 10
+    36400 send 2 "nav" 40B ttl 10
+    36400 deliver 2 -> 1 "nav" 40B
+    36400 deliver 2 -> 1 "nav" 40B
+    36500 peer1 dropped Version(1) ×2
+    36500 send 2 "nav" 40B ttl 10
+    36500 send 2 "nav" 40B ttl 10
+    36500 deliver 2 -> 1 "nav" 40B
+    36500 deliver 2 -> 1 "nav" 40B
+    36600 peer1 dropped Version(1) ×2
+    36600 send 2 "nav" 40B ttl 10
+    36600 send 2 "nav" 40B ttl 10
+    36600 deliver 2 -> 1 "nav" 40B
+    36600 deliver 2 -> 1 "nav" 40B
+    36700 peer1 dropped Version(1) ×2
+    36700 send 2 "nav" 40B ttl 10
+    36700 send 2 "nav" 40B ttl 10
+    36700 deliver 2 -> 1 "nav" 40B
+    36700 deliver 2 -> 1 "nav" 40B
+    36800 peer1 dropped Version(1) ×2
+    36800 send 2 "nav" 40B ttl 10
+    36800 send 2 "nav" 40B ttl 10
+    36800 deliver 2 -> 1 "nav" 40B
+    36800 deliver 2 -> 1 "nav" 40B
+    36900 peer1 dropped Version(1) ×2
+    36900 send 2 "nav" 40B ttl 10
+    36900 send 2 "nav" 40B ttl 10
+    36900 deliver 2 -> 1 "nav" 40B
+    36900 deliver 2 -> 1 "nav" 40B
+    37000 peer1 dropped Version(1) ×2
+    37000 send 2 "nav" 40B ttl 10
+    37000 send 2 "nav" 40B ttl 10
+    37000 deliver 2 -> 1 "nav" 40B
+    37000 deliver 2 -> 1 "nav" 40B
+    37100 peer1 dropped Version(1) ×2
+    37100 send 2 "nav" 40B ttl 10
+    37100 send 2 "nav" 40B ttl 10
+    37100 deliver 2 -> 1 "nav" 40B
+    37100 deliver 2 -> 1 "nav" 40B
+    37200 peer1 dropped Version(1) ×2
+    37200 send 2 "nav" 40B ttl 10
+    37200 send 2 "nav" 40B ttl 10
+    37200 deliver 2 -> 1 "nav" 40B
+    37200 deliver 2 -> 1 "nav" 40B
+    37300 peer1 dropped Version(1) ×2
+    37300 send 2 "nav" 40B ttl 10
+    37300 send 2 "nav" 40B ttl 10
+    37300 deliver 2 -> 1 "nav" 40B
+    37300 deliver 2 -> 1 "nav" 40B
+    37400 peer1 dropped Version(1) ×2
+    37400 send 2 "nav" 40B ttl 10
+    37400 send 2 "nav" 40B ttl 10
+    37400 deliver 2 -> 1 "nav" 40B
+    37400 deliver 2 -> 1 "nav" 40B
+    37500 peer1 dropped Version(1) ×2
+    37500 send 2 "nav" 40B ttl 10
+    37500 send 2 "nav" 40B ttl 10
+    37500 deliver 2 -> 1 "nav" 40B
+    37500 deliver 2 -> 1 "nav" 40B
+    37600 peer1 dropped Version(1) ×2
+    37600 send 2 "nav" 40B ttl 10
+    37600 send 2 "nav" 40B ttl 10
+    37600 deliver 2 -> 1 "nav" 40B
+    37600 deliver 2 -> 1 "nav" 40B
+    37700 peer1 dropped Version(1) ×2
+    37700 send 2 "nav" 40B ttl 10
+    37700 send 2 "nav" 40B ttl 10
+    37700 deliver 2 -> 1 "nav" 40B
+    37700 deliver 2 -> 1 "nav" 40B
+    37800 peer1 dropped Version(1) ×2
+    37800 send 2 "nav" 40B ttl 10
+    37800 send 2 "nav" 40B ttl 10
+    37800 deliver 2 -> 1 "nav" 40B
+    37800 deliver 2 -> 1 "nav" 40B
+    37900 peer1 dropped Version(1) ×2
+    37900 send 2 "nav" 40B ttl 10
+    37900 send 2 "nav" 40B ttl 10
+    37900 deliver 2 -> 1 "nav" 40B
+    37900 deliver 2 -> 1 "nav" 40B
+    38000 peer1 dropped Version(1) ×2
+    38000 send 2 "nav" 40B ttl 10
+    38000 send 2 "nav" 40B ttl 10
+    38000 deliver 2 -> 1 "nav" 40B
+    38000 deliver 2 -> 1 "nav" 40B
+    38100 peer1 dropped Version(1) ×2
+    38100 send 2 "nav" 40B ttl 10
+    38100 send 2 "nav" 40B ttl 10
+    38100 deliver 2 -> 1 "nav" 40B
+    38100 deliver 2 -> 1 "nav" 40B
+    38200 peer1 dropped Version(1) ×2
+    38200 send 2 "nav" 40B ttl 10
+    38200 send 2 "nav" 40B ttl 10
+    38200 deliver 2 -> 1 "nav" 40B
+    38200 deliver 2 -> 1 "nav" 40B
+    38300 peer1 dropped Version(1) ×2
+    38300 send 2 "nav" 40B ttl 10
+    38300 send 2 "nav" 40B ttl 10
+    38300 deliver 2 -> 1 "nav" 40B
+    38300 deliver 2 -> 1 "nav" 40B
+    38400 peer1 dropped Version(1) ×2
+    38400 send 2 "nav" 40B ttl 10
+    38400 send 2 "nav" 40B ttl 10
+    38400 deliver 2 -> 1 "nav" 40B
+    38400 deliver 2 -> 1 "nav" 40B
+    38500 peer1 dropped Version(1) ×2
+    38500 send 2 "nav" 40B ttl 10
+    38500 send 2 "nav" 40B ttl 10
+    38500 deliver 2 -> 1 "nav" 40B
+    38500 deliver 2 -> 1 "nav" 40B
+    38600 peer1 dropped Version(1) ×2
+    38600 send 2 "nav" 40B ttl 10
+    38600 send 2 "nav" 40B ttl 10
+    38600 deliver 2 -> 1 "nav" 40B
+    38600 deliver 2 -> 1 "nav" 40B
+    38700 peer1 dropped Version(1) ×2
+    38700 send 2 "nav" 40B ttl 10
+    38700 send 2 "nav" 40B ttl 10
+    38700 deliver 2 -> 1 "nav" 40B
+    38700 deliver 2 -> 1 "nav" 40B
+    38800 peer1 dropped Version(1) ×2
+    38800 send 2 "nav" 40B ttl 10
+    38800 send 2 "nav" 40B ttl 10
+    38800 deliver 2 -> 1 "nav" 40B
+    38800 deliver 2 -> 1 "nav" 40B
+    38900 peer1 dropped Version(1) ×2
+    38900 send 2 "nav" 40B ttl 10
+    38900 send 2 "nav" 40B ttl 10
+    38900 deliver 2 -> 1 "nav" 40B
+    38900 deliver 2 -> 1 "nav" 40B
+    39000 peer1 dropped Version(1) ×2
+    39000 send 2 "nav" 40B ttl 10
+    39000 send 2 "nav" 40B ttl 10
+    39000 deliver 2 -> 1 "nav" 40B
+    39000 deliver 2 -> 1 "nav" 40B
+    39100 peer1 dropped Version(1) ×2
+    39100 send 2 "nav" 40B ttl 10
+    39100 send 2 "nav" 40B ttl 10
+    39100 deliver 2 -> 1 "nav" 40B
+    39100 deliver 2 -> 1 "nav" 40B
+    39200 peer1 dropped Version(1) ×2
+    39200 send 2 "nav" 40B ttl 10
+    39200 send 2 "nav" 40B ttl 10
+    39200 deliver 2 -> 1 "nav" 40B
+    39200 deliver 2 -> 1 "nav" 40B
+    39300 peer1 dropped Version(1) ×2
+    39300 send 2 "nav" 40B ttl 10
+    39300 send 2 "nav" 40B ttl 10
+    39300 deliver 2 -> 1 "nav" 40B
+    39300 deliver 2 -> 1 "nav" 40B
+    39400 peer1 dropped Version(1) ×2
+    39400 send 2 "nav" 40B ttl 10
+    39400 send 2 "nav" 40B ttl 10
+    39400 deliver 2 -> 1 "nav" 40B
+    39400 deliver 2 -> 1 "nav" 40B
+    39500 peer1 dropped Version(1) ×2
+    39500 send 2 "nav" 40B ttl 10
+    39500 send 2 "nav" 40B ttl 10
+    39500 deliver 2 -> 1 "nav" 40B
+    39500 deliver 2 -> 1 "nav" 40B
+    39600 peer1 dropped Version(1) ×2
+    39600 send 2 "nav" 40B ttl 10
+    39600 send 2 "nav" 40B ttl 10
+    39600 deliver 2 -> 1 "nav" 40B
+    39600 deliver 2 -> 1 "nav" 40B
+    39700 peer1 dropped Version(1) ×2
+    39700 send 2 "nav" 40B ttl 10
+    39700 send 2 "nav" 40B ttl 10
+    39700 deliver 2 -> 1 "nav" 40B
+    39700 deliver 2 -> 1 "nav" 40B
+    39800 peer1 dropped Version(1) ×2
+    39800 send 2 "nav" 40B ttl 10
+    39800 send 2 "nav" 40B ttl 10
+    39800 deliver 2 -> 1 "nav" 40B
+    39800 deliver 2 -> 1 "nav" 40B
+    39900 peer1 dropped Version(1) ×2
+    39900 send 2 "nav" 40B ttl 10
+    39900 send 2 "nav" 40B ttl 10
+    39900 deliver 2 -> 1 "nav" 40B
+    39900 deliver 2 -> 1 "nav" 40B
+    40000 peer1 dropped Version(1) ×2
+    40000 event Flood(2, "nav", 0)
+    40000 expire 2 "nav"
+    40000 expire 2 "nav"
+    40100 expire 2 "nav"
+    40100 expire 2 "nav"
+    40200 expire 2 "nav"
+    40200 expire 2 "nav"
+    40300 expire 2 "nav"
+    40300 expire 2 "nav"
+    40400 expire 2 "nav"
+    40400 expire 2 "nav"
+    40500 expire 2 "nav"
+    40500 expire 2 "nav"
+    40600 expire 2 "nav"
+    40600 expire 2 "nav"
+    40700 expire 2 "nav"
+    40700 expire 2 "nav"
+    40800 expire 2 "nav"
+    40800 expire 2 "nav"
+    40900 expire 2 "nav"
+    40900 expire 2 "nav"
+    41000 expire 2 "nav"
+    41000 expire 2 "nav"
+    41100 expire 2 "nav"
+    41100 expire 2 "nav"
+    41200 expire 2 "nav"
+    41200 expire 2 "nav"
+    41300 expire 2 "nav"
+    41300 expire 2 "nav"
+    41400 expire 2 "nav"
+    41400 expire 2 "nav"
+    41500 expire 2 "nav"
+    41500 expire 2 "nav"
+    41600 expire 2 "nav"
+    41600 expire 2 "nav"
+    41700 expire 2 "nav"
+    41700 expire 2 "nav"
+    41800 expire 2 "nav"
+    41800 expire 2 "nav"
+    41900 expire 2 "nav"
+    41900 expire 2 "nav"
+    42000 expire 2 "nav"
+    42000 expire 2 "nav"
+    42100 expire 2 "nav"
+    42100 expire 2 "nav"
+    42200 expire 2 "nav"
+    42200 expire 2 "nav"
+    42300 expire 2 "nav"
+    42300 expire 2 "nav"
+    42400 expire 2 "nav"
+    42400 expire 2 "nav"
+    42500 expire 2 "nav"
+    42500 expire 2 "nav"
+    42600 expire 2 "nav"
+    42600 expire 2 "nav"
+    42700 expire 2 "nav"
+    42700 expire 2 "nav"
+    42800 expire 2 "nav"
+    42800 expire 2 "nav"
+    42900 expire 2 "nav"
+    42900 expire 2 "nav"
+    43000 expire 2 "nav"
+    43000 expire 2 "nav"
+    43100 expire 2 "nav"
+    43100 expire 2 "nav"
+    43200 expire 2 "nav"
+    43200 expire 2 "nav"
+    43300 expire 2 "nav"
+    43300 expire 2 "nav"
+    43400 expire 2 "nav"
+    43400 expire 2 "nav"
+    43500 expire 2 "nav"
+    43500 expire 2 "nav"
+    43600 expire 2 "nav"
+    43600 expire 2 "nav"
+    43700 expire 2 "nav"
+    43700 expire 2 "nav"
+    43800 expire 2 "nav"
+    43800 expire 2 "nav"
+    43900 expire 2 "nav"
+    43900 expire 2 "nav"
+    44000 expire 2 "nav"
+    44000 expire 2 "nav"
+    44100 expire 2 "nav"
+    44100 expire 2 "nav"
+    44200 expire 2 "nav"
+    44200 expire 2 "nav"
+    44300 expire 2 "nav"
+    44300 expire 2 "nav"
+    44400 expire 2 "nav"
+    44400 expire 2 "nav"
+    44500 expire 2 "nav"
+    44500 expire 2 "nav"
+    44600 expire 2 "nav"
+    44600 expire 2 "nav"
+    44700 expire 2 "nav"
+    44700 expire 2 "nav"
+    44800 expire 2 "nav"
+    44800 expire 2 "nav"
+    44900 expire 2 "nav"
+    44900 expire 2 "nav"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 113B ttl 20
+    45000 deliver 0 -> 1 "nav" 113B
+    45000 deliver 0 -> 2 "nav" 113B
+    45000 expire 2 "nav"
+    45000 expire 2 "nav"
+    45100 peer1 call "Ping" "5"
+    45100 peer2 call "Ping" "5"
+    45100 expire 2 "nav"
+    45100 expire 2 "nav"
+    45200 send 1 "gcs" 116B ttl 20
+    45200 send 2 "gcs" 116B ttl 20
+    45200 deliver 1 -> 0 "gcs" 116B
+    45200 deliver 2 -> 0 "gcs" 116B
+    45200 expire 2 "nav"
+    45200 expire 2 "nav"
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    45300 peer0 dropped NoPending
+    45300 expire 2 "nav"
+    45300 expire 2 "nav"
+    45400 expire 2 "nav"
+    45400 expire 2 "nav"
+    45500 expire 2 "nav"
+    45500 expire 2 "nav"
+    45600 expire 2 "nav"
+    45600 expire 2 "nav"
+    45700 expire 2 "nav"
+    45700 expire 2 "nav"
+    45800 expire 2 "nav"
+    45800 expire 2 "nav"
+    45900 expire 2 "nav"
+    45900 expire 2 "nav"
+    46000 expire 2 "nav"
+    46000 expire 2 "nav"
+    46100 expire 2 "nav"
+    46100 expire 2 "nav"
+    46200 expire 2 "nav"
+    46200 expire 2 "nav"
+    46300 expire 2 "nav"
+    46300 expire 2 "nav"
+    46400 expire 2 "nav"
+    46400 expire 2 "nav"
+    46500 expire 2 "nav"
+    46500 expire 2 "nav"
+    46600 expire 2 "nav"
+    46600 expire 2 "nav"
+    46700 expire 2 "nav"
+    46700 expire 2 "nav"
+    46800 expire 2 "nav"
+    46800 expire 2 "nav"
+    46900 expire 2 "nav"
+    46900 expire 2 "nav"
+    47000 expire 2 "nav"
+    47000 expire 2 "nav"
+    47100 expire 2 "nav"
+    47100 expire 2 "nav"
+    47200 expire 2 "nav"
+    47200 expire 2 "nav"
+    47300 expire 2 "nav"
+    47300 expire 2 "nav"
+    47400 expire 2 "nav"
+    47400 expire 2 "nav"
+    47500 expire 2 "nav"
+    47500 expire 2 "nav"
+    47600 expire 2 "nav"
+    47600 expire 2 "nav"
+    47700 expire 2 "nav"
+    47700 expire 2 "nav"
+    47800 expire 2 "nav"
+    47800 expire 2 "nav"
+    47900 expire 2 "nav"
+    47900 expire 2 "nav"
+    48000 expire 2 "nav"
+    48000 expire 2 "nav"
+    48100 expire 2 "nav"
+    48100 expire 2 "nav"
+    48200 expire 2 "nav"
+    48200 expire 2 "nav"
+    48300 expire 2 "nav"
+    48300 expire 2 "nav"
+    48400 expire 2 "nav"
+    48400 expire 2 "nav"
+    48500 expire 2 "nav"
+    48500 expire 2 "nav"
+    48600 expire 2 "nav"
+    48600 expire 2 "nav"
+    48700 expire 2 "nav"
+    48700 expire 2 "nav"
+    48800 expire 2 "nav"
+    48800 expire 2 "nav"
+    48900 expire 2 "nav"
+    48900 expire 2 "nav"
+    49000 expire 2 "nav"
+    49000 expire 2 "nav"
+    49100 expire 2 "nav"
+    49100 expire 2 "nav"
+    49200 expire 2 "nav"
+    49200 expire 2 "nav"
+    49300 expire 2 "nav"
+    49300 expire 2 "nav"
+    49400 expire 2 "nav"
+    49400 expire 2 "nav"
+    49500 expire 2 "nav"
+    49500 expire 2 "nav"
+    49600 expire 2 "nav"
+    49600 expire 2 "nav"
+    49700 expire 2 "nav"
+    49700 expire 2 "nav"
+    49800 expire 2 "nav"
+    49800 expire 2 "nav"
+    49900 expire 2 "nav"
+    49900 expire 2 "nav"
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    50200 expire 2 "gcs"
+    60000 gcs calls Ping#6 ttl 20
+    60000 send 0 "nav" 113B ttl 20
+    60000 deliver 0 -> 1 "nav" 113B
+    60000 deliver 0 -> 2 "nav" 113B
+    60000 expire 0 "nav"
+    60100 peer1 call "Ping" "6"
+    60100 peer2 call "Ping" "6"
+    60200 send 1 "gcs" 116B ttl 20
+    60200 send 2 "gcs" 116B ttl 20
+    60200 deliver 1 -> 0 "gcs" 116B
+    60200 deliver 2 -> 0 "gcs" 116B
+    60200 expire 1 "gcs"
+    60200 expire 2 "gcs"
+    60300 peer0 reply seq=0 end=true status=0 "6"
+    60300 peer0 dropped NoPending
+    63000 expire 2 "nav"
+    65000 expire 0 "nav"
+    65200 expire 1 "gcs"
+    65200 expire 2 "gcs"
+    75000 gcs calls Ping#7 ttl 20
+    75000 send 0 "nav" 113B ttl 20
+    75000 deliver 0 -> 1 "nav" 113B
+    75000 deliver 0 -> 2 "nav" 113B
+    75100 peer1 call "Ping" "7"
+    75100 peer2 call "Ping" "7"
+    75200 send 1 "gcs" 116B ttl 20
+    75200 send 2 "gcs" 116B ttl 20
+    75200 deliver 1 -> 0 "gcs" 116B
+    75200 deliver 2 -> 0 "gcs" 116B
+    75300 peer0 reply seq=0 end=true status=0 "7"
+    75300 peer0 dropped NoPending
+    80000 expire 2 "nav"
+    80000 expire 0 "nav"
+    80200 expire 1 "gcs"
+    80200 expire 2 "gcs"
+    90000 gcs calls Ping#8 ttl 20
+    90000 send 0 "nav" 113B ttl 20
+    90000 deliver 0 -> 1 "nav" 113B
+    90000 deliver 0 -> 2 "nav" 113B
+    90100 peer0 pressure 0
+    90100 peer1 pressure 0
+    90100 peer2 pressure 0

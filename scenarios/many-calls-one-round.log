@@ -1,0 +1,1047 @@
+        0 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+        0 listen 0 "gcs"
+        0 send 0 "nav" 49B ttl 60
+        0 send 0 "nav" 49B ttl 10
+        0 listen 1 "drone-1"
+        0 listen 1 "nav"
+        0 listen 2 "drone-2"
+        0 listen 2 "nav"
+        0 listen 3 "drone-3"
+        0 listen 3 "nav"
+        0 listen 4 "drone-4"
+        0 listen 4 "nav"
+        0 listen 5 "drone-5"
+        0 listen 5 "nav"
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 deliver 0 -> 3 "nav" 49B
+        0 deliver 0 -> 4 "nav" 49B
+        0 deliver 0 -> 5 "nav" 49B
+        0 deliver 0 -> 1 "nav" 49B
+        0 deliver 0 -> 2 "nav" 49B
+        0 deliver 0 -> 3 "nav" 49B
+        0 deliver 0 -> 4 "nav" 49B
+        0 deliver 0 -> 5 "nav" 49B
+        0 radio 0 on-mesh
+        0 radio 1 on-mesh
+        0 radio 2 on-mesh
+        0 radio 3 on-mesh
+        0 radio 4 on-mesh
+        0 radio 5 on-mesh
+      100 peer1 call "Ping" "1"
+      100 peer1 call "Ping" "2"
+      100 peer2 call "Ping" "1"
+      100 peer2 call "Ping" "2"
+      100 peer3 call "Ping" "1"
+      100 peer3 call "Ping" "2"
+      100 peer4 call "Ping" "1"
+      100 peer4 call "Ping" "2"
+      100 peer5 call "Ping" "1"
+      100 peer5 call "Ping" "2"
+      200 send 1 "gcs" 52B ttl 60
+      200 send 1 "gcs" 52B ttl 10
+      200 send 2 "gcs" 52B ttl 60
+      200 send 2 "gcs" 52B ttl 10
+      200 send 3 "gcs" 52B ttl 60
+      200 send 3 "gcs" 52B ttl 10
+      200 send 4 "gcs" 52B ttl 60
+      200 send 4 "gcs" 52B ttl 10
+      200 send 5 "gcs" 52B ttl 60
+      200 send 5 "gcs" 52B ttl 10
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 1 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      200 deliver 2 -> 0 "gcs" 52B
+      200 deliver 3 -> 0 "gcs" 52B
+      200 deliver 3 -> 0 "gcs" 52B
+      200 deliver 4 -> 0 "gcs" 52B
+      200 deliver 4 -> 0 "gcs" 52B
+      200 deliver 5 -> 0 "gcs" 52B
+      200 deliver 5 -> 0 "gcs" 52B
+      300 peer0 reply seq=0 end=true status=0 "1"
+      300 peer0 reply seq=0 end=true status=0 "2"
+      300 peer0 dropped NoPending ×8
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer0 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer2 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer3 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer4 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 host: peer5 calls a hostile method
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 0 "nav" 74B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 2 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 3 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 4 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 send 5 "nav" 78B ttl 20
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(0)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(2)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(3)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(4)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 event Hostile(5)
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 0 -> 1 "nav" 74B
+      500 deliver 0 -> 2 "nav" 74B
+      500 deliver 0 -> 3 "nav" 74B
+      500 deliver 0 -> 4 "nav" 74B
+      500 deliver 0 -> 5 "nav" 74B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 2 -> 1 "nav" 78B
+      500 deliver 2 -> 3 "nav" 78B
+      500 deliver 2 -> 4 "nav" 78B
+      500 deliver 2 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 3 -> 1 "nav" 78B
+      500 deliver 3 -> 2 "nav" 78B
+      500 deliver 3 -> 4 "nav" 78B
+      500 deliver 3 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 4 -> 1 "nav" 78B
+      500 deliver 4 -> 2 "nav" 78B
+      500 deliver 4 -> 3 "nav" 78B
+      500 deliver 4 -> 5 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      500 deliver 5 -> 1 "nav" 78B
+      500 deliver 5 -> 2 "nav" 78B
+      500 deliver 5 -> 3 "nav" 78B
+      500 deliver 5 -> 4 "nav" 78B
+      600 peer1 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x" ×80
+      600 peer1 refused reply Full ×64
+      600 peer2 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x" ×64
+      600 peer2 refused reply Rate ×50
+      600 peer3 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x" ×64
+      600 peer3 refused reply Rate ×50
+      600 peer4 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x" ×64
+      600 peer4 refused reply Rate ×50
+      600 peer5 call "\u{1b}]0;pwned\u{7} \"q\" back\\slash\ttab" "x" ×64
+      600 peer5 refused reply Rate ×50
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 1 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 2 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 3 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 4 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 send 5 "gcs" 52B ttl 20
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 1 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 2 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 3 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 4 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      700 deliver 5 -> 0 "gcs" 52B
+      800 peer0 reply seq=0 end=true status=0 "x" ×16
+      800 peer0 dropped NoPending ×56
+    10000 expire 0 "nav"
+    10200 expire 1 "gcs"
+    10200 expire 2 "gcs"
+    10200 expire 3 "gcs"
+    10200 expire 4 "gcs"
+    10200 expire 5 "gcs"
+    15000 gcs calls Ping#3 ttl 20
+    15000 send 0 "nav" 49B ttl 20
+    15000 deliver 0 -> 1 "nav" 49B
+    15000 deliver 0 -> 2 "nav" 49B
+    15000 deliver 0 -> 3 "nav" 49B
+    15000 deliver 0 -> 4 "nav" 49B
+    15000 deliver 0 -> 5 "nav" 49B
+    15100 peer1 call "Ping" "3"
+    15100 peer2 call "Ping" "3"
+    15100 peer3 call "Ping" "3"
+    15100 peer4 call "Ping" "3"
+    15100 peer5 call "Ping" "3"
+    15200 send 1 "gcs" 52B ttl 20
+    15200 send 2 "gcs" 52B ttl 20
+    15200 send 3 "gcs" 52B ttl 20
+    15200 send 4 "gcs" 52B ttl 20
+    15200 send 5 "gcs" 52B ttl 20
+    15200 deliver 1 -> 0 "gcs" 52B
+    15200 deliver 2 -> 0 "gcs" 52B
+    15200 deliver 3 -> 0 "gcs" 52B
+    15200 deliver 4 -> 0 "gcs" 52B
+    15200 deliver 5 -> 0 "gcs" 52B
+    15300 peer0 reply seq=0 end=true status=0 "3"
+    15300 peer0 dropped NoPending ×4
+    20000 peer2 expired ×16
+    20000 peer3 expired ×16
+    20000 peer4 expired ×16
+    20000 peer5 expired ×16
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 0 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 2 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 3 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 4 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20500 expire 5 "nav"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 1 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 2 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 3 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 4 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    20700 expire 5 "gcs"
+    30000 gcs calls Ping#4 ttl 20
+    30000 send 0 "nav" 49B ttl 20
+    30000 deliver 0 -> 1 "nav" 49B
+    30000 deliver 0 -> 2 "nav" 49B
+    30000 deliver 0 -> 3 "nav" 49B
+    30000 deliver 0 -> 4 "nav" 49B
+    30000 deliver 0 -> 5 "nav" 49B
+    30100 peer1 call "Ping" "4"
+    30100 peer2 call "Ping" "4"
+    30100 peer3 call "Ping" "4"
+    30100 peer4 call "Ping" "4"
+    30100 peer5 call "Ping" "4"
+    30200 send 1 "gcs" 52B ttl 20
+    30200 send 2 "gcs" 52B ttl 20
+    30200 send 3 "gcs" 52B ttl 20
+    30200 send 4 "gcs" 52B ttl 20
+    30200 send 5 "gcs" 52B ttl 20
+    30200 deliver 1 -> 0 "gcs" 52B
+    30200 deliver 2 -> 0 "gcs" 52B
+    30200 deliver 3 -> 0 "gcs" 52B
+    30200 deliver 4 -> 0 "gcs" 52B
+    30200 deliver 5 -> 0 "gcs" 52B
+    30300 peer0 reply seq=0 end=true status=0 "4"
+    30300 peer0 dropped NoPending ×4
+    35000 expire 0 "nav"
+    35200 expire 1 "gcs"
+    35200 expire 2 "gcs"
+    35200 expire 3 "gcs"
+    35200 expire 4 "gcs"
+    35200 expire 5 "gcs"
+    45000 gcs calls Ping#5 ttl 20
+    45000 send 0 "nav" 49B ttl 20
+    45000 deliver 0 -> 1 "nav" 49B
+    45000 deliver 0 -> 2 "nav" 49B
+    45000 deliver 0 -> 3 "nav" 49B
+    45000 deliver 0 -> 4 "nav" 49B
+    45000 deliver 0 -> 5 "nav" 49B
+    45100 peer1 call "Ping" "5"
+    45100 peer2 call "Ping" "5"
+    45100 peer3 call "Ping" "5"
+    45100 peer4 call "Ping" "5"
+    45100 peer5 call "Ping" "5"
+    45200 send 1 "gcs" 52B ttl 20
+    45200 send 2 "gcs" 52B ttl 20
+    45200 send 3 "gcs" 52B ttl 20
+    45200 send 4 "gcs" 52B ttl 20
+    45200 send 5 "gcs" 52B ttl 20
+    45200 deliver 1 -> 0 "gcs" 52B
+    45200 deliver 2 -> 0 "gcs" 52B
+    45200 deliver 3 -> 0 "gcs" 52B
+    45200 deliver 4 -> 0 "gcs" 52B
+    45200 deliver 5 -> 0 "gcs" 52B
+    45300 peer0 reply seq=0 end=true status=0 "5"
+    45300 peer0 dropped NoPending ×4
+    50000 expire 0 "nav"
+    50200 expire 1 "gcs"
+    50200 expire 2 "gcs"
+    50200 expire 3 "gcs"
+    50200 expire 4 "gcs"
+    50200 expire 5 "gcs"
+    50600 peer0 pressure 0
+    50600 peer1 pressure 19
+    50600 peer2 pressure 3
+    50600 peer3 pressure 3
+    50600 peer4 pressure 3
+    50600 peer5 pressure 3

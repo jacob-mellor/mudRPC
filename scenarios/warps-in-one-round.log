@@ -1,0 +1,129 @@
+        0 host: the clock jumps 1000 ms
+        0 event Partition(0, 1)
+        0 event Partition(0, 2)
+        0 event Partition(1, 2)
+        0 event Warp(1000)
+     1000 gcs calls Ping#1 ttl 60 and Ping#2 ttl 10
+     1000 listen 0 "gcs"
+     1000 send 0 "nav" 49B ttl 60
+     1000 send 0 "nav" 49B ttl 10
+     1000 listen 1 "drone-1"
+     1000 listen 1 "nav"
+     1000 listen 2 "drone-2"
+     1000 listen 2 "nav"
+     5000 host: the clock jumps 1000 ms
+     5000 event Warp(1000)
+     5000 event Warp(2000)
+     5000 event PeerDown(1)
+     6000 host: the clock jumps 2000 ms
+     8000 event PeerUp(1)
+    10800 event Heal(0, 1)
+    10800 deliver 0 -> 1 "nav" 49B
+    10800 deliver 0 -> 1 "nav" 49B
+    10800 radio 0 on-mesh
+    10800 radio 1 on-mesh
+    10900 peer1 call "Ping" "1"
+    10900 peer1 call "Ping" "2"
+    11000 peer0 expired
+    11000 send 1 "gcs" 52B ttl 60
+    11000 send 1 "gcs" 52B ttl 10
+    11000 deliver 1 -> 0 "gcs" 52B
+    11000 deliver 1 -> 0 "gcs" 52B
+    11000 expire 0 "nav"
+    11100 peer0 reply seq=0 end=true status=0 "1"
+    11100 peer0 dropped NoPending
+    19000 gcs calls Ping#3 ttl 20
+    19000 send 0 "nav" 49B ttl 20
+    19000 deliver 0 -> 1 "nav" 49B
+    19100 peer1 call "Ping" "3"
+    19200 send 1 "gcs" 52B ttl 20
+    19200 deliver 1 -> 0 "gcs" 52B
+    19300 peer0 reply seq=0 end=true status=0 "3"
+    21000 expire 1 "gcs"
+    34000 gcs calls Ping#4 ttl 20
+    34000 send 0 "nav" 49B ttl 20
+    34000 deliver 0 -> 1 "nav" 49B
+    34100 peer1 call "Ping" "4"
+    34200 send 1 "gcs" 52B ttl 20
+    34200 deliver 1 -> 0 "gcs" 52B
+    34300 peer0 reply seq=0 end=true status=0 "4"
+    39000 expire 0 "nav"
+    39200 expire 1 "gcs"
+    49000 gcs calls Ping#5 ttl 20
+    49000 send 0 "nav" 49B ttl 20
+    49000 deliver 0 -> 1 "nav" 49B
+    49100 peer1 call "Ping" "5"
+    49200 send 1 "gcs" 52B ttl 20
+    49200 deliver 1 -> 0 "gcs" 52B
+    49300 peer0 reply seq=0 end=true status=0 "5"
+    54000 expire 0 "nav"
+    54200 expire 1 "gcs"
+    60900 event Heal(0, 2)
+    60900 deliver 0 -> 2 "nav" 49B
+    60900 radio 2 on-mesh
+    61000 peer2 call "Ping" "5"
+    61000 expire 0 "nav"
+    61100 send 2 "gcs" 52B ttl 20
+    61100 deliver 2 -> 0 "gcs" 52B
+    61200 peer0 dropped NoPending
+    64000 gcs calls Ping#6 ttl 20
+    64000 send 0 "nav" 49B ttl 20
+    64000 deliver 0 -> 1 "nav" 49B
+    64000 deliver 0 -> 2 "nav" 49B
+    64100 peer1 call "Ping" "6"
+    64100 peer2 call "Ping" "6"
+    64200 send 1 "gcs" 52B ttl 20
+    64200 send 2 "gcs" 52B ttl 20
+    64200 deliver 1 -> 0 "gcs" 52B
+    64200 deliver 2 -> 0 "gcs" 52B
+    64300 peer0 reply seq=0 end=true status=0 "6"
+    64300 peer0 dropped NoPending
+    69000 expire 0 "nav"
+    69200 expire 1 "gcs"
+    71000 expire 1 "gcs"
+    79000 gcs calls Ping#7 ttl 20
+    79000 send 0 "nav" 49B ttl 20
+    79000 deliver 0 -> 1 "nav" 49B
+    79000 deliver 0 -> 2 "nav" 49B
+    79100 peer1 call "Ping" "7"
+    79100 peer2 call "Ping" "7"
+    79200 send 1 "gcs" 52B ttl 20
+    79200 send 2 "gcs" 52B ttl 20
+    79200 deliver 1 -> 0 "gcs" 52B
+    79200 deliver 2 -> 0 "gcs" 52B
+    79300 peer0 reply seq=0 end=true status=0 "7"
+    79300 peer0 dropped NoPending
+    81100 expire 2 "gcs"
+    84000 expire 0 "nav"
+    84200 expire 1 "gcs"
+    84200 expire 2 "gcs"
+    94000 gcs calls Ping#8 ttl 20
+    94000 send 0 "nav" 49B ttl 20
+    94000 deliver 0 -> 1 "nav" 49B
+    94000 deliver 0 -> 2 "nav" 49B
+    94100 peer1 call "Ping" "8"
+    94100 peer2 call "Ping" "8"
+    94200 send 1 "gcs" 52B ttl 20
+    94200 send 2 "gcs" 52B ttl 20
+    94200 deliver 1 -> 0 "gcs" 52B
+    94200 deliver 2 -> 0 "gcs" 52B
+    94300 peer0 reply seq=0 end=true status=0 "8"
+    94300 peer0 dropped NoPending
+    99000 expire 0 "nav"
+    99200 expire 1 "gcs"
+    99200 expire 2 "gcs"
+   109000 gcs calls Ping#9 ttl 20
+   109000 send 0 "nav" 49B ttl 20
+   109000 deliver 0 -> 1 "nav" 49B
+   109000 deliver 0 -> 2 "nav" 49B
+   109100 peer1 call "Ping" "9"
+   109100 peer2 call "Ping" "9"
+   109200 send 1 "gcs" 52B ttl 20
+   109200 send 2 "gcs" 52B ttl 20
+   109200 deliver 1 -> 0 "gcs" 52B
+   109200 deliver 2 -> 0 "gcs" 52B
+   109300 peer0 reply seq=0 end=true status=0 "9"
+   109300 peer0 dropped NoPending
+   111000 peer0 pressure 0
+   111000 peer1 pressure 0
+   111000 peer2 pressure 0

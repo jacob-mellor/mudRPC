@@ -1,0 +1,61 @@
+# Everything at once on an announcing mesh of 121 radios: a ground station, drones 1 to 119 reporting every second,
+# radio 120 empty until it comes up as a clone of drone-5 at 10 s beside the original. Radios 101 to 103 flood gcs's
+# name with 20 000 junk wires a second each from 2 s to 32 s; drone-104 holds the key and spams nav at 100 a second for
+# a second with a lying clock; radio 110 replays the last wire it heard at 20 s; radio 111 is a relay that holds the
+# first 4 s of wires for a week. The clone's reports are believed while an honest report of the older epoch could still
+# arrive (600 s). At 35 s the clock jumps a week: the held calls come back as Replay where gcs is known, the clone's
+# epoch is below the floor, and three more reports land. No noise: a receiver's bit flips touch
+# nothing else (noisy-radio), and a flipped version byte is one log a cipher for the same run.
+seed 121
+peers 121
+profile reticulum
+0         hold 111 604800000
+1000      telemetry
+2000      flood 101 gcs 20000
+2000      flood 102 gcs 20000
+2000      flood 103 gcs 20000
+2000      telemetry
+3000      telemetry
+4000      hold 111 0
+4000      telemetry
+5000      spam 104 100
+5000      telemetry
+6000      spam 104 0
+6000      telemetry
+7000      telemetry
+8000      telemetry
+9000      telemetry
+10000     clone 5 120
+10000     telemetry
+11000     telemetry
+12000     telemetry
+13000     telemetry
+14000     telemetry
+15000     telemetry
+16000     telemetry
+17000     telemetry
+18000     telemetry
+19000     telemetry
+20000     replay 110
+20000     telemetry
+21000     telemetry
+22000     telemetry
+23000     telemetry
+24000     telemetry
+25000     telemetry
+26000     telemetry
+27000     telemetry
+28000     telemetry
+29000     telemetry
+30000     telemetry
+31000     telemetry
+32000     flood 101 gcs 0
+32000     flood 102 gcs 0
+32000     flood 103 gcs 0
+32000     telemetry
+33000     telemetry
+34000     telemetry
+35000     warp 604800000
+604836000 telemetry
+604837000 telemetry
+604838000 telemetry

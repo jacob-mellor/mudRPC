@@ -1,0 +1,8 @@
+# gcs's radio is down from 1 s to 40 s. Ping#3, made at 15 s with ttl 20, waits in its outbox and expires at 35 s; while
+# the radio is down every round's send is refused, and the pump ends the drain there but still ticks, so the expiry is
+# reported at 35 s, as every harness reports it.
+seed 9
+peers 2
+profile dtn
+1000  peer_down 0
+40000 peer_up 0

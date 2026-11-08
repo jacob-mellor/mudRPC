@@ -1,0 +1,6 @@
+# Forty peers on a custody mesh: a ground station and thirty-nine drones, no faults. Every call to nav draws thirty-nine
+# answers; the first lands, the rest find no pending call. Signed, gcs is the hub shape and believes all forty, each drone
+# a leaf that believes the hub and the drones that fit: the fleet the one block shape could not boot.
+seed 40
+peers 40
+profile dtn

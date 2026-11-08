@@ -1,0 +1,5 @@
+# The one toolchain every build, test and release uses; a product that builds core under its own may, and loses nothing.
+[toolchain]
+channel = "1.91.1"
+components = ["clippy", "rustfmt"]
+targets = ["thumbv7em-none-eabihf", "thumbv6m-none-eabi", "thumbv8m.main-none-eabihf", "riscv32imc-unknown-none-elf", "aarch64-unknown-linux-gnu", "wasm32-wasip1", "wasm32-unknown-unknown"]
