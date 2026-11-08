@@ -155,11 +155,16 @@ fn a_datagram_from_an_unlisted_socket_or_longer_than_a_wire_never_reaches_poll()
 
 /// A harness note's text with its "×N" count split off, so two runs compare by how often each event happened, not by
 /// which round collapsed it: the loopback rung is real time, and a burst the simulator lands in one round lands in two here.
+/// An event's or a flood's sender is blanked too: which of 256 equal drones is the 65th windowless one named in a second
+/// is the order their wires arrive in, the sockets' to decide, so the counts hold and the attribution is the simulator's.
 fn tally(log: &[String]) -> std::collections::BTreeMap<String, usize> {
     let mut m = std::collections::BTreeMap::new();
     for l in log {
         let note = text(l).to_string();
-        let (text, n) = note.rsplit_once(" ×").and_then(|(t, n)| n.parse::<usize>().ok().map(|n| (t.to_string(), n))).unwrap_or((note, 1));
+        let (mut text, n) = note.rsplit_once(" ×").and_then(|(t, n)| n.parse::<usize>().ok().map(|n| (t.to_string(), n))).unwrap_or((note, 1));
+        if let Some((head, tail)) = text.rsplit_once(" from sender ") {
+            if tail.bytes().all(|b| b.is_ascii_digit()) && (head.contains(" flood") || head.contains(" event ")) { text = format!("{head} from sender ?"); }
+        }
         *m.entry(text).or_insert(0) += n;
     }
     m
